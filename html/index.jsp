@@ -100,19 +100,19 @@
                 <li class="kit-menu-item">
                   <a href="#/member/memberInfo">
                     <i class="layui-icon"></i>
-                    <span>查看社团成员</span>
+                    <span>查看社员</span>
                   </a>
                 </li>
                 <li class="kit-menu-item">
                   <a href="#/member/recruitNew">
                     <i class="layui-icon"></i>
-                    <span>招新</span>
+                    <span>社团招新</span>
                   </a>
                 </li>
                 <li class="kit-menu-item">
                   <a href="#/member/reElection">
                     <i class="layui-icon"></i>
-                    <span>换届</span>
+                    <span>社团换届</span>
                   </a>
                 </li>
               </ul>

@@ -1,0 +1,480 @@
+@charset "utf-8";
+.viewFramework-index {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	top: 0;
+	background-color: #eaedf1;
+}
+
+.viewFramework-index-body {
+	padding: 0;
+}
+
+/*  公告外层   */
+.home-section-notice {
+	height: 30px;
+	position: relative;
+	background-color: #FFF;
+	line-height: 30px;
+	color: #333;
+	font-size: 12px;
+	padding: 0 30px;
+}
+
+/*   公告icon  */
+.home-section-notice i {
+	font-size: 14px;
+	color: #24AC7E;
+}
+
+/*  公告字段及公告内容左浮动   */
+.notice-title,
+.notice-content {
+	float: left;
+}
+
+/*  公告内容   */
+.notice-content {
+	position: relative;
+}
+
+/*  公告链接   */
+.notice-content a {
+	display: inline-block;
+	margin-right: 25px;
+	color: #24AC7E;
+}
+
+/*  公告时间   */
+.notice-time {
+	color: #999;
+}
+
+/*  公告具体内容以及查看更多按钮字体颜色  */
+.notice-name,
+.read-more {
+	color: #24AC7E;
+}
+
+/*  清除查看更多右外边距   */
+.read-more {
+	margin-right: 0;
+}
+
+/*  平台数据      */
+.home-section-platform-data {
+	position: relative;
+}
+
+/*  平台数据头部      */
+.platform-data-header {
+	height: 180px;
+	margin: 15px;
+	background: #FFF;
+}
+
+.col-1-7 {
+    width: 12.485%;
+}
+
+/*  平台数据头部高度      */
+.platform-data-header .col-1-7 {
+	height: 180px;
+	float: left;
+}
+
+/*  平台数据列表中间竖线      */
+.platform-data-header .col-1-7:before {
+	content: '';
+	display: block;
+	width: 1px;
+	height: 116px;
+	margin: 32px 0;
+	float: left;
+	background: #E1E6EB;
+}
+
+.data-user + .col-1-7:before {
+	display: none;
+}
+
+/*  用户信息      */
+.data-user {
+	background-color: #F5F6F7;
+}
+
+/*  用户头像      */
+.data-user-img {
+	width: 50px;
+	height: 50px;
+	margin: 42px auto 14px;
+}
+
+.data-user-img img {
+	width: 50px;
+	height: 50px;
+}
+
+.activity-number {
+	text-align: center;
+	color: #999;
+	width: 100%;
+	display: block;
+	margin-bottom: 10px;
+}
+
+.activity-number p {
+	display: inline;
+}
+
+/*  用户名以及按钮文本居中      */
+.data-user-name,
+.data-user-btn {
+	text-align: center;
+}
+
+/*  用户名欢迎字段颜色以及下外边距      */
+.data-user-name {
+	color: #999;
+	margin-bottom: 14px;
+}
+
+/*  用户名字体颜色     */
+.user-name {
+	cursor: default;
+	color: #333;
+}
+
+/*  链接悬停出现下划线      */
+.data-user-btn a:hover,
+.read-more:hover,
+.notice-content a:hover {
+	text-decoration: underline;
+}
+
+/*  平台数据值以及数据名称块级化、文本居中      */
+.platform-data-header .platform-data-value,
+.data-value-name {
+	display: block;
+	text-align: center;
+}
+
+/*  平台数据值      */
+.platform-data-header .platform-data-value {
+	height: 25px;
+	line-height: 25px;
+	font-size: 24px;
+	font-weight: 600;
+	margin-top: 53px;
+}
+
+/*  平台数据名称      */
+.data-value-name {
+	font-size: 12px;
+	color: #999;
+	line-height: 17px;
+	margin-top: 25px;
+}
+
+/*  平台数据值上升颜色      */
+.platform-data-value {
+	color: #FF7E00;
+	font-size: 20px;
+}
+
+/*  平台数据值后icon      */
+.up-color:after,
+.down-color:after,
+.fixed-color:after {
+	font-family: iconfont;
+	font-weight: normal;
+	margin-left: 10px;
+}
+
+/*  平台数据值上升icon      */
+.up-color:after {
+	content: "\e60d";
+}
+
+/*  平台数据值下降icon      */
+.down-color:after {
+	content: "\e60c";
+}
+
+/*  平台数据值相等icon      */
+.fixed-color:after {
+	content: "\e60e";
+}
+
+/*  详细数据信息      */
+.platform-data-main {
+	position: relative;
+	margin: 0 15px 15px;
+}
+
+/*  详细数据信息左侧      */
+.platform-data-main-left {
+	padding-right: 28.178694%;
+	position: relative;
+	margin-right: 15px;
+}
+
+/*  详细数据信息左右侧通用背景色以及padding值      */
+.platform-data-content {
+	background-color: #FFF;
+	padding: 20px;
+}
+
+/*  详细数据信息一级标题      */
+.primary-title {
+	color: #333;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 0 7.5px;
+	display: block;
+}
+
+/*  详细数据信息一级标题下划线      */
+.primary-title:after {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 1px;
+	background: #E1E6EB;
+	margin: 15px 0 30px;
+}
+
+/*  主要工作      */
+.primary-work-main {
+	overflow: hidden;
+}
+
+/*  主要工作 分为三列      */
+.primary-work-main .col-1-3 {
+	float: left;
+	padding: 0 7.5px;
+}
+
+/*  详细数据信息二级标题      */
+.secondary-title {
+	font-size: 14px;
+	color: #999;
+	font-weight: 500;
+	display: block;
+	margin: 5px 0;
+	line-height: 20px;
+}
+
+/*  详细数据信息列表      */
+.platform-data-notice li {
+	margin: 5px 0 10px;
+	height: 40px;
+	background-color: #F9FAFC;
+	line-height: 40px;
+	font-size: 12px;
+	color: #333;
+	padding: 0 12px;
+}
+
+.platform-data-notice li:hover {
+	background-color: #f7f7f7;
+}
+
+/*  详细数据信息列表项      */
+.platform-data-main .platform-data-value {
+	font-size: 14px;
+	color: #24AC7E;
+	height: 40px;
+	margin: 0 10px;
+}
+
+/*  详细数据信息列表项-营销工作样式      */
+.platform-data-main .yxgz .platform-data-value {
+	float: left;
+	display: block;
+	margin: 0;
+}
+
+.platform-data-main .yxgz .platform-data-value:after {
+	content: '';
+	display: block;
+	background: rgba( 0, 0, 0, 0.15);
+	width: 1px;
+	height: 15px;
+	float: right;
+	margin: 13px 10px 12px;
+}
+
+/*  详细数据信息列表项-以值开头的清除左外边距      */
+.clear-margin-left {
+	margin-left: 0 !important;
+}
+
+/*  详细数据信息列表项-营销工作，要素准备，目标与成本管理下外边距      */
+.yxgz,
+.yszb,
+.mbycbgl {
+	margin-bottom: 40px;
+}
+
+/*  详细数据信息右侧      */
+.platform-data-main-right {
+	width: 28.178694%;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+/*  详细数据信息右侧两div之间距离      */
+.platform-data-main-right .platform-data-content:first-child {
+	margin-bottom: 15px;
+}
+
+/*  详细数据信息右侧二级菜单margin值      */
+.platform-data-main-right .secondary-title {
+	margin: 5px 7.5px;
+}
+
+/*  详细数据信息右侧列表项margin值      */
+.platform-data-main-right .platform-data-notice li {
+	margin: 5px 7.5px 10px;
+}
+
+/*  详细数据信息右侧管理后台暂时以图片代替
+ * 
+ * 	未确定
+ *       */
+.guanlihoutai {
+	padding: 0 7.5px;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.guanlihoutai img {
+	width: 100%;
+}
+
+/*  详细数据信息列表项指针样式      */
+.platform-data-notice li {
+	cursor: pointer;
+}
+
+.chart-container{
+	padding: 20px;
+	background-color: #FFF;
+	margin-bottom: 15px;
+	min-height: 338px;
+}
+.chart-top{
+	padding-bottom: 20px;
+	overflow: hidden;
+	border-bottom: 1px solid #e1e6eb;
+}
+.part-title{
+	float: left;
+	font-weight: normal;
+	font-size: 14px;
+}
+.part-more{
+	float: right;
+	color: #1FA075;
+	cursor: pointer;
+}
+.tabs_menu2{
+	margin-top: 10px;
+	float: left;
+}
+.tabs_body thead tr th{
+	height: 40px;
+	background-color: #fff !important;
+}
+.tabs_body tbody tr{
+	border-bottom: 1px solid #E1E6EB;
+	border-left: none !important;
+	border-right: none !important;
+}
+.tabs_body thead tr{
+	border: none !important;
+	height: 45px !important;
+}
+.btn-notice-num {
+	color: #FFF;
+	min-width: 16px;
+	height: 16px;
+	border-radius: 4px;
+	padding: 0 2px;
+	margin-top: 2px;
+	line-height: 16px;
+	font-size: 10px;
+	margin-left: 3px;
+	display: inline-block;
+	vertical-align: top;
+	text-align: center;
+	background-color: orange;
+}
+.chart-overflow-box{
+	overflow: auto;
+	width: 100%;
+	padding-top: 15px;
+}
+
+.chart-overflow-box > #container {
+	overflow: visible !important;
+}
+
+#chart1,
+#chart2 {
+	width:100%;
+	height: 235px;
+}
+
+#chart1 > div,
+#chart2 > div {
+	left:0 !important;
+	top:0 !important;
+}
+
+#chart2_div {
+	margin-bottom: 0;
+}
+
+/*右弹窗*/
+.right-alert-content-main{
+	display: block;
+}
+.switches-items{
+	padding: 0 100px;
+	margin-bottom: 30px;
+}
+.switches-wrapper{
+	margin-bottom: 10px;
+}
+.switches-wrapper h3{
+	font-size: 16px;
+	font-weight: normal;
+	float: left;
+}
+.switches-wrapper .switches{
+	float: right;
+}
+.switches-hidden{
+	border: 1px solid #E1E6EB;
+	background-color: #FAFAFA;
+	padding: 15px;
+	display: none;
+}
+.checkbox-item{
+	float: left;
+	width: 50%;
+
+}
+.checkbox-item .checked-box{
+	float: left;
+	margin-top: 10px;
+}
+.checkbox-item span{
+	line-height: 32px;
+	margin-left: 10px;
+}

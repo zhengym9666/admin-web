@@ -1,0 +1,320 @@
+@charset "utf-8";
+body {
+	color: rgb(52, 73, 94);
+	font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+	font-size: 12px;
+}
+
+.demo {
+	width: 970px;
+	padding: 0 15px 100px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.demo-title {
+	padding: 100px 0px;
+	margin: 0 auto;
+}
+
+.demo-logo {
+	text-align: center;
+	font: 900 90px/100px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: rgb(52, 73, 94);
+}
+
+.iconBg {
+	background-color: #24AC7E;
+	width: 110px;
+	height: 110px;
+	border-radius: 110px;
+	margin: 0 auto;
+}
+
+.demo-logo i {
+	font-size: 68px;
+	color: #FFF;
+	display: block;
+	height: 110px;
+	line-height: 110px;
+	font-weight: normal;
+}
+
+.demo-logo span {
+	font-size: 48px;
+}
+
+.demo-logo p {
+	color: rgba(52, 73, 94, 0.3);
+	font-size: 22px;
+	font-weight: 400;
+	letter-spacing: 0;
+	margin-top: -40px;
+}
+
+.demo-row {
+	float: left;
+	margin-bottom: 50px;
+}
+
+.demo-section-title {
+	font: 900 32px/40px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 10px 0;
+}
+
+.demo-panel-title {
+    padding-top: 20px;
+    margin: 2px 0 20px;
+    font: bold 23px/40px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.demo-row .demo-items {
+	float: left;
+	margin-right: 30px;
+}
+
+.demo-buttons,.demo-pop-buttons {
+	width: 60%;
+}
+
+.demo-dropdown {
+	width: 40%;
+	height: 117px;
+}
+
+.demo-select,.demo-input {
+	width: 100%;
+}
+
+.demo-pageTitle,
+.demo-Pagination {
+	width: 50%;
+	height: 130px;
+}
+
+.demo-pageTitle .demo-panel-title {
+	margin-bottom: 0;
+}
+
+.demo-pageTitle .demo-items {
+	width: 100%;
+	margin-top: -10px;
+}
+
+.tree-menu .demo-items,
+.tree-menu-rightclick .demo-items,
+.special-tree-menu .demo-items {
+	width: 180px;
+	float: left;
+	border: 1px solid #E1E6EB;
+	background-color: #F1F4F7;
+	overflow-y: auto;
+}
+
+.tree-menu {
+	width: 22%;
+}
+.tree-menu-rightclick{
+	width: 40%;
+}
+.special-tree-menu {
+	margin-right: 30px;
+}
+
+.Color-Swatches {
+	width: 100%;
+}
+
+.Color-Swatches ul {
+	width: 100px;
+	float: left;
+	margin-right: 30px;
+	margin-bottom: 20px;
+}
+
+.Color-Swatches .demo-items,
+.Color-Swatches ul.blue,
+.Color-Swatches ul.green2 {
+	margin-right: 0;
+}
+
+.Color-Swatches ul.blue {
+	margin-right: 340px;
+}
+
+.Color-Swatches ul li {
+	width: 100px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	color: #FFF;
+	color: rgba( 255,255,255,0.8);
+	float: left;
+}
+
+.green li {
+	background-color: #1FA075;
+}
+
+.green li:first-child {
+	background-color: #24AC7E;
+}
+
+.black li {
+	background-color: #293038;
+}
+
+.black li:first-child {
+	background-color: #616B78;
+}
+
+.white li {
+	background-color: #E1E6EB;
+	color: #94a1a4 !important;
+	color: rgba(0 ,0 , 0, 0.3) !important;
+}
+
+.white li:first-child {
+	background-color: #F1F4F7;
+	color: #94a1a4 !important;
+	color: rgba(0 ,0 , 0, 0.3) !important;
+}
+
+.blue li {
+	background-color: #559EC3;
+}
+
+.blue li:first-child {
+	background-color: #62B5DF;
+}
+
+.purple li {
+	background-color: #78619E;
+}
+
+.purple li:first-child {
+	background-color: #9177BC;
+}
+
+.red li {
+	background-color: #CF517C;
+}
+
+.red li:first-child {
+	background-color: #F26091;
+}
+
+.yellow li {
+	background-color: #D99D37;
+}
+
+.yellow li:first-child {
+	background-color: #FFB840;
+}
+
+.green2 li {
+	background-color: #53AA90;
+}
+
+.green2 li:first-child {
+	background-color: #63CBAC;
+}
+
+.demo-chart {
+	width: 100%;
+}
+
+.demo-tab .demo-items {
+	position: relative;
+	height: 300px;
+}
+
+.js-tabs-div1 {
+	color: #62B5DF;
+}
+
+.js-tabs-div2 {
+	color: #F26091;
+}
+
+.js-tabs-div3 {
+	color: #FFB840;
+}
+
+.js-tabs-div4 {
+	color: #63CBAC;
+}
+
+.demo-tab .demo-items .tabs-wapper {
+	font-size: 24px;
+	font-weight: 600;
+	margin-top: 0;
+	left: 0;
+	right: 0;
+	line-height: 265px;
+	border: 1px solid #E1E6EB;
+	border-top: none;
+	text-align: center;
+}
+
+.switches {
+	margin-bottom: 20px;
+}
+
+.demo-tab {
+	margin-right: 30px;
+}
+
+.demo-tab2,
+.demo-switches {
+	width: 250px;
+}
+
+.demo-switches {
+	height: 230px;
+}
+
+.demo-tab2 {
+	height: 120px;
+	margin-bottom: 32px;
+}
+
+.demo-radiobuttons,
+.demo-checkeboxes,
+.demo-currentstate {
+	width: 33%;
+}
+
+.demo-checkeboxes .checked-box,
+.demo-radiobuttons .radio-buttons {
+	width: 20px;
+	height: 20px;
+	float: left;
+}
+
+.demo-checkeboxes .checked-box i:before,
+.demo-radiobuttons .radio-buttons i:before {
+	font-size: 20px;
+}
+
+.demo-radiobuttons .demo-items li,
+.demo-checkeboxes .demo-items li,
+.demo-currentstate .demo-items li {
+	width: 100%;
+	float: left;
+	margin-bottom: 20px;
+}
+
+.demo-radiobuttons .demo-items li span,
+.demo-checkeboxes .demo-items li span,
+.demo-currentstate .demo-items li span {
+	float: left;
+	margin-left: 20px;
+	display: block;
+	height: 20px;
+	line-height: 20px;
+}
+
+.demo-search-input{
+	width: 232px;
+}

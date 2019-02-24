@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+        <!-- 允许JVM参数覆盖 -->
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+        <!-- 忽略没有找到的资源文件 -->
+        <property name="ignoreResourceNotFound" value="true" />
+        <!-- 配置资源文件 -->
+      <!--  <property name="locations">
+            <list>
+                <value>classpath:env.properties</value>
+            </list>
+        </property>-->
+    </bean>
+
+    <!-- 组件扫描的方式，扫描controller -->
+     <mvc:annotation-driven></mvc:annotation-driven>
+<!--     <context:component-scan base-package="com.community.web"/>
+    <context:component-scan base-package="activiti.servlet"/>
+	<context:component-scan base-package="activiti.common.*"/> -->
+	<context:component-scan base-package="com.admin.web"/>
+	
+    <!--注解驱动配置处理器映射器、处理器适配器，说明：
+        1.等于同时配置了 RequestMappingHandlerMapping、RequestMappingHandlerAdapter
+        2.企业项目中，推荐使用这种方式 -->
+   <!-- <mvc:annotation-driven />
+    &lt;!&ndash; 配置视图解析器 &ndash;&gt;
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        &lt;!&ndash;设置视图的公共目录路径  &ndash;&gt;
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+
+        &lt;!&ndash; 设置视图扩展名称 &ndash;&gt;
+        <property name="suffix" value=".jsp"/>
+    </bean>-->
+
+
+    <!-- 解决静态资源404问题 -->
+    <mvc:default-servlet-handler/>
+</beans>  

@@ -248,27 +248,27 @@ layui.define(mods, function (e) {
                         name: "500"
                     }, {
                     	path: "/member/memberInfo",
-                    	component: "views/member/memberInfo.jsp",
+                    	component: "views/community/memberInfo.jsp",
                     	name: "查看社团成员"
                     },	{
                     	path: "/member/recruitNew",
-                    	component: "views/member/recruitNew.jsp",
-                    	name: "招新"
+                    	component: "views/community/recruitNew.jsp",
+                    	name: "社团招新"
                     }, {
                     	path: "/member/reElection",
-                    	component: "views/member/reElection.jsp",
-                    	name: "换届"
+                    	component: "views/community/reElection.jsp",
+                    	name: "社团换届"
                     },{
                     	path:"/department/departManage",
-                    	component: "views/department/departManage.jsp",
+                    	component: "views/community/departManage.jsp",
                     	name: "部门管理"
                     },{
                     	path: "/news/newsManage",
-                    	component: "views/news/newsManage.jsp",
+                    	component: "views/community/newsManage.jsp",
                     	name: "社团新闻管理"
                     },{
                     	path:"/activity/actManage",
-                    	component: "views/activity/actManage.jsp",
+                    	component: "views/community/actManage.jsp",
                     	name: "活动管理"
                     }
                     ]

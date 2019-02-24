@@ -1,2 +1,7 @@
 eclipse.preferences.version=1
-encoding/<project>=GBK
+encoding//html/views/app.html=UTF-8
+encoding//html/views/profile.html=UTF-8
+encoding//html/views/setting.html=UTF-8
+encoding//src/com/admin/bean/Student.java=UTF-8
+encoding//src/com/admin/util/MybatisUtil.java=GBK
+encoding/<project>=UTF-8

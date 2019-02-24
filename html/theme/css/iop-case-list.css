@@ -1,0 +1,717 @@
+@charset "utf-8";
+.viewFramework-index-tabs {
+    padding-top: 0px;
+}
+.tabs_body {
+    width: 100%;
+    height: 100%;
+}
+
+#inventory-customer-base-div,
+#rule-customer-base-div {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#inventory-customer-base-div.open,
+#rule-customer-base-div.open {
+    display: block;
+}
+
+.customer-base-div-top {
+    border-bottom: 1px solid #E1E6EB;
+    position: relative;
+    width: 100%;
+    float: left;
+    padding: 10px 0 25px 0;
+    background-color: #FFF;
+}
+.btn-li{
+	max-width: none !important;
+	padding-right: 0 !important;
+	height: 45px;
+	float: right !important;
+}
+.customer-base-div-top li {
+    /*width: 100%;*/
+    float: left;
+    padding: 0 25px;
+    border-left: 1px solid #E1E6EB;
+    text-align: center;
+    max-width: 180px;
+}
+
+.customer-base-div-top li p.char-li{
+	margin-bottom: 12px;
+}
+
+.customer-base-div-top li:first-child{
+	border-left: none;
+	padding: 0 30px 0 10px;
+	min-width: 100px;
+}
+
+.btn-li button{
+	margin-top: 6px;
+}
+.customer-base-div-top li p{
+	font-size: 14px;
+	color: #333;
+	margin-bottom: 10px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.customer-base-div-top li span{
+	font-size: 12px;
+	color: #999;
+}
+.customer-base-div-top .btn-content {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.customer-base-div-top button {
+    width: auto;
+    padding: 0 15px;
+    float: left;
+    margin-right: 15px;
+}
+
+.customer-base-div-top button.last-child {
+    margin-right: 0;
+}
+.tabs_box{
+	padding-top: 0;
+}
+/*  功能栏  */
+.tabs_nav {
+    width: 100%;
+    height: 32px;
+    float: left;
+}
+.tabs-wapper .tabs_nav{
+    height: auto;
+}
+.tabs_nav-left {
+    float: left;
+    position: relative;
+    background-color: #FAFAFA;
+}
+.top-part{
+    padding-top: 17px;
+}
+.top-part-btn{
+    margin-left: 58px;
+}
+
+
+/*  右弹窗css  */
+
+.right-alert1 .right-alert-content-main {
+    padding: 30px 55px;
+}
+.right-alert1 .right-alert_content {
+    padding-top: 130px;
+    margin-top: -130px;
+}
+
+.right-alert1 .right-alert-content-main {
+    padding: 20px;
+    height: 100%;
+    position: relative;
+    float: left;
+}
+.right-alert1 .right-alert-content-main-form {
+    position: absolute;
+    top: 20px;
+    left: 285px;
+    right: 0;
+    bottom: 0;
+}
+
+.right-alert1 .right-alert-content-main li.right-alert-content-main-form-items {
+    margin-bottom: 30px;
+    overflow: hidden;
+    width: 390px;
+}
+
+.right-alert1 .right-alert-content-main li.right-alert-content-main-form-items input,
+.right-alert1 .right-alert-content-main li.right-alert-content-main-form-items textarea {
+    width: 325px;
+    height: 32px;
+    line-height: 32px;
+    background: transparent url(../img/100.png) repeat !important;
+    border: 1px solid #E1E6EB;
+    color: #9DA2B6;
+    padding: 0 10px;
+    position: relative;
+    z-index: 9;
+}
+
+.right-alert1 .right-alert-content-main li.right-alert-content-main-form-items textarea {
+    width: 325px;
+    max-width: 325px;
+    min-width: 325px;
+    min-height: 32px;
+    height: 64px;
+    font-size: 12px;
+    overflow: hidden;
+    width: 324px;
+}
+
+.right-alert1 .right-alert-content-main li.right-alert-content-main-form-items input:focus,
+.right-alert1 .right-alert-content-main li.right-alert-content-main-form-items textarea:focus {
+    color: #333;
+    border-color: #24AC7E;
+}
+
+.right-alert1 .right-alert-content-main li.right-alert-content-main-form-items .TextBtn-import {
+    margin-right: 10px;
+}
+
+.right-alert1 .right-alert-content-main li.right-alert-content-main-form-items button {
+    float: left;
+}
+.right-alert1 .form-span {
+    display: block;
+    float: left;
+    color: #999999;
+    line-height: 32px;
+    width: 48px;
+    text-align: right;
+}
+
+.right-alert1 .input-parent-div,
+.right-alert1 .textarea-parent-div {
+    position: relative;
+    width: 325px;
+    float: left;
+    margin-left: 15px;
+    background: #FAFAFA;
+}
+
+
+
+.tabs_body tbody tr .operation .state-btn:before {
+    content: '开始';
+}
+
+.tabs_body tbody tr.running .operation .state-btn:before {
+    content: '暂停';
+}
+
+.tabs_body tbody tr.no-subscription .operation .subscription-btn:before {
+    content: '加锁';
+}
+
+.tabs_body tbody tr.subscription .operation .subscription-btn:before {
+    content: '解锁';
+}
+.right-alert1 .only-show{
+    width: 100%;
+    height: 100%;
+    min-height: 35px;
+    line-height: 33px;
+    color: #9DA2B6;
+    padding: 0 10px;
+    float: left;
+    border: 1px solid #E1E6EB;
+    background-color: #FAFAFA;
+}
+
+
+/*
+.form-input-step{
+    display: none;
+
+}*/
+
+.form-input-step2{
+    display: block;
+}
+.form-input-step3 .control-box{
+    padding: 20px 68px 0;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+}
+.box-title{
+	margin: 15px 0;
+	display: block;
+	font-size: 14px;
+}
+.switches-left{
+    float: left;
+    width: 200px;
+}
+.switches-left span{
+    line-height: 35px;
+    margin: 0 10px;
+}
+.switches{
+    float: left;
+    margin-top: 7px;
+}
+
+span.green {
+    color: #24AC7E;
+    padding-right: 10px;
+}
+
+.switches-top,
+.switches-bottom {
+    float: left;
+    width: 100%;
+}
+
+.switches-right {
+    width: 218px;
+    height: 35px;
+    float: right;
+    padding: 0 10px;
+    outline: none;
+    font-size: 12px;
+    line-height: 35px;
+    position: relative;
+    z-index: 9;
+    color: #9DA2B6;
+    background-color: #FAFAFA;
+    margin-bottom: 10px;
+}
+
+.switches-right .count-g{
+    margin-left: 40px;
+    display: none;
+    letter-spacing: 2px;
+}
+.switches-right .no-control{
+    margin-left: 40px;
+    display: inline-block;
+}
+.switches-right button{
+    float: right;
+    width: 33px;
+    background-color: #FAFAFA;
+}
+.switches-items{
+    position: relative;
+    width: 100%;
+    margin: 0 auto 30px;
+}
+.checkbox-items{
+    width: 100%;
+}
+.checkbox-items.month .checkbox-item{
+    width: 42px;
+    margin-left: 10px;
+    margin-right: 0px;
+}
+.checkbox-items .checkbox-item{
+    margin-left: 10px;
+    margin-right: 20px;
+    float: left;
+}
+.checkbox-items .checked-box{
+    margin-top: 10px;
+}
+.checkbox-items .switches-hidden{
+    padding: 10px;
+    width: 100%;
+}
+.checkbox-items .checkbox-item span{
+    margin-left: 5px;
+}
+.switches-hidden{
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #E1E6EB;
+    background-color: #FAFAFA;
+    display: none;
+}
+.input{
+    height: 35px;
+    width: 70px;
+    border: 1px solid #E1E6EB;
+    margin-right: 20px;
+    padding: 0 10px;
+    text-align: center;
+    line-height: 35px;
+}
+.form-input-step3 button.disabled{
+    cursor: default;
+}
+.dropdown-btn{
+    width: 60px;
+}
+.switches-hidden .form-right input{
+    border: none;
+}
+.switches-hidden .TextBtn-import{
+    margin-left: 230px;
+}
+
+.right-alert-content-main{
+    display: block;
+}
+.right-alert2 p.only-show{
+    width: 238px;
+    min-height: 35px;
+    line-height: 33px;
+    color: #9DA2B6;
+    padding: 0 10px;
+    float: left;
+    letter-spacing: 2px;
+    float: right;
+}
+
+
+.form-btns{
+    margin-top: 18px;
+}
+
+
+.form-input-step4,.form-input-step5{
+    height: 100%;
+    width: 100%;
+}
+.form-input-step4 .checkbox-items,.form-input-step5 .checkbox-items{
+    float: left;
+    padding-left: 64px;
+    width: 750px;
+}
+.form-input-step4 .checkbox-item,.form-input-step5 .checkbox-item{
+    float: left;
+    width: 136px;
+}
+.form-input-step4 .small .checkbox-item,.form-input-step5 .small .checkbox-item{
+    
+    width: 80px;
+}
+.form-input-step4 .checked-box,.form-input-step5 .checked-box{
+    margin: 0;
+    width: 16px;
+    height: 35px;
+    margin-top: 10px;
+}
+.form-input-step4 .checked-box i:before,.form-input-step5 .checked-box i:before{
+    font-size: 20px;
+    line-height: 14px;
+}
+.form-input-step4 .form-items,.form-input-step5 .form-items{
+    margin-bottom: 20px;
+}
+.form-input-step4 .form-right,.form-input-step5 .form-right{
+    background-color: #fff;
+}
+.form-input-step4 .form-checkbox,.form-input-step5 .form-checkbox{
+    width: 786px;
+    position: relative;
+}
+
+.form-input-step4 .switches-left>span,.form-input-step5 .switches-left>span{
+    color: #999;
+}
+.icon-bitian:before{
+    color: #E4656E;
+    padding-right: 6px;
+    font-size: 12px;
+}
+.form-checkbox .form-right p{
+    float: left;
+    margin-left: 50px;
+    color: #999;
+    display: none;
+}
+.form-right p span{
+    padding: 5px;
+}
+.form-hidden{
+    position: absolute;
+    top: 35px;
+    left: 60px;
+    width: 320px;
+    padding: 15px;
+    border: 1px solid #E1E6EB;
+    background-color: #FAFAFA;
+    display: none;
+}
+
+.checkbox-item .checked-box{
+    float: left;
+}
+.checkbox-item span{
+    line-height: 32px;
+    margin-left: 10px;
+}
+.form-input-step4 .switches-bottom,.form-input-step5 .switches-bottom{
+    padding-left: 20px;
+}
+.no-click{
+    cursor: default!important;
+}
+.must-open .switches-hidden{
+    display: block!important;
+}
+.must-open .only-show{
+    display: block;
+}
+.must-open .count-g{
+    display: block;
+}
+.form-btns button{
+    margin-right: 10px;
+}
+.clear-fixed:before,.clear-fixed:after{
+    content: '';
+    display: table;
+}
+.clear-fixed:after{
+    clear: both;
+}
+.start-date + p{
+    background-color: #FAFAFA;
+}
+.switches-hidden input{
+    background: #fff!important;
+}
+.right-alert-tabs_menu li a{
+    padding-top: 12px;
+}
+
+
+.form-items a.delete{
+    line-height: 35px;
+    margin-left: 10px;
+    color: #24AC7E;
+    cursor: pointer;
+}
+.start-end-time .form-items:first-child .delete{
+    display: none;
+}
+p.contactRuleEditError{
+	top: 10px;
+	left: 300px;
+	position:absolute;
+	display:none;
+}
+.tabs_body tbody tr.stop .current-state span:before {
+	content: '已下线';
+}
+.tabs_body tbody tr.suspend .current-state span:before {
+	content: '正常';
+}
+.tabs_body tbody tr.running .current-state span:before {
+	content: '正常';
+}
+
+.div-thead, .div-tbody, .scroll-table {
+    width: 100%;
+}
+
+
+.tabs_body table thead tr th {
+    border-bottom: none;
+    padding: 0 15px;
+    line-height: 35px;
+}
+
+tbody td a{
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 40px;
+	line-height: 40px;
+	cursor: default;
+	width : 100%;
+}
+
+#table1 .nth1{
+	width: 150px;
+}
+
+#table1 .nth2{
+	width: 200px;
+}
+
+.div-tbody tbody .operation button::after {
+    margin: 14px 5px;
+}
+
+.form-right .checked-box{
+	margin: 0;
+	width: 16px;
+	height: 35px;
+	margin-top: 10px;
+}
+
+#importContactDiv .right-alert-content-main{
+    padding: 20px;
+    height: 100%;
+    position: relative;
+    float: left;
+}
+.import-contactBase {
+    width: 100%;
+    height: 100%;
+    padding: 12px 20px 0px 38px;
+}
+.import-contactBase-left {
+    width: 480px;
+    border-right: 1px solid #E1E6EB;
+    float: left;
+}
+.import-contactBase-left li {
+    padding-right: 30px;
+    float: left;
+    margin-bottom: 30px;
+}
+.import-contactBase-left li .form-left {
+    text-align: right;
+    color: #999;
+    width: 124px;
+	padding-right: 15px;
+}
+.import-contactBase-left .form-right {
+	width: 325px;
+    position: relative;
+    background-color: #FAFAFA;
+}
+.import-contactBase-right {
+    width: 280px;
+    height: 100%;
+    float: left;
+    padding-left: 30px;
+}
+.import-contactBase-right span {
+    width: 100%;
+    display: block;
+    line-height: 24px;
+    color: #9DA2B6;
+}
+.import-contactBase-right span a {
+    color: #24AC7E;
+    cursor: pointer;
+}
+.form-btn {
+    width: 100%;
+}
+.form-btn div {
+    width: 165px;
+    float: right;
+}
+.form-btn button:first-child {
+    margin-right: 15px;
+}
+.form-btn button {
+    float: left;
+}
+.import-contactBase-left .nth2.upload-component .show-path {
+    width: 275px;
+}
+
+
+
+.form-select-menu-type {
+    width: 100%;
+    top: 35px;
+}
+.form-select-menu-type {
+    width: 260px;
+    top: 32px;
+    right: 0;
+    z-index: 999;
+}
+
+.form-select-menu-type {
+    position: absolute;
+    width: 100%;
+    display: none;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E1E6EB \9;
+    background-color: #FFF;
+    padding: 0;
+    margin: 0;
+}
+
+.form-right.open .form-select-menu-type{
+	display: block;
+}
+
+
+.form-select-menu-type li {
+    height: 30px;
+    border-top: 1px solid #eaedf1;
+    text-align: left;
+    padding: 0 15px;
+    line-height: 30px;
+    font-weight: 300;
+    color: #666;
+    cursor: pointer;
+}
+
+.form-select-menu-type {
+    text-align: center;
+}
+
+.form-select-menu-type li.choosed{
+    color: #24AC7E;
+}
+
+
+/*新增案例右弹框*/
+#new_iop_case_list .form-right {
+	width: 633px;
+}
+
+
+/*查看右弹框日志列表*/
+
+.showCase .log table {
+    font-size: 12px;
+    text-align: center;
+}
+
+.showCase .log .operator {
+    width: 90px;
+}
+
+.showCase .log .opTime {
+    width: 190px;
+}
+
+
+.showCase .form-right{
+	width: 637px;
+	background-color: #EEF2F4;
+}
+
+.showCase .form-right textarea{
+    disabled: disabled;!important;
+	/*background-color: #EEF2F4;*/
+}
+
+#caseCode_s .form-right{
+	width: 238px;!important;
+}
+#caseName_s .form-right{
+	width: 238px;!important;
+}
+#createDate_s .form-right{
+	width: 238px;!important;
+}
+#modifyDate_s .form-right{
+	width: 238px;!important;
+}
+#creatorName_s .form-right{
+	width: 238px;!important;
+} 
+#srcName_s .form-right{
+	width: 238px;!important;
+}
+#isReportName_s .form-right{
+	width: 238px;!important;
+}

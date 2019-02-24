@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.admin.dao.GroupMemberDAO" >
+<!--type指定的是对应的实体类  -->
+    <resultMap id="BaseResultMap" type="com.admin.bean.GroupMember" >
+    <!-- id用来配置表的主键与类的属性的映射关系，column指定的是表的字段名，property指定的是类的属性名 -->
+        <id column="id" property="id"/>
+    <!-- result用来配置普通字段与类的属性的映射关系，column指定表的字段名，property指定类的属性名 -->
+    	<result column="stuNum" property="stuNum"/>
+        <result column="stuName" property="stuName"/>
+        <result column="clubId" property="clubId"/>
+        <result column="departmentId" property="departmentId"/>
+        <result column="rank" property="rank"/>
+        <result column="job" property="job"/>
+        <result column="state" property="state"/>
+        <result column="joinTime" property="joinTime"/>
+        <result column="exitTime" property="exitTime"/>
+    </resultMap>
+    
+    <select id="queryMemberByClubId" resultMap="BaseResultMap" parameterType="String">
+    	SELECT * FROM GROUPMEMBER where clubId = #{clubId}
+    </select>
+    
+    <select id="queryMemberCount" resultType="java.lang.Integer" parameterType="String">
+    	SELECT count(*) FROM GROUPMEMBER where clubId = #{clubId}
+    </select>
+    
+    <select id="queryMemberInfo" resultMap="BaseResultMap" parameterType="String">
+    	SELECT * FROM GROUPMEMBER where clubId = #{clubId} and stuNum = #{stuNum}
+    </select>
+    
+    <insert id="addMemberInfo" parameterType="com.admin.bean.GroupMember">
+    	insert into GROUPMEMBER(stuNum,stuName,clubId,departmentId,rank,job,state,joinTime,exitTime)
+    	values(#{stuNum},#{stuName},#{clubId},#{departmentId},#{rank},#{job},#{state},#{joinTime},#{exitTime})
+    </insert>
+</mapper>

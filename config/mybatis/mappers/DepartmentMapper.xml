@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.admin.dao.DepartmentDAO">
+<!--type指定的是对应的实体类  -->
+    <resultMap id="BaseResultMap" type="com.admin.bean.Department" >
+    <!-- id用来配置表的主键与类的属性的映射关系，column指定的是表的字段名，property指定的是类的属性名 -->	
+	<id column="id" property="id"></id>
+  <!-- result用来配置普通字段与类的属性的映射关系，column指定表的字段名，property指定类的属性名 -->
+	<result column="NAME" property="name"/>
+	<result column="intro" property="intro"/>
+	<result column="minister" property="minister"/>
+	<result column="minister_name" property="minister_name"/>
+	<result column="vice1_minister" property="vice1_minister"/>
+	<result column="vice1_name" property="vice1_name"/>
+	<result column="vice2_minister" property="vice2_minister"/>
+	<result column="vice2_name" property="vice2_name"/>
+	<result column="collegeId" property="collegeId"/>
+	<result column="clubId" property="clubId"/>
+	</resultMap>
+	
+    <select id="queryDepartmentById" resultMap="BaseResultMap" parameterType="String" >
+        select *
+        from DEPARTMENT
+        where id = #{departmentId}
+    </select>
+	
+	<select id="queryDepartmentByClubId" resultMap="BaseResultMap" parameterType="String">
+		select * from DEPARTMENT where clubId = #{clubId}
+	</select>	
+</mapper>

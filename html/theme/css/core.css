@@ -1,0 +1,1314 @@
+@charset "utf-8";
+body {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden
+}
+#enumAttrSelectAlert .main-alert-content {
+	margin-top: 0px !important;
+	top: 15%;
+}
+
+/****************************
+ *******     头部    **********
+ * ***************************/
+.header {
+	width: 100%;
+	height: 50px;
+	background-color: #24AC7E;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9;
+}
+
+/* 头部logo */
+.logo {
+	height: 50px;
+	float: left;
+}
+
+/* 移动logo */
+.img-logo,
+.img-home-logo {
+	width: 26px;
+	height: 50px;
+	display: block;
+	float: left;
+	text-align: center;
+	color: #FFF;
+	cursor: default;
+}
+
+.img-logo {
+	margin-left: 10px;
+	line-height: 50px;
+}
+
+.img-logo i {
+	font-size: 26px;
+	display: block;
+	line-height: 50px;
+}
+
+/* 一体化营销平台logo */
+.img-home-logo {
+	width: 194px;
+	background-color: #24AC7E;
+	font-size: 18px;
+	line-height: 50px;
+}
+
+.img-home-logo i {
+	display: block;
+	line-height: 50px;
+	font-size: 28px;
+}
+
+.img-mdp-logo{
+	height:50px;
+	width:255px;
+	padding:7px 8px;
+	clear:both;
+	overflow:hidden;
+}
+.img-mdp-logo img{
+	float:left;
+}
+
+/* 头部功能列表 */
+.header_items {
+	float: left;
+	height: 50px;	
+	line-height: 50px;
+	cursor: pointer;
+	position: relative;
+}
+
+.header_items:hover {
+	background-color: #1FA075;
+}
+
+/* 头部功能列表新消息提醒   */
+.btn-notice-num {
+	color: #FFF;
+	min-width: 16px;
+	height: 16px;
+	border-radius: 4px;
+	padding: 0 2px;
+	margin-top: 18px;
+	line-height: 16px;
+	font-size: 10px;
+	display: none;
+	margin-left: 3px;
+	vertical-align: top;
+	text-align: center;
+	background-color: orange;
+}
+
+.header_items-title.tips .btn-notice-num {
+	display: inline-block;
+}
+
+.fast-new-built ul li {
+	padding: 0;
+}
+
+.fast-new-built ul li a {
+	display: block;
+	padding: 0 15px;
+}
+
+/* 功能列表中间竖线 */
+.logo:after,
+.user-profile:before,
+.header_items:after {
+	content: '';
+	display: block;
+	width: 1px;
+	height: 50px;
+	background-color: #1FA075;
+	float: right;
+}
+
+/* 去除搜索框后竖线 */
+.header_search:after {
+	display: none;
+}
+
+/* 用户信息左侧竖线 */
+.user-profile:before {
+	float: left;
+}
+
+/* 功能列表按钮 */
+.header_items button {
+	background: transparent;
+	outline: 0;
+}
+
+/* 功能列表按钮以及搜索按钮样式 */
+.header_search button,
+.header_items .header_items-title {
+	color: #FFF;
+	font-size: 12px;
+	font-weight: 400;
+	padding: 0 15px;
+	display: block;
+	float: left;
+}
+
+/* 功能列表按钮icon */
+.header_items i {
+	display: block;
+	float: left;
+}
+
+/* 功能列表ul */
+.header_items ul {
+	position: absolute;
+	top: 50px;
+	width: 100%;
+	display: none;
+	background-color: #FFF;
+	padding: 0;
+    margin: 0;
+    min-width: 100px;
+    border: none;
+   	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+   	border: 1px solid #E1E6EB;
+   	border-top: none;
+}
+
+/* 功能列表ul打开样式 */
+.fast-new-built.open i,
+.user-profile.open i {
+	display: none;
+	color: #FFF !important;
+}
+
+.fast-new-built button:before,
+.user-profile button:before {
+	display: none;
+}
+
+.fast-new-built.open button:before,
+.user-profile.open button:before {
+	font-family: coreiconfont;
+	color: #333;
+	content: '\e600';
+	font-size: 16px;
+	float: left;
+	display: inline;
+}
+
+.user-profile.open button:before {
+	content: '\e605';
+	float: right;
+}
+
+.header_items.open .header_items-title {
+	background-color: #FFF !important;
+	color: #333;
+}
+
+/* 功能列表ul列表项 */
+.header_items ul li {
+	height: 40px;
+	font-size: 12px;
+	border-top: 1px solid #eaedf1;
+	text-align: left;
+	line-height: 39px;
+	font-weight: 300;
+	color: #333;
+}
+
+.header_items ul li a {
+	color:inherit;
+}
+
+.header_items ul li:hover {
+	background-color: #f7f7f7;
+}
+
+.wait-me-task ul li a {
+	padding: 0;
+}
+
+/* 待我处理ul宽度 */
+.wait-me-task ul {
+	width: 517px;
+	height: 269px;
+	overflow:hidden;
+}
+
+.my-collect ul {
+	width: 384px;
+	height: 196px;
+	padding: 15px;
+}
+
+.collect-items-content {
+	width: 160px;
+	float: left;
+	height: 135px;
+	overflow: hidden;
+}
+
+.only-activity .collect-items-content {
+	width: 100%;
+}
+
+.only-activity .collect-items-content:before,
+.only-activity .collect-items-content:after {
+	content:'';
+	clear: both;
+	display: table;
+}
+
+.collect-items .read-more {
+	width: 160px;
+	display: block;
+	float: left;
+	line-height: 25px;
+	text-align: center;
+	color: #999;
+	border-radius: 4px;
+	position: absolute;
+	bottom: 0;
+}
+
+.collect-activity .read-more {
+	right: 15px;
+}
+.collect-function .read-more {
+	left: 15px;
+}
+
+.collect-items .only-activity .read-more {
+	width: 100%;
+	right: 0;
+	background-color: #FAFAFA;
+}
+
+.collect-items .read-more:hover {
+	background-color: #24AC7E;
+	color: #FFF;
+}
+
+.collect-activity,
+.collect-function {
+	float: left;
+	height: 168px;
+}
+
+.collect-activity,
+.collect-function {
+	width: 176px;
+	border-right: 1px solid #E1E6EB;
+	position: relative;
+}
+
+.collect-activity {
+	padding-right: 15px;
+}
+
+.collect-activity.only-activity {
+	padding-right: 0;
+	width: 100%;
+	border-right: none;
+}
+
+.collect-function {
+	border-right: none;
+	padding-left: 15px;
+}
+
+.collect-activity span.title,
+.collect-function span.title {
+	color: #999;
+	width: 100%;
+	line-height: 12px;
+	float: left;
+	margin-bottom: 15px;
+	display: block;
+}
+
+.collect-activity-a,
+.collect-function-a {
+	float: left;
+	display: block;
+	width: 160px;
+	line-height: 24px;
+	margin-bottom: 5px;
+}
+
+.only-activity .collect-activity-a {
+	width: 100%;
+}
+
+.only-activity .collect-activity-a > div {
+	width: 190px;
+	float: right;
+}
+
+.only-activity .collect-activity-a > div > span {
+	float: left;
+	line-height: 24px;
+	width: 40px;
+	text-align: center;
+	background-color: #FAFAFA;
+	margin-left: 10px;
+	border-radius: 4px;
+	color: #666;
+}
+
+.only-activity .collect-activity-a > div > span:first-child {
+	margin-left: 0;
+	background-color: #fff;
+	margin-right: 22px;
+	width: 65px;
+	text-align: left;
+}
+
+.only-activity .collect-activity-a > div > span:first-child i {
+	margin-right: 5px;
+}
+
+.only-activity .collect-activity-a .activity-state.audit-submitted:after {
+	content: "审核中";
+}
+
+.only-activity .collect-activity-a .activity-state.audit-submitted i:before {
+	content: "\e640";
+	color: #B377C5;
+}
+
+.only-activity .collect-activity-a .activity-state.audit-uncommitted:after {
+	content: "待提交";
+}
+
+.only-activity .collect-activity-a .activity-state.audit-uncommitted i:before {
+	content: "\e63f";
+	color: #62B5DF;
+}
+
+.only-activity .collect-activity-a .activity-state.running:after {
+	content: '已发布';
+}
+
+.only-activity .collect-activity-a .activity-state.running i:before {
+	content: "\e61a";
+	color: #24AC7E;
+}
+
+.only-activity .collect-activity-a .activity-state.stop:after {
+	content: '下线';
+}
+
+.only-activity .collect-activity-a .activity-state.stop i:before {
+	content: "\e613";
+	color: #E68181;
+}
+
+.only-activity .collect-activity-a .activity-state.wait-release:after {
+	content: "暂停";
+}
+
+.only-activity .collect-activity-a .activity-state.wait-release i:before {
+	content: "\e619";
+	color: #F5A623;
+}
+
+.only-activity .collect-activity-a > div > span.btn1:hover,
+.only-activity .collect-activity-a > div > span.btn2:hover {
+	background-color: #24AC7E;
+	color: #FFF;
+}
+
+
+.collect-activity span.collect-icon,
+.collect-function span.collect-icon {
+	display: block;
+	float: left;
+	padding: 0 5px;
+	line-height: 14px;
+	border: 1px solid #F39C12;
+	color: #F39C12;
+	border-radius: 4px;
+	margin: 4px 5px 4px 0px;
+}
+
+.collect-function span.collect-icon {
+	border-color: #6B74AE;
+	color: #6B74AE;
+}
+
+.collect-activity span.collect-name,
+.collect-function span.collect-name {
+	width: 100px;
+	display: block;
+	float: left;
+	color: #24AC7E;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.collect-activity.only-activity span.collect-name {
+	width: 150px;
+}
+
+.collect-activity a span.collect-name:hover,
+.collect-function a span.collect-name:hover {
+	color: #1FA075;
+	text-decoration: underline;
+}
+
+/* 待我处理列表项 */
+.wait-me-task ul li ,.header_search ul li{
+	padding: 10px 15px;
+	height: auto;
+	line-height: 12px;
+	overflow: hidden;
+	color: #333;
+}
+
+/* 待我处理信息内容 */
+.wait-task-items {
+	width: 300px;
+	height: 40px;
+	float: left;
+	color: #999;
+}
+
+/* 待我处理信息名称 */
+.wait-task-name {
+	color: #24AC7E;
+	font-weight: 400;
+}
+
+/* 待我处理信息时间与名称样式 */
+.wait-task-name,
+.wait-task-time {
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+/* 待我处理-立即处理样式 */
+.task-soon {
+	display: block;
+	width: 68px;
+	height: 30px;
+	float: right;
+	line-height: 30px;
+	text-align: center;
+	color: #333;
+	background-color: #eaedf1;
+	margin: 5px 0;
+}
+
+.header_search > ul > li:hover .task-soon,
+.wait-me-task > ul > li:hover .task-soon {
+	background-color: #24AC7E;
+	color: #FFF;
+}
+
+.wait-task-type {
+	padding: 0 5px;
+	float: left;
+	height: 20px;
+	line-height: 18px;
+	display: block;
+	border-radius: 4px;
+	margin-right: 15px;
+	margin-top: 8px;
+}
+
+.wait-task-type.warning {
+	border: 1px solid #F26091;
+	color: #F26091;
+}
+
+.wait-task-type.other {
+	border: 1px solid #6B74AE;
+	color: #6B74AE;
+}
+
+.wait-task-type.function {
+	border: 1px solid #6B74AE;
+	color: #6B74AE;
+}
+
+.wait-task-type.activity {
+	border: 1px solid #F39C12;
+	color: #F39C12;
+}
+
+.header_search .wait-task-items {
+	width: 300px;
+}
+
+.header_search .wait-task-type {
+	float: left;
+}
+
+.header_search .function .wait-task-type {
+	margin-top: 10px;
+}
+
+.header_search .function .wait-task-time {
+	float: right;
+}
+
+.header_search .function .wait-task-name,
+.header_search .function .wait-task-time {
+	line-height: 40px;
+	height: 40px;
+	display: inline-block;
+}
+
+.header_search .function .wait-task-name {
+	width: 286px;
+}
+
+.header_search .clear-fixed {
+	display: block;
+	outline: 0;
+}
+
+.wait-me-task .news-alert
+{
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+	font-size: 16px;
+}
+.wait-me-task .read-more{
+	display: block;
+	text-align: center;
+	height: 100%;
+	line-height: 35px;
+}
+.news-head,.news-foot{
+	background-color: #FAFAFA;
+}
+.news-foot{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding: 0 !important;
+	height: 35px !important;
+}
+/* 搜索外层 */
+.header_search {
+	color: #FFF;
+}
+.header_search ul{
+	display: none;
+	width: 517px;
+	max-height: 300px;
+	overflow: auto !important;
+	top: 50px;
+	border-top: 1px solid #E1E6EB;
+}
+.header_search:hover {
+	background-color: transparent;
+}
+
+/* 搜索按钮 */
+.header_search button {
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+	color: inherit;
+	display: block;
+	float: left;
+	margin: 0 10px;
+	padding: 0;
+	cursor: default;
+	position: absolute;
+	background-color: transparent;
+}
+
+/* 搜索框 */
+.header_search input {
+	width: 240px;
+	height: 30px;
+	font-size: 12px;
+	color: inherit;
+	float: left;
+	background: url("../img/100.png") repeat;
+	box-sizing: content-box;
+	outline: none;
+	font-weight: 400;
+	line-height: 30px;
+	margin-top: 10px;
+	padding-left: 30px;
+	box-shadow: none;
+	position: relative;
+	z-index: 2;
+}
+
+/* 搜索框focus时背景色与字体颜色 */
+.header_search input.focus {
+	background-color: #FFF;
+	color: #333;
+}
+
+/* 搜索框focus时按钮的背景色与字体颜色 */
+.header_search input.focus + span + button {
+	color: #333;
+	z-index: 3;
+	cursor: pointer;
+}
+
+.header_search span.placeholder {
+	color: #FFF;
+	height: 50px;
+	line-height: 50px;
+	padding-left: 30px;
+}
+
+/* 搜索框placeholder颜色 */
+.header_search input::-webkit-input-placeholder {
+	color: #FFF;
+}
+.header_search input:-moz-placeholder {
+	color: #FFF;
+}
+.header_search input::-moz-placeholder {
+	color: #FFF;
+}
+.header_search input:-ms-input-placeholder {
+	color: #FFF;
+} 
+
+/* 搜索框focus与搜索外层悬停时placeholder颜色 */
+.header_search:hover input::-webkit-input-placeholder,
+.header_search input:focus::-webkit-input-placeholder {
+	color: #333;
+}
+
+.header_search:hover input:-moz-placeholder,
+.header_search input:focus:-moz-placeholder {
+	color: #333;
+}
+
+.header_search:hover input::-moz-placeholder,
+.header_search input:focus::-moz-placeholder {
+	color: #333;
+}
+
+.header_search:hover input:-ms-input-placeholder,
+.header_search input:focus:-ms-input-placeholder {
+	color: #333;
+} 
+
+/* 用户个人设置右浮动 */
+.user-profile {
+	float: right;
+}
+
+/* 用户个人设置-button */
+.user-profile .header_items-title {
+	padding: 0 20px;
+}
+
+/* 用户个人设置-icon右浮动 */
+.user-profile i {
+	float: right;
+}
+
+/* 用户个人设置-列表项 */
+.user-profile ul li {
+	padding-left: 20px;
+}
+
+
+/* 用户个人设置
+ * 待我处理
+ * 所有功能
+ * 快速新建
+ * ul打开 */
+.user-profile.open ul,
+.fast-new-built.open ul,
+.wait-me-task.open ul,
+.my-collect.open ul,
+.header_search.open ul{
+	display: block;
+}
+
+/* >>>>>>>>>>>
+ * 
+ *  header end!
+ * 
+ * >>>>>>>>>>> */
+
+/* 主体部分 */
+.main {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	z-index: 8;
+}
+
+/* 一、二级左侧边栏 */
+.viewFramework-sidebar,
+.viewFramework-sidebar2 {
+	width: 192px;
+	position: fixed;
+	top: 50px;
+	left: 0;
+	bottom: 0;
+	background-color: #293038;
+	transition: width 0.2s;
+	z-index: 999;
+}
+
+/* 二级侧边栏样式 */
+.viewFramework-sidebar2 {
+	left: 180px;
+	background-color: #333C47;
+	display: none;
+}
+
+.fold .viewFramework-sidebar2 {
+	left: 50px;
+}
+
+/* 一级侧边栏收起样式 */
+.fold .viewFramework-sidebar {
+	width: 50px;
+	transition: width 0.2s;
+}
+
+/* 一级左侧边栏收起展开按钮 */
+.sidebar-fold {
+	width: 100%;
+	height: 30px;
+	display: block;
+	position: relative;
+	background-color: #394555;
+	text-align: center;
+	cursor: pointer;
+}
+
+/* 一级侧边栏收起按钮默认样式 */
+.icon-sidebar-fold:before {
+	font-family: coreiconfont;
+	font-size: 10px;
+	content: "\e603";
+	color: #FFF;
+	line-height: 30px;
+}
+
+/* 一级侧边栏收起按钮fold样式 */
+.fold .icon-sidebar-fold:before {
+	content: "\e604";
+}
+
+/*《《《《《《《《《《
+ *   左侧边栏一级菜单
+ * 》》》》》》》》》》 */
+.primary-nav-items {
+	width: 100%;
+	height: 40px;
+	overflow: hidden;
+	cursor: pointer !important;
+}
+
+.primary-nav-items:hover {
+	background-color: #394555;
+}
+
+.primary-nav-items.active {
+	background-color: #24AC7E !important;
+}
+
+/* 一级菜单items内容区 */
+.nav-items-content {
+	height: 40px;
+	display: block;
+}
+
+/* 一级菜单名称 */
+.nav-items-content span {
+	line-height: 40px;
+	color: #FFF;
+	display: block;
+}
+
+/* 一级菜单icon */
+.nav-icon {
+	width: 50px;
+	height: 40px;
+	float: left;
+	text-align: center;
+}
+
+.nav-icon span:before {
+	font-family: coreiconfont;
+	font-size: 22px;
+	display: block;
+	width: 50px;
+	height: 40px;
+	text-align: center;
+}
+
+.nav-icon span {
+	height: 40px;
+}
+
+li:first-child .nav-icon span:before {
+	content: "\e61e";
+}
+
+li.market-work .nav-icon span:before {
+	content: "\e61f";
+}
+li.market-publish .nav-icon span:before {
+	content: "\e643";
+}
+
+li.market-element .nav-icon span:before {
+	content: "\e616";
+}
+
+li.market-plan .nav-icon span:before {
+	content: "\e60f";
+}
+
+li.market-exec .nav-icon span:before {
+	content: "\e601";
+}
+
+li.market-anlyise .nav-icon span:before {
+	content: "\e61d";
+}
+
+li.market-msg .nav-icon span:before {
+	content: "\e63c";
+}
+
+li.sys-param .nav-icon span:before {
+	content: "\e61c";
+}
+li.cost-center .nav-icon span:before {
+	content: "\e615";
+}
+li.content-tpl .nav-icon span:before {
+	content: "\e64f";
+}
+li.contact .nav-icon span:before {
+	content: "\e64b";
+}
+li.market-product .nav-icon span:before {
+	content: "\e61f";
+}
+li.market-knowledge .nav-icon span:before {
+	content: "\e615";
+}
+li.marketing-effect .nav-icon span:before {
+	content: "\e632";
+}
+li.market-plugin .nav-icon span:before {
+	content: "\e631";
+}
+/* 一级菜单名称 */
+.nav-title {
+	float: left;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	display: block;
+	width: 130px;
+	font-size: 14px;
+}
+
+/* 左侧二级菜单标题 */
+.viewFramework-sidebar2-title {
+	display: block;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	font-weight: 500;
+	padding-left: 40px;
+	margin-top: 1px;
+	overflow: hidden;
+	color: #FFF;
+	background-color: #24AC7E;
+}
+
+/* 左侧二级菜单列表 */
+.viewFramework-sidebar2 li {
+	height: 40px;
+	padding-left: 40px;
+	line-height: 40px;
+	color: #FFF;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.viewFramework-sidebar2 li:hover {
+	background-color: #526175;
+}
+
+.viewFramework-sidebar2 li.active {
+	background-color: #24AC7E;
+}
+
+.iframepage {
+	width: 100%;
+	height: 100%;
+}
+
+.iframe-wapper {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	left: 180px;
+	transition: left .2s;
+}
+
+body.fold .iframe-wapper {
+	left: 50px;
+	transition: left .2s;
+}
+
+.tipso_bubble {
+	display: none !important;
+}
+
+.fold .tipso_bubble {
+	display: block !important;
+}
+
+.primary2,
+.primary3,
+.primary4,
+.primary5,
+.primary6,
+.primary7,
+.primary8 {
+	display: none;
+}
+.delete-collect{
+	color: #005EAA;
+	float: right;
+	display: none;
+}
+.primary-nav-items.open{
+	background-color: #394555;
+}
+
+#audit-opinion .main-alert-content,
+#add-strategy .main-alert-content {
+	width: 590px;
+	margin-left: -295px;
+}
+
+#audit-opinion .form-right.form-textarea p {
+	width: 100%;
+	height: 100%;
+	border: 1px solid #E1E6EB;
+} 
+
+#strategy-history thead th.nth4,
+#strategy-history thead th.nth3 {
+	width: 150px;
+}
+
+#strategy-history thead th.nth2 {
+	width: 260px;
+}
+
+#strategy-history .tabs_body {
+	margin-bottom: 15px;
+	padding-left: 0;
+}
+
+#strategy-history tbody td:first-child {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
+	float: left;
+	line-height: 39px;
+	width: 190px;
+}
+
+#liuliangyunying  .form-items.col-full.clear-fixed {
+	float: none;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.tree_choose-alert-div_body .col-1-2,
+.tree_choose-alert-div_body .col-1-3,
+.tree_choose-alert-div_body .col-full {
+	float: left;
+	margin-bottom: 15px;
+	cursor: pointer;
+}
+
+.tree_choose-alert-div_body .col-1-2:hover ,
+.tree_choose-alert-div_body .col-1-3:hover{
+	color: #24AC7E;
+}
+
+.tree_choose-alert-div_body .col-1-2 span,
+.tree_choose-alert-div_body .col-1-3 span,
+.tree_choose-alert-div_body .col-full span {
+	color: #333;
+	line-height: 15px;
+}
+
+.tree_choose-alert-div_body .col-1-2 span:before,
+.tree_choose-alert-div_body .col-1-3 span:before,
+.tree_choose-alert-div_body .col-full span:before,
+#network-time .col-full:before {
+	content: '\e624';
+	font-family: iconfont;
+	margin-right: 5px;
+	float: left;
+}
+
+.tree_choose-alert-div_body .col-1-2.checked span:before,
+.tree_choose-alert-div_body .col-1-3.checked span:before,
+.tree_choose-alert-div_body .col-full.checked span:before,
+#network-time .col-full.checked:before {
+	content: '\e623';
+	color: #24AC7E;
+}
+
+#network-time .select-menu{
+	max-height: 120px;
+	overflow: auto;
+}
+#network-time .selet-choose-dete.div1 .form-right{
+	display: none;
+}
+.form-right.single{
+	width: 180px;
+}
+.form-right.single input{
+	color: #666;
+	font-size: 12px;
+}
+
+.form-right.double{
+	width: auto;
+}
+#network-time .selet-choose-dete.div1 .form-right.show{
+	display: block;
+}
+#network-time .selet-choose-dete.div1 .form-chooseSecond-input input{
+	width: 100%;
+	margin: 0 0 0 -33px !important;
+}
+.doubleInput{
+	height: 35px;
+	float: left;
+	display: none;
+	position: relative;
+}
+.doubleInput input{
+	width: 40px;
+	height: 33px;
+	border: 1px solid #E1E6EB;
+	float: left;
+	margin: 0;
+	background: #FAFAFA;
+}
+.doubleInput span{
+	float: left;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	padding: 0 6px;
+}
+.start-date input,.over-date input,.start-date.chooseDay-input,.over-date.chooseDay-input{
+	width: 85px;
+}
+.selet-choose-dete .select-btn div{
+	height: 33px;
+}
+.selet-choose-dete .select-btn p{
+	height: 33px;
+}
+
+.tree_choose-alert-div_body .form-left{
+	width: 80px;
+}
+.tree_choose-alert-div_body .form-right input{
+	margin: 0;
+	width: 100%;
+	height: 35px;
+}
+.form-btns{
+	margin-top: 30px;
+}
+.LocationControl{
+	margin: 0 auto;
+}
+.LocationControl input{
+	width: 225px;
+	height: 33px;
+	border: 0;
+	margin: 0;
+}
+.special-tree li > span{
+	display: inline-block;
+	vertical-align: top;
+}
+.special-tree li a{
+	display: inline-block;
+	line-height: 20px;
+}
+
+#network-time .main-alert-content {
+	overflow: visible;
+	width: 450px;
+	margin-left: -225px;
+}
+
+#network-time .col-full {
+	float: left;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+#network-time .col-full:before {
+	line-height: 17.5px;
+}
+
+#network-time .col-full.form-items:before {
+	display: none;
+}
+
+.selet-choose-dete {
+	float: left;
+}
+
+.selet-choose-dete .SpanSelect {
+	width: 100px;
+	float: left;
+	margin-right: 15px;
+}
+
+.selet-choose-dete .select-btn {
+	width: 100px;
+	padding-left: 0;
+}
+
+.selet-choose-dete .SpanSelect p {
+	width: 60px;
+	color: #666;
+	padding-left: 15px;
+}
+
+.selet-choose-dete .select-menu {
+    width: 100px;
+    top: 33px;
+    right: 0;
+    z-index: 100000;
+}
+
+.start-date {
+	float: left;
+	height: 33px;
+	width: 218px;
+}
+
+/*  右侧tab对应div 搜索、日期input   */
+.start-date input {
+	margin: 0;
+}
+
+.start-date .placeholder {
+	width: 100px;
+	top: 0;
+	left: 33px;
+}
+
+.date_selector {
+	width: 218px;
+}
+
+/*  开始、结束日期 input   */
+.start-date input,.over-date input {
+	width: 100%;
+	height: 33px;
+	padding-left: 43px;
+	border: none;
+	padding: 0;
+	color: #666;
+	font-size: 12px;
+}
+.Input,.Input div{
+	width: 96px;
+	height: 35px;
+	float: left;
+}
+.Input input{
+	border: none;
+}
+.selet-choose-dete.div2 input.single{
+	width: 96px;
+	height: 33px;
+	margin: 0;
+	float: left;
+}
+
+.SpanSelect.select2 {
+	margin-right: 0;
+	margin-left: 15px;
+}
+
+.selet-choose-dete.div2 {
+	display: none;
+}
+
+#add-user .main-alert-content {
+	width: 580px;
+	margin-left: -290px;
+}
+ 
+.pop-left-close-bg,
+.pop-top-close-bg {
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	left: 0;
+	top:0;
+	z-index: 15;
+	display: none;
+}
+
+.pop-top-close-bg,
+.inner-bg {
+	background: url(../img/black80.png) repeat;
+}
+
+.pop-left-close-bg {
+	width: 180px;
+	height: 100%;
+	padding-top: 50px;
+}
+
+.inner-bg {
+	width: 180px;
+	height: 100%;
+}
