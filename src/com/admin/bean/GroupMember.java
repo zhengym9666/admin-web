@@ -20,6 +20,7 @@ public class GroupMember {
 	private int state;
 	private Date joinTime;
 	private Date exitTime;
+	private Date applyTime;
 	public int getId() {
 		return id;
 	}
@@ -79,6 +80,13 @@ public class GroupMember {
 	}
 	public void setExitTime(Date exitTime) {
 		this.exitTime = exitTime;
+	}
+	
+	public Date getApplyTime() {
+		return applyTime;
+	}
+	public void setApplyTime(Date applyTime) {
+		this.applyTime = applyTime;
 	}
 	@Override
 	public String toString() {

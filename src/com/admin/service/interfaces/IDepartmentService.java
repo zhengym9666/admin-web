@@ -1,10 +1,12 @@
 package com.admin.service.interfaces;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.admin.bean.Department;
+import com.admin.util.Page;
 
 /** 
 * @author  作者 :zhengym
@@ -18,4 +20,13 @@ public interface IDepartmentService {
 	
 	public List<Department> queryDepartmentByClubId(String clubId);
 
+	public List<Department> queryDepartmentPage(Page page,String clubId);
+	
+	public int queryDepartmentPageCount(Page page,String clubId);
+	
+	public void addDepartInfo(String preClubId,String departName,String intro,Date birthDate,String collegeId,String clubId);
+	
+	public void updateDepartInfo(String departId,String departName,String intro);
+	
+	public void deleteDepartInfo(String departId);
 }

@@ -18,4 +18,9 @@ public interface StudentDAO {
 	
 	public Student queryStudentByStuNum(@Param("stuNum")String stuNum);
 	
+	public void addStudentInfo(Student student);
+	
+	public void updateStudentInfo(Student student);
+	
+	public void deleteStudentInfo(@Param("stuNum")String stuNum);
 }

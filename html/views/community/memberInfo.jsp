@@ -6,7 +6,7 @@
     <script type="text/javascript">
         var rootPath = "<%=request.getContextPath()%>";
     </script>
-    <title>贵州短信调度平台--系统参数配置</title>
+    <title>社团管理系统后台</title>
     <!---<<<<   字体图标  >>>>-->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/theme/lib/font/iconfont.css" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/theme/lib/css/normal.css" />
@@ -32,7 +32,7 @@
 <div class="viewFramework-index-body">
     <!---<<<<  标题    >>>>-->
     <span class="viewFramework-index-title">查看社员</span>
-    <button type="button" class="iconTextBtn-import rightTopBtn"  id="add-alarm-btn" onclick="SmsSysParamInfo.addSysParamInfo()"><i class="iconfont icon-add"></i>添加社员</button>
+    <button type="button" class="iconTextBtn-import rightTopBtn"  id="add-alarm-btn" onclick="MemberInfo.addMemberInfo()"><i class="iconfont icon-add"></i>添加社员</button>
 
 
     <!---<<<<  tabs    >>>>-->
@@ -50,7 +50,7 @@
                             </div>
                             <div class="form-right">
                                 <!-- <input type="text" id="gateWayID"/> -->
-                                <input type="text" id="paramType"/>
+                                <input type="text" class="stuNum"/>
                             </div>
                         </li>
 
@@ -60,7 +60,7 @@
                             </div>
                             <div class="form-right">
                                 <!-- <input type="text" id="spCode"/> -->
-                                <input type="text" id="paramName"/>
+                                <input type="text" class="stuName"/>
                             </div>
                         </li>
 
@@ -74,8 +74,8 @@
                         </li> -->
                         <li class="form-items" clear-fixed>
                             <div class="form-btns top-part-btn" >
-                                <button class="iconTextBtn-import" onclick="SmsSysParamInfo.querySysParamInfos()"><i class="iconfont icon-search"></i>查询</button>
-                                <button class="TextBtn reset" type="button" onclick="SmsSysParamInfo.resert()">重置</button>
+                                <button class="iconTextBtn-import"><i class="iconfont icon-search"></i>查询</button>
+                                <button class="TextBtn reset" type="button" onclick="MemberInfo.resert()">重置</button>
                             </div>
                         </li>
                     </div>
@@ -107,7 +107,7 @@
     <%-- 	<script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/js/highcharts.js"></script> --%>
     <script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/js/echarts-all.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/js/jquery.twbsPagination.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/js/ajaxmultifileupload.js"></script>
+ <%--    <script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/js/ajaxmultifileupload.js"></script> --%>
     <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/operationTips.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/pagination.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/rightPopWindow.js"></script>
@@ -115,7 +115,12 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/popIframe.js"></script>
     <script type="text/javascript" src="js/memberInfo.js"></script>
     <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
-	<script>
+    <script type="text/html" id="imgTpl">
+	 <div class="layer-photos-demo" style="cursor:pointer;">
+		<img src="/Cache/Img_Cache/{{ d.head }}">
+	</div
+	</script>
+	<script type="text/javascript">
 	$(function(){
 		layui.config({
 		    base: '/static/js/modules'
@@ -125,16 +130,19 @@
 			      table = layui.table;
 			  
 			    //第一个实例
-			    table.render({
+			   var tableIns = table.render({
 			      method: 'post',
-			      done: function() {
-			        $('#demo_hash').next().css('height', 'auto');
-			      },
+			      done: function(res,curr,count){
+			    	  $('#demo_hash').next().css('height', 'auto');
+		                hoverOpenImg();//显示大图
+		            },
+		          id:"contenttable",
 			      limit: 10,
 			      elem: '#demo_hash',
 			      height: 420,
 			      url: rootPath+'/memberInfo/queryAllMemberInfo.action', 
 			      page: true, //开启分页
+			      even: true,
 			      cols: [
 			        [ //表头
 			          {
@@ -156,6 +164,10 @@
 			            title: '性别',
 			            width: 60
 			          }, {
+			        	field: 'head',
+			        	title: '头像',
+			        	templet:'#imgTpl'
+			          }, {
 			            field: 'profession',
 			            title: '专业',
 			            width: 80,
@@ -163,7 +175,7 @@
 			          }, {
 			            field: 'grade',
 			            title: '班级',
-			            width: 60,
+			            width: 65,
 			            sort: true
 			          }, {
 			            field: 'email',
@@ -190,6 +202,14 @@
 				    	title: '职位',
 				    	width: 80
 				      },{
+				    	field: 'joinTime',
+				    	title: '加入时间',
+				    	width: 120
+				      },{
+				    	field: 'exitTime',
+				    	title: '退社时间',
+				    	width: 120
+					  },{
 				    	field: 'operation1',
 				    	title: '',
 				    	width: 60
@@ -205,9 +225,43 @@
 			        ]
 			      ]
 			    });
+			    
+			    //查询社员信息
+				$(".iconTextBtn-import").on('click',function(){
+					var keyword1=$(".stuNum").val();
+		            var keyword2=$(".stuName").val();
+		            tableIns.reload({
+		            	where:{keyword1:keyword1,
+		            		  keyword2:keyword2}
+		            })
+				})
 		  });
-	})
-  
+		
+		
+		/* var $ = layui.jquery, active = {
+				reload:function () {
+	                var keyword1=$(".stuNum").val();
+	                var keyword2=$(".stuName").val();
+	                table.reload('contenttable',{
+	                    where:{keyword1:keyword1,keyword2:keyword2}
+	                });
+	            }
+		}; */
+		function hoverOpenImg(){
+	        var img_show = null; // tips提示 
+	        $('td img').hover(function(){
+	            //alert($(this).attr('src'));
+	            var img = "<img class='img_msg' src='"+$(this).attr('src')+"' style='width:130px;' />";
+	            img_show = layer.tips(img, this,{
+	                tips:[2, 'rgba(41,41,41,.5)']
+	                ,area: ['160px']
+	            });
+	        },function(){
+	            layer.close(img_show);
+	        });
+	        $('td img').attr('style','max-width:70px');
+		}
+	});
 	</script>
 	<jsp:include page="memberInfoRightWindow.jsp"></jsp:include>
    

@@ -13,10 +13,10 @@
         <result column="grade" property="grade"/>
         <result column="email" property="email"/>
         <result column="phone" property="phone"/>
-        <result column="profession" property="prefession"/>
+        <result column="profession" property="profession"/>
         <result column="interest" property="interest"/>
         <result column="special" property="special"/>
-        <result column="tall" property="tall"/>
+        <result column="head" property="head"/>
     </resultMap>
     
     <select id="queryAllStudent" resultMap="BaseResultMap">
@@ -26,4 +26,19 @@
     <select id="queryStudentByStuNum" resultMap="BaseResultMap" parameterType="String">
     	SELECT * FROM STUDENT where stuNum = #{stuNum}
     </select>
+    
+    <insert id="addStudentInfo" parameterType="com.admin.bean.Student">
+    	insert into STUDENT values (#{stuNum},#{stuName},#{gender},#{collegeId},#{grade},#{email},#{phone},
+    	#{profession},#{interest},#{special},#{head})
+    </insert>
+    
+    <update id="updateStudentInfo" parameterType="com.admin.bean.Student">
+    	update STUDENT set stuName = #{stuName},gender = #{gender},collegeId = #{collegeId},grade = #{grade},
+    	email = #{email},phone = #{phone},profession = #{profession},interest = #{interest},special = #{special},head = #{head}
+    	where stuNum = #{stuNum}
+    </update>
+    
+    <delete id="deleteStudentInfo" parameterType="String">
+    	delete from STUDENT where stuNum = #{stuNum}
+    </delete>
 </mapper>

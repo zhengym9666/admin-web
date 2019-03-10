@@ -26,7 +26,7 @@ public class Student{
 	private String profession;
 	private String interest;
 	private String special;
-	private String tall;
+	private String head;
 
 	public String getStuNum() {
 		return this.stuNum;
@@ -108,12 +108,12 @@ public class Student{
 		this.special = special;
 	}
 
-	public String getTall() {
-		return tall;
+	public String getHead() {
+		return head;
 	}
 
-	public void setTall(String tall) {
-		this.tall = tall;
+	public void setHead(String head) {
+		this.head = head;
 	}
 	
 	

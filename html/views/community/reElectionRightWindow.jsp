@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<div id="memberInfoRightWindow" class="right-alert">
+<div id="reElectionRightWindow" class="right-alert">
 	<!---<<<<  弹窗左侧阴影   >>>>-->
 	<div class="right-alert-closeBg">
 		<div class="right-alert-boxShadow"></div>
@@ -12,7 +12,7 @@
 			<button class="right-alert-closeBtn">
 				<i class="iconfont icon-close"></i>
 			</button>
-			<span class="right-alert_head_title">社员管理</span>
+			<span class="right-alert_head_title">查看社员信息</span>
 		</div>
 
 		<!---<<<<  弹窗正文部分   >>>>-->
@@ -79,30 +79,21 @@
 						</li>
 						<li class="form-items">
 							<div class="form-left">
-								<span><i class="iconfont"></i>兴趣爱好：</span>
-							</div>
-							<div class="form-right">
-								<input id="edit-interest" type="text" />
-							</div>
-						</li>
-						<li class="form-items">
-							<div class="form-left">
-								<span><i class="iconfont"></i>特长：</span>
-							</div>
-							<div class="form-right">
-								<input id="edit-special" type="text" />
-							</div>
-						</li>
-						<li class="form-items">
-							<div class="form-left">
 								<span><i class="iconfont icon-bitian"></i>部门：</span>
 							</div>
 							<div class="form-right">
 								<input class="required" id="edit-departName" type="text" style="cursor:pointer;caret-color: transparent;"/>
-								<input type="hidden" id="edit-departId">
 								<ul id="edit-departul" class="form-select-menu">
 		
 								</ul>
+							</div>
+						</li>
+						<li class="form-items">
+							<div class="form-left">
+								<span><i class="iconfont icon-bitian"></i>加入时间：</span>
+							</div>
+							<div class="form-right">
+								<input class="required" id="edit-joinTime" type="text" style="cursor:pointer;caret-color: transparent;"/>
 							</div>
 						</li>
 						<li class="form-items">
@@ -111,17 +102,11 @@
 							</div>
 							<div class="form-right">
 								<input class="required" id="edit-job" type="text" style="cursor:pointer;caret-color: transparent;"/>
-								<input type="hidden" id="edit-rank">
-								<ul id="edit-jobul" class="form-select-menu">
-									<li class="choosed" val="1">普通社员</li>
-									<li val="2">副部长</li>
-									<li val="3">部长</li>
-								</ul>
 							</div>
 						</li>
 						<li class="form-items">
 							<div class="form-left">
-								<span><i class="iconfont"></i>头像上传：</span>
+								<span><i class="iconfont"></i>头像：</span>
 							</div>
 							<div class="form-right">
 							<div id="addCommodityIndex">
@@ -131,7 +116,7 @@
 					                <div class="col-sm-9 big-photo">
 					                	<div id="preview">
 					                		
-					                        <img class="HeadPhoto" id="imghead" border="0" src="headImages/photo_icon.png" width="90" height="90" onclick="$('.previewImg').click();">
+					                        <img class="HeadPhoto" id="imghead" border="0" width="90" height="90" onclick="$('.previewImg').click();">
 					                     </div>
 					                     	<form class="uploadForm" method="post" action="" enctype="multipart/form-data">         
 					                    	<input type="hidden" name="stuNum" class="ImgStuNum">
@@ -142,7 +127,6 @@
 					            </div>
 				         		<!--input-group end-->
 							</div>
-							<span style="color:#f00;line-height:16px !important;">上传图片格式要求：<br/>必须为image/jpeg,image/png格式，图片大小不超过1M</span>
 								
 								<!-- <form class="uploadForm" method="post" action="" enctype="multipart/form-data">
 									<input type="file" name="file" />

@@ -23,6 +23,18 @@
             </list>
         </property>-->
     </bean>
+    
+    <!-- 文件上传配置 -->
+    <bean id="multipartResolver" 
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <!-- 上传的最大限制 -->
+		<property name="maxUploadSize" value="209715200" />
+    	<property name="maxInMemorySize" value="1048576"/>
+		<!-- 默认编码 -->
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 上传文件的解析 -->
+		<property name="resolveLazily" value="true" />
+	</bean>
 
     <!-- 组件扫描的方式，扫描controller -->
      <mvc:annotation-driven></mvc:annotation-driven>
@@ -43,7 +55,6 @@
         &lt;!&ndash; 设置视图扩展名称 &ndash;&gt;
         <property name="suffix" value=".jsp"/>
     </bean>-->
-
 
     <!-- 解决静态资源404问题 -->
     <mvc:default-servlet-handler/>

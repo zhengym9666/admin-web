@@ -9,80 +9,22 @@ $(function(){
 
 (function(obj){
    var isUpdate = 0;
-   var MemberInfo={
-       actionPath:	rootPath + "/memberInfo/",
+   var departInfo={
+       actionPath:	rootPath + "/departmentInfo/",
        
-       addMemberInfo:function(){
+       addDepartInfo:function(){
     	   isUpdate = 0;
-    	   rightPopWindow("添加社员","80%","memberInfoRightWindow");
-    	   $("#edit-num").val('');
-    	   $("#edit-name").val('');
-    	   $("#edit-gender").val('');
-    	   $("#edit-profession").val('');
-    	   $("#edit-grade").val('');
-    	   $("#edit-email").val('');
-    	   $("#edit-phone").val('');
-    	   $("#edit-interest").val('');
-    	   $("#edit-special").val('');
-    	   $("#edit-departName").val('');
-    	   $("#edit-job").val('');
     	   $(".right-alert_content ul .TextBtn-import").show();
-    	   MemberInfo.loadList();
+    	   $("#edit-departName").val('');
+    	   $("#edit-intro").val('');
+    	   $("#edit-departId").val('');
+    	   rightPopWindow("添加部门","80%","departManageRightWindow");
        },
        
-       queryMemberInfos:function(){
-   		
-           /*$.ajax({
-               url : MemberInfo.actionPath + "querySysParamInfos&",
-               type:'post',
-               async:false,
-               cache:false,
-               data : {
-                   start:sysParam_pages.start,
-                   limit:sysParam_pages.limit,
-                   paramType:$("#paramType").val(),
-                   paramName:$("#paramName").val()
-                   
-               },
-               dataType:'JSON',
-               success : function(response) {
-                   if(response.resultFlag){
-                       $("#sysParamInfoList").html(' ');
-                       $.each(response.root, function(i, item){
-                           $("#sysParamInfoList").append('<tr>'
-                               +'<td CodeType ='+item.CODE_TYPE+'>'+(item.CODE_TYPE.length>9?item.CODE_TYPE.substring(0,7)+"...":item.CODE_TYPE)+'</td>'                 
-                               +'<td CodeValue ='+item.CODE_VALUE+'>'+(item.CODE_VALUE.length>9?item.CODE_VALUE.substring(0,7)+"...":item.CODE_VALUE)+'</td>'
-                               +'<td CodeName ='+item.CODE_NAME+'>'+(item.CODE_NAME.length>9?item.CODE_NAME.substring(0,7)+"...":item.CODE_NAME)+'</td>'                     
-                               +'<td CodeDesc ='+item.CODE_DESC+'>'+(item.CODE_DESC.length>9?item.CODE_DESC.substring(0,7)+"...":item.CODE_DESC)+'</td>'
-                              
-//                               +'<td state='+item.STATE+'>'+(item.STATE=='U'?'启动':'关闭')+'</td>'
-                               +'<td class="operation">'  
-                               +"<button type=\"button\" onclick=\"window.SmsSysParamInfo.viewSysParamInfo(" + "'"+item.CODE_TYPE+"','"+item.CODE_VALUE+"')\">详情</button>"
-                               +"<button type=\"button\" onclick=\"window.SmsSysParamInfo.editSysParamInfo(" + "'"+item.CODE_TYPE+"','"+item.CODE_VALUE+"')\">编辑</button>"
-                               +"<button type=\"button\" onclick=\"window.SmsSysParamInfo.deleteSysParamInfo(" + "'"+item.CODE_TYPE+"','"+item.CODE_VALUE+"')\">删除</button>"
-                               +'</td>'
-                               +'</tr>');
-                       });
-                       sysParam_pages.pages(response.totalCount, sysParam_pages);
-                       
-                   }else{
-                       var obj = {};
-                       obj["Ptext"] = response.Msg;
-                       operationTipsFailed(obj);
-                   }
-
-               },
-               error : function() {
-                   var obj = {};
-                   obj["Ptext"] = "系统出错";
-                   
-                   operationTipsFailed(obj);
-               }
-           });*/
-    	   $(".stuNum").val('');
-           $(".stuName").val('');
+       queryDepartInfos:function(){
+   	
     	   $.ajax({
-    		   url:MemberInfo.actionPath+"queryAllMemberInfo.action",
+    		   url:departInfo.actionPath+"queryAllDepartmentInfo.action",
     		   data:{"limit":10},
     		   method:'POST',
     		   success:function(){
@@ -122,40 +64,22 @@ $(function(){
 
            return flag;
        },      
-       saveMemberInfo:function(){
+       saveDepartInfo:function(){
     	   
-    	   if(MemberInfo.checkInput()){
-           var num=encodeURI($("#edit-num").val(),"UTF-8");
-           var name=encodeURI($("#edit-name").val(),"UTF-8");
-           var gender=encodeURI($("#edit-gender").val(),"UTF-8");
-           var profession=encodeURI($("#edit-profession").val(),"UTF-8");
-           var grade=encodeURI($("#edit-grade").val(),"UTF-8");
-           var email=encodeURI($("#edit-email").val(),"UTF-8");
-           var phone=encodeURI($("#edit-phone").val(),"UTF-8");
-           var interest=encodeURI($("#edit-interest").val(),"UTF-8");
-           var special=encodeURI($("#edit-special").val(),"UTF-8");
-           var departId=encodeURI($("#edit-departId").val(),"UTF-8");
-           var rank=encodeURI($("#edit-rank").val(),"UTF-8");
-           var job=encodeURI($("#edit-job").val(),"UTF-8");
+    	   if(departInfo.checkInput()){
+           var departName=encodeURI($("#edit-departName").val(),"UTF-8");
+           var intro=encodeURI($("#edit-intro").val(),"UTF-8");
+           var departId = encodeURI($("#edit-departId").val(),"UTF-8");
            
            $.ajax({
-               url : MemberInfo.actionPath + "saveMemberInfo.action",
+               url : departInfo.actionPath + "saveDepartInfo.action",
                type:'post',
                async:false,
                cache:false,
                data : {
-            	   num:num,
-            	   name:name,
-            	   gender:gender,
-            	   profession:profession,
-            	   grade:grade,
-            	   email:email,
-            	   phone:phone,
-            	   interest:interest,
-            	   special:special,
+            	   departName:departName,
+            	   intro:intro,
             	   departId:departId,
-            	   rank:rank,
-            	   job:job,
                    isUpdate:isUpdate
                    },
                dataType:'JSON',
@@ -163,8 +87,8 @@ $(function(){
                    if(response.resultFlag){
                        var obj = {};
                        obj["Ptext"] = "操作成功";
-                       obj['func']=MemberInfo.queryMemberInfos();
-                       closeRightWindow("memberInfoRightWindow");
+                       obj['func']=departInfo.queryDepartInfos();
+                       closeRightWindow("departManageRightWindow");
                        operationTipsTrue(obj);
                        
                    }else{
@@ -182,19 +106,18 @@ $(function(){
            });
     	  }
        },
-       deleteMemberInfo:function(stuNum,clubId){
+       deleteDepartInfo:function(departId){
            var operateWarnObj = {
                Ptext: "您确定要删除吗？",
                Stext: "一经删除可不恢复",
                func:function(){
                    $.ajax({
-                       url : MemberInfo.actionPath + "deleteMemberInfo.action",
+                       url : departInfo.actionPath + "deleteDepartInfo.action",
                        type:'post',
                        async:false,
                        cache:false,
                        data : {
-                    	   stuNum:stuNum,
-                    	   clubId:clubId,
+                    	   departId:departId
                        },
                        dataType:'JSON',
                        success : function(response) {
@@ -202,7 +125,7 @@ $(function(){
                                var obj = {};
                                obj["Ptext"] = "操作成功";
                                operationTipsTrue(obj);
-                               obj['func']=MemberInfo.queryMemberInfos();
+                               obj['func']=departInfo.queryDepartInfos();
                            }else{
                                var obj = {};
                                obj["Ptext"] = response.Msg;
@@ -221,36 +144,21 @@ $(function(){
 
            operationTipsWarn(operateWarnObj);
        },
-       queryById:function(stuNum,clubId){
+       queryById:function(departId){
            $.ajax({
-               url : MemberInfo.actionPath + "queryMemberInfo.action",
+               url : departInfo.actionPath + "queryDepartInfo.action",
                type:'post',
                data : {
-            	   stuNum:stuNum,
-            	   clubId:clubId
+            	   departId:departId
                },
                dataType:'JSON',
                success : function(response) {
                    if(response.resultFlag){
                        var item=response.data;
-                       $("#edit-num").val(item.num);
-                       $("#edit-name").val(item.name);
-                       $("#edit-gender").val(item.gender);
-                       $("#edit-profession").val(item.profession);
-                       $("#edit-grade").val(item.grade);
-                       $("#edit-email").val(item.email);
-                       $("#edit-phone").val(item.phone);
-                       $("#edit-interest").val(item.interest);
-                       $("#edit-special").val(item.special);
                        $("#edit-departName").val(item.departName);
                        $("#edit-departId").val(item.departId);
-                       $("#edit-job").val(item.job);
-                       $("#edit-rank").val(item.rank);
-                       $(".ImgStuNum").val(item.num);
-                       $(".HeadPhoto").attr("src","/Cache/Img_Cache/"+item.head);
+                       $("#edit-intro").val(item.intro);
                       
-                       $(".form-select-btn").children("p").text($(".choosed").text());
-                       
                    }else{
                        var obj = {};
                        obj["Ptext"] = response.Msg;
@@ -264,22 +172,21 @@ $(function(){
                }
            });
        },
-       editMemberInfo:function(stuNum,clubId){
+       editDepartInfo:function(departId){
     	   isUpdate = 1;
-           rightPopWindow("编辑社员信息","80%","memberInfoRightWindow");
+           rightPopWindow("编辑部门","80%","departManageRightWindow");
            $(".right-alert_content ul input").removeAttr("disabled");
            $("#edit-num").attr("disabled","disabled");
            $(".right-alert_content ul .TextBtn-import").show();
-           MemberInfo.queryById(stuNum,clubId);
-           MemberInfo.loadList();
+           departInfo.queryById(departId);
        },
-       viewMemberInfo:function(paramType,paramName){
-           rightPopWindow("查看社员信息","80%","memberInfoRightWindow");
+       viewDepartInfo:function(departId){
+           rightPopWindow("查看部门","80%","departManageRightWindow");
            $("p.error").remove();
            $(".right-alert_content ul input").attr("disabled","disabled");
            $(".right-alert_content ul .TextBtn-import").hide();
            $("#edit-job").parent().removeClass("ui-down");
-           MemberInfo.queryById(paramType,paramName);
+           departInfo.queryById(departId);
        },
        queryDepartment:function(){
     	   $.ajax({
@@ -386,5 +293,5 @@ $(function(){
        
    }
 
-    obj.MemberInfo=MemberInfo;
+    obj.departInfo=departInfo;
 })(window);

@@ -17,13 +17,22 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/theme/css/table.css" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/theme/css/strateMap.css" />
 
-
+	<style>
+		.ui-down{
+			background:url(./././theme/img/down.png) no-repeat;
+			background-size:11px;
+			background-position-x:217px;
+			background-position-y:13px;
+			cursor:pointer
+		}
+	</style>
+	
 </head>
 <body>
 <div class="viewFramework-index-body">
     <!---<<<<  标题    >>>>-->
     <span class="viewFramework-index-title">活动管理</span>
-    <button type="button" class="iconTextBtn-import rightTopBtn"  id="add-alarm-btn" onclick="SmsSysParamInfo.addSysParamInfo()"><i class="iconfont icon-add"></i>添加社员</button>
+    <button type="button" class="iconTextBtn-import rightTopBtn"  id="add-alarm-btn" onclick="actInfo.addActInfo()"><i class="iconfont icon-add"></i>添加活动</button>
 
 
     <!---<<<<  tabs    >>>>-->
@@ -35,23 +44,14 @@
                 <div  class="top-part" >
                     <div >
 
-                        <li  class="form-items clear-fixed">
-                            <div class="form-left">
-                                <span>学号：</span>
-                            </div>
-                            <div class="form-right">
-                                <!-- <input type="text" id="gateWayID"/> -->
-                                <input type="text" id="paramType"/>
-                            </div>
-                        </li>
 
                         <li  class="form-items ">
                             <div class="form-left" >
-                                <span>姓名：</span>
+                                <span>活动名称：</span>
                             </div>
                             <div class="form-right">
                                 <!-- <input type="text" id="spCode"/> -->
-                                <input type="text" id="paramName"/>
+                                <input type="text" id="actName"/>
                             </div>
                         </li>
 
@@ -104,7 +104,7 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/rightPopWindow.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/popIframe.js"></script>
-    <script type="text/javascript" src="js/memberInfo.js"></script>
+    <script type="text/javascript" src="js/actManage.js"></script>
     <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
 	<script>
   layui.config({
@@ -120,61 +120,54 @@
 	      done: function() {
 	        $('#demo_hash').next().css('height', 'auto');
 	      },
-	      limit: 20,
+	      limit: 10,
 	      elem: '#demo_hash',
+	      id:'contenttable',
 	      height: 420,
-	      url: '/demo/table/user', //数据接口
+	      url: rootPath+'/activityInfo/queryAllActInfo.action', //数据接口
 	      page: true, //开启分页
 	      cols: [
 	        [ //表头
 	          {
-	            field: 'id',
-	            title: 'ID',
-	            width: 50,
-	            fixed: 'left'
+	            field: 'name',
+	            title: '活动名称',
+	            width: 130
 	          }, {
-	            field: 'username',
-	            title: '用户名',
-	            width: 80
+	            field: 'intro',
+	            title: '简介',
+	            width: 400
 	          }, {
-	            field: 'sex',
-	            title: '性别',
-	            width: 80,
+	            field: 'hostDepart',
+	            title: '主办部门',
+	            width: 96
+	          }, {
+	            field: 'frequency',
+	            title: '举办频率',
+	            width: 108
+	          }, {
+	            field: 'place',
+	            title: '活动地点',
+	            width: 96,
 	            sort: true
 	          }, {
-	            field: 'city',
-	            title: '城市',
-	            width: 80
+	            field: 'operation1',
+	            title: '',
+	            width: 60
 	          }, {
-	            field: 'sign',
-	            title: '签名',
-	            width: 177
+	            field: 'operation2',
+	            title: '',
+	            width: 60
 	          }, {
-	            field: 'experience',
-	            title: '积分',
-	            width: 80,
-	            sort: true
-	          }, {
-	            field: 'score',
-	            title: '评分',
-	            width: 80,
-	            sort: true
-	          }, {
-	            field: 'classify',
-	            title: '职业',
-	            width: 80
-	          }, {
-	            field: 'wealth',
-	            title: '财富',
-	            width: 135,
-	            sort: true
+	            field: 'operation3',
+	            title: '',
+	            width: 60
 	          }
 	        ]
 	      ]
 	    });
   });
 	</script>
-	<jsp:include page="memberInfoRightWindow.jsp"></jsp:include>
+	<jsp:include page="actManageRightWindow.jsp"></jsp:include>
    
 
 

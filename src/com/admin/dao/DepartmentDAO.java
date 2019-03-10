@@ -1,5 +1,6 @@
 package com.admin.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -18,4 +19,13 @@ public interface DepartmentDAO {
 	
 	public List<Department> queryDepartmentByClubId(@Param("clubId")String clubId);
 
+	public List<Department> queryDepartmentPage(HashMap<String,Object> params);
+	
+	public int queryDepartmentPageCount(HashMap<String,Object> params);
+	
+	public void addDepartInfo(HashMap<String,Object> params);
+	
+	public void updateDepartInfo(HashMap<String,Object> params);
+	
+	public void deleteDepartInfo(@Param("departId")String departId);
 }

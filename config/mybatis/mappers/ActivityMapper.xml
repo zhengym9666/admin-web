@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.admin.dao.ActivityDAO">
+<!--type指定的是对应的实体类  -->
+    <resultMap id="BaseResultMap" type="com.admin.bean.Activity" >
+    <!-- id用来配置表的主键与类的属性的映射关系，column指定的是表的字段名，property指定的是类的属性名 -->	
+	<id column="id" property="id"></id>
+  <!-- result用来配置普通字段与类的属性的映射关系，column指定表的字段名，property指定类的属性名 -->
+	<result column="name" property="name"/>
+	<result column="intro" property="intro"/>
+	<result column="hostDepart" property="hostDepart"/>
+	<result column="clubId" property="clubId"/>
+	<result column="frequency" property="frequency"/>
+	<result column="place" property="place"/>
+	</resultMap>
+	
+	<select id="queryAllActInfo" parameterType="HashMap" resultMap="BaseResultMap">
+		select * from activity
+		<where>
+    		<if test="keyword1!='' and keyword1!=null">and name like '%${keyword1}%'</if>
+    		and clubId = #{clubId}
+    	</where>
+    	limit #{start},#{rows}
+	</select>
+	
+	<select id="queryAllActInfoCount" parameterType="HashMap" resultType="java.lang.Integer">
+		select count(*) from activity
+		<where>
+    		<if test="keyword1!='' and keyword1!=null">and name like '%${keyword1}%'</if>
+    		and clubId = #{clubId}
+    	</where>
+    	limit #{start},#{rows}
+	</select>
+	
+	<insert id="addActInfo" parameterType="com.admin.bean.Activity">
+		insert into activity(name,intro,hostDepart,clubId,frequency,place) values
+		 (#{name},#{intro},#{hostDepart},#{clubId},#{frequency},#{place})
+	</insert>
+	
+	<update id="updateActInfo" parameterType="HashMap">
+		update activity set name=#{name},intro=#{intro},hostDepart=#{hostDepart},clubId=#{clubId},
+		frequency=#{frequency},place=#{place} where id=#{id}
+	</update>
+	
+	<select id="queryActInfoById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select * from activity where id = #{actId}
+	</select>
+	
+	<delete id="deleteActInfo" parameterType="java.lang.Integer">
+		delete from activity where id = #{actId}
+	</delete>
+	
+</mapper>

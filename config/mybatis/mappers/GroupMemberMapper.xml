@@ -15,22 +15,169 @@
         <result column="state" property="state"/>
         <result column="joinTime" property="joinTime"/>
         <result column="exitTime" property="exitTime"/>
+        <result column="applyTime" property="applyTime"/>
     </resultMap>
     
-    <select id="queryMemberByClubId" resultMap="BaseResultMap" parameterType="String">
-    	SELECT * FROM GROUPMEMBER where clubId = #{clubId}
+    <select id="queryMemberByClubId" resultMap="BaseResultMap" parameterType="HashMap">
+    	SELECT * FROM GROUPMEMBER
+    	<where>
+    		<if test="keyword1!='' and keyword1!=null">and stuNum like '%${keyword1}%'</if>
+    		<if test="keyword2!='' and keyword2!=null">and stuName like '%${keyword2}%'</if>
+    		and clubId = #{clubId} and state = 1 and joinTime IS NOT NULL
+    	</where>
+    	 limit #{start},#{rows}
     </select>
     
-    <select id="queryMemberCount" resultType="java.lang.Integer" parameterType="String">
-    	SELECT count(*) FROM GROUPMEMBER where clubId = #{clubId}
+    <select id="queryMemberCount" resultType="java.lang.Integer" parameterType="HashMap">
+    	SELECT count(*) FROM GROUPMEMBER
+    	<where>
+    		<if test="keyword1!='' and keyword1!=null">and stuNum like '%${keyword1}%'</if>
+    		<if test="keyword2!='' and keyword2!=null">and stuName like '%${keyword2}%'</if>
+    		and clubId = #{clubId} and state = 1 and joinTime IS NOT NULL
+    	</where>
     </select>
     
     <select id="queryMemberInfo" resultMap="BaseResultMap" parameterType="String">
-    	SELECT * FROM GROUPMEMBER where clubId = #{clubId} and stuNum = #{stuNum}
+    	SELECT * FROM GROUPMEMBER where clubId = #{clubId} and stuNum = #{stuNum} and state = 1
     </select>
     
     <insert id="addMemberInfo" parameterType="com.admin.bean.GroupMember">
     	insert into GROUPMEMBER(stuNum,stuName,clubId,departmentId,rank,job,state,joinTime,exitTime)
     	values(#{stuNum},#{stuName},#{clubId},#{departmentId},#{rank},#{job},#{state},#{joinTime},#{exitTime})
     </insert>
+    
+    <update id="updateMemberInfo" parameterType="com.admin.bean.GroupMember">
+    	update GROUPMEMBER set stuName = #{stuName},departmentId = #{departmentId},rank = #{rank},job = #{job},state = #{state},
+    	joinTime = #{joinTime},exitTime = #{exitTime} where stuNum = #{stuNum} and clubId = #{clubId}
+    </update>
+    
+    <delete id="deleteMemberInfo" parameterType="String">
+    	delete from GROUPMEMBER where stuNum = #{stuNum} and clubId = #{clubId}
+    </delete>
+    
+    <select id="queryAllRecruitInfo" parameterType="HashMap" resultMap="BaseResultMap">
+    	select * from GROUPMEMBER 
+		<where>
+    		<if test="keyword1!='' and keyword1!=null">and stuNum like '%${keyword1}%'</if>
+    		<if test="keyword2!='' and keyword2!=null">and stuName like '%${keyword2}%'</if>
+    		and clubId = #{clubId} and applyTime > YEAR(NOW())
+    	</where>
+    	 limit #{start},#{rows}
+    </select>
+    
+    <select id="queryAllRecruitInfoCount" parameterType="HashMap" resultType="java.lang.Integer">
+    	select count(*) from GROUPMEMBER
+    	<where>
+    		<if test="keyword1!='' and keyword1!=null">and stuNum like '%${keyword1}%'</if>
+    		<if test="keyword2!='' and keyword2!=null">and stuName like '%${keyword2}%'</if>
+    		and clubId = #{clubId} and applyTime > YEAR(NOW())
+    	</where>
+    </select>
+    
+    <select id="queryMyCheckInfo" parameterType="HashMap" resultMap="BaseResultMap">
+    	select * from GROUPMEMBER 
+    	<where>
+    		<if test="keyword1!='' and keyword1!=null">and stuNum like '%${keyword1}%'</if>
+    		<if test="keyword2!='' and keyword2!=null">and stuName like '%${keyword2}%'</if>
+    		and clubId = #{clubId} and departmentId = #{departmentId} and state = #{state} and applyTime > YEAR(NOW())
+    	</where>
+    	limit #{start},#{rows}
+    </select>
+    
+    <select id="queryMyCheckInfoCount" parameterType="HashMap" resultType="java.lang.Integer">
+    	select count(*) from GROUPMEMBER 
+    	<where>
+    		<if test="keyword1!='' and keyword1!=null">and stuNum like '%${keyword1}%'</if>
+    		<if test="keyword2!='' and keyword2!=null">and stuName like '%${keyword2}%'</if>
+    		and clubId = #{clubId} and departmentId = #{departmentId} and state = #{state} and applyTime > YEAR(NOW())
+    	</where>
+    </select>
+    
+    <update id="updateStateToFomal" parameterType="HashMap">
+    	update GROUPMEMBER set state = 1,joinTime = #{joinTime},exitTime = #{exitTime} where 
+    	stuNum = #{stuNum} and clubId = #{clubId} and departmentId = #{departmentId}
+    </update>
+    
+    <update id="updateStateToMiss" parameterType="HashMap">
+    	update GROUPMEMBER set state = 3 where 
+    	stuNum = #{stuNum} and clubId = #{clubId} and departmentId != #{departmentId}
+    </update>
+    
+    <update id="updateStateToQuit" parameterType="HashMap">
+    	update GROUPMEMBER set state = 2 where 
+    	stuNum = #{stuNum} and clubId = #{clubId} and departmentId = #{departmentId}
+    </update>
+    
+    <select id="queryCandidator" parameterType="HashMap" resultMap="BaseResultMap">
+    	select * from GROUPMEMBER
+    	<where>
+    		<if test="keyword1!='' and keyword1!=null">and stuNum like '%${keyword1}%'</if>
+    		<if test="keyword2!='' and keyword2!=null">and stuName like '%${keyword2}%'</if>
+    		and clubId = #{clubId} and departmentId = #{departmentId} and rank = 1 and state = 1 and YEAR(joinTime)>=YEAR(now())-1
+    	</where>
+    	limit #{start},#{rows}
+    </select>
+    
+    <select id="queryCandidatorCount" parameterType="HashMap" resultType="java.lang.Integer">
+    	select count(*) from GROUPMEMBER
+    	<where>
+    		<if test="keyword1!='' and keyword1!=null">and stuNum like '%${keyword1}%'</if>
+    		<if test="keyword2!='' and keyword2!=null">and stuName like '%${keyword2}%'</if>
+    		and clubId = #{clubId} and departmentId = #{departmentId} and rank = 1 and state = 1 and YEAR(joinTime)>=YEAR(now())-1
+    	</where>
+    </select>
+    
+    <select id="querySeniorCandidator" parameterType="HashMap" resultMap="BaseResultMap">
+    	select * from GROUPMEMBER
+    	<where>
+    		<if test="keyword1!='' and keyword1!=null">and stuNum like '%${keyword1}%'</if>
+    		<if test="keyword2!='' and keyword2!=null">and stuName like '%${keyword2}%'</if>
+    		and clubId = #{clubId} and state = 1 and YEAR(joinTime)>=YEAR(now())-1 and rank = 2 or rank = 4
+    	</where>
+    	limit #{start},#{rows}
+    </select>
+    
+    <select id="querySeniorCandidatorCount" parameterType="HashMap" resultType="java.lang.Integer">
+    	select count(*) from GROUPMEMBER
+    	<where>
+    		<if test="keyword1!='' and keyword1!=null">and stuNum like '%${keyword1}%'</if>
+    		<if test="keyword2!='' and keyword2!=null">and stuName like '%${keyword2}%'</if>
+    		and clubId = #{clubId} and state = 1 and YEAR(joinTime)>=YEAR(now())-1 and rank = 2 or rank = 4
+    	</where>
+    </select>
+    
+    <select id="queryCurrentSenior" parameterType="HashMap" resultMap="BaseResultMap">
+    	select * from GROUPMEMBER
+    	<where>
+    		<if test="keyword1!='' and keyword1!=null">and stuNum like '%${keyword1}%'</if>
+    		<if test="keyword2!='' and keyword2!=null">and stuName like '%${keyword2}%'</if>
+    		and clubId = #{clubId} and rank > 1 and state = 1 and YEAR(joinTime)>=YEAR(now())-1
+    	</where>
+    	limit #{start},#{rows} 
+    </select>
+    
+    <select id="queryCurrentSeniorCount" parameterType="HashMap" resultType="java.lang.Integer">
+    	select count(*) from GROUPMEMBER
+    	<where>
+    		<if test="keyword1!='' and keyword1!=null">and stuNum like '%${keyword1}%'</if>
+    		<if test="keyword2!='' and keyword2!=null">and stuName like '%${keyword2}%'</if>
+    		and clubId = #{clubId} and rank > 1 and state = 1 and YEAR(joinTime)>=YEAR(now())-1
+    	</where>
+    </select>
+    
+    <update id="updateOne2Senior" parameterType="HashMap">
+    	update GROUPMEMBER set rank = #{rank},job = #{job} where stuNum = #{stuNum} and clubId = #{clubId} and state = 1
+    </update>
+    
+    <update id="updateSenior2Formal" parameterType="HashMap">
+    	update GROUPMEMBER set rank = 1,job = #{job} 
+    	<where>
+    		<if test="departmentId!='' and departmentId!=null">and departmentId = #{departmentId}</if>
+    		and clubId = #{clubId} and rank = #{rank} and state = 1
+    	</where>
+    </update>
+    
+    <update id="updateSenior2FormalByNum" parameterType="HashMap">
+    	update GROUPMEMBER set rank = 1,job = #{job} where stuNum = #{stuNum} and clubId = #{clubId} and state = 1
+    </update>
 </mapper>

@@ -1,4 +1,7 @@
 package com.admin.bean;
+
+import java.util.Date;
+
 /** 
 * @author  作者 :zhengym
 * @date 创建时间：2019年1月24日 下午11:40:48
@@ -17,6 +20,7 @@ public class Department {
 	private String vice2_name;
 	private String collegeId;
 	private String clubId;
+	private Date birthDate;
 	public String getId() {
 		return id;
 	}
@@ -82,6 +86,12 @@ public class Department {
 	}
 	public void setClubId(String clubId) {
 		this.clubId = clubId;
+	}
+	public Date getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 	
 	

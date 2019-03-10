@@ -9,29 +9,11 @@ $(function(){
 
 (function(obj){
    var isUpdate = 0;
-   var MemberInfo={
-       actionPath:	rootPath + "/memberInfo/",
+   var recruitNew={
+       actionPath:	rootPath + "/recruitNew/",
        
-       addMemberInfo:function(){
-    	   isUpdate = 0;
-    	   rightPopWindow("添加社员","80%","memberInfoRightWindow");
-    	   $("#edit-num").val('');
-    	   $("#edit-name").val('');
-    	   $("#edit-gender").val('');
-    	   $("#edit-profession").val('');
-    	   $("#edit-grade").val('');
-    	   $("#edit-email").val('');
-    	   $("#edit-phone").val('');
-    	   $("#edit-interest").val('');
-    	   $("#edit-special").val('');
-    	   $("#edit-departName").val('');
-    	   $("#edit-job").val('');
-    	   $(".right-alert_content ul .TextBtn-import").show();
-    	   MemberInfo.loadList();
-       },
-       
-       queryMemberInfos:function(){
-   		
+       queryRecruitInfos:function(){
+   		debugger;
            /*$.ajax({
                url : MemberInfo.actionPath + "querySysParamInfos&",
                type:'post',
@@ -79,22 +61,46 @@ $(function(){
                    operationTipsFailed(obj);
                }
            });*/
-    	   $(".stuNum").val('');
-           $(".stuName").val('');
-    	   $.ajax({
-    		   url:MemberInfo.actionPath+"queryAllMemberInfo.action",
+    	  
+    		   
+    		 //搜索查询
+/*    	        var active = {
+    	            reload: function(){
+    	                var date_s = $('#date_s').val(); //传入搜索的日期值 
+    	                //执行重载
+    	                table.reload('重载表格id', {
+    	                    url : '搜索请求接口',
+    	                    method:'请求类型',
+    	                    page: {
+    	                        curr: 1 //重新从第 1 页开始
+    	                    }
+    	                    ,where: { //类似于 data
+    	                        beginDate:date_s //传入日期参数
+    	                    }
+    	                });
+    	            }
+    	        };*/
+    	    $.ajax({
+    	       url:recruitNew.actionPath+"queryAllRecruitInfo.action",
     		   data:{"limit":10},
-    		   method:'POST',
+    		   type:'POST',
     		   success:function(){
-    			 //重新渲染页面元素
-                   /*layui.use('table', function() {
-                       var element = layui.table;
-                       element.render();
-                   });*/
+    			  alert(111);
     			   parent.layui.table.reload('contenttable',{page:{curr:1}});
+    			   $(".btn-items button").css("background","#fff");
+    			   $(".btn-items button").css("color","#333");
+    			   $(".btn-items button").eq(0).css("background","#24ac7e");
+    			   $(".btn-items button").eq(0).css("color","#fff");
     		   },
     		   error:function(){
-    			  parent.layui.table.reload('contenttable',{page:{curr:1}});
+    			   parent.layui.table.reload('contenttable',{
+                       where:{
+                             keyword3:"0",
+                             keyword1:'',
+                             keyword2:''
+                       }
+                 });
+    			  //parent.layui.table.reload('contenttable',{page:{curr:1}});
     		   }
     	   });
 
@@ -221,13 +227,14 @@ $(function(){
 
            operationTipsWarn(operateWarnObj);
        },
-       queryById:function(stuNum,clubId){
+       queryById:function(stuNum,clubId,departmentId){
            $.ajax({
-               url : MemberInfo.actionPath + "queryMemberInfo.action",
+               url : recruitNew.actionPath + "queryRecruitNewInfo.action",
                type:'post',
                data : {
             	   stuNum:stuNum,
-            	   clubId:clubId
+            	   clubId:clubId,
+            	   departmentId:departmentId
                },
                dataType:'JSON',
                success : function(response) {
@@ -243,12 +250,10 @@ $(function(){
                        $("#edit-interest").val(item.interest);
                        $("#edit-special").val(item.special);
                        $("#edit-departName").val(item.departName);
-                       $("#edit-departId").val(item.departId);
                        $("#edit-job").val(item.job);
-                       $("#edit-rank").val(item.rank);
-                       $(".ImgStuNum").val(item.num);
                        $(".HeadPhoto").attr("src","/Cache/Img_Cache/"+item.head);
-                      
+                       $(".ImgStuNum").val(item.num);
+                       $("#edit-applyTime").val(item.applyTime);
                        $(".form-select-btn").children("p").text($(".choosed").text());
                        
                    }else{
@@ -264,127 +269,89 @@ $(function(){
                }
            });
        },
-       editMemberInfo:function(stuNum,clubId){
-    	   isUpdate = 1;
-           rightPopWindow("编辑社员信息","80%","memberInfoRightWindow");
-           $(".right-alert_content ul input").removeAttr("disabled");
-           $("#edit-num").attr("disabled","disabled");
-           $(".right-alert_content ul .TextBtn-import").show();
-           MemberInfo.queryById(stuNum,clubId);
-           MemberInfo.loadList();
-       },
-       viewMemberInfo:function(paramType,paramName){
-           rightPopWindow("查看社员信息","80%","memberInfoRightWindow");
+       viewRecruitNewInfo:function(stuNum,clubId,departmentId){
+           rightPopWindow("查看报名人员信息","80%","recruitNewRightWindow");
            $("p.error").remove();
            $(".right-alert_content ul input").attr("disabled","disabled");
            $(".right-alert_content ul .TextBtn-import").hide();
            $("#edit-job").parent().removeClass("ui-down");
-           MemberInfo.queryById(paramType,paramName);
+           recruitNew.queryById(stuNum,clubId,departmentId);
        },
-       queryDepartment:function(){
+       passRecruit:function(stuNum,clubId,departmentId){
     	   $.ajax({
-    		   url:MemberInfo.actionPath+"queryDepartment.action",
+    		   url:recruitNew.actionPath+"passRecruit.action",
     		   type:'post',
-    		   data:{},
-    		   async:false,
+    		   data:{
+    			   stuNum:stuNum,
+    			   clubId:clubId,
+    			   departmentId:departmentId
+    		   },
     		   dataType:'JSON',
     		   success:function(response){
     			   if(response.resultFlag){
-    				   $.each(response.data,function(i,item){
-    					   if(i==0){
-    						   $("#edit-departul").append(
-        							   '<li class="choosed" val="'+item.departId+'" onclick=MemberInfo.chooseDepart("'+item.departName+'","'+item.departId+'")>'+item.departName+"</li>"
-        							   );
-    					   }else{
-    						   $("#edit-departul").append(
-        							   '<li val="'+item.departId+'" onclick=MemberInfo.chooseDepart("'+item.departName+'","'+item.departId+'")>'+item.departName+"</li>"
-        							   ); 
-    					   }
-    					   
-    					   
-    				   });
-    			   }else{
+                       var obj = {};
+                       obj["Ptext"] = "录用成功！";
+                       operationTipsTrue(obj);
+                       /*obj['func']=recruitNew.queryRecruitInfos();*/
+                       parent.layui.table.reload('contenttable',{
+                           where:{
+                                 keyword3:"0",
+                                 keyword1:'',
+                                 keyword2:''
+                           }
+                     });
+                   }else{
                        var obj = {};
                        obj["Ptext"] = response.Msg;
                        operationTipsFailed(obj);
                    }
-
+              
                },
                error : function() {
                    var obj = {};
                    obj["Ptext"] = "系统出错";
-                   
                    operationTipsFailed(obj);
                }
     	   });
-    
-       },
-       chooseDepart:function(departName,departId){
-    	   $("#edit-departul").hide();
-    	   $("#edit-departName").val(departName);
-    	   $("#edit-departId").val(departId);
-    	   
-       },
-       loadList:function(){
-    	   $("#edit-job").parent().addClass("ui-down");
-           $("#edit-departName").parent().addClass("ui-down");
-           $("#edit-job").click(function(){
-        	   $("#edit-jobul").show();
-           });
-           $("#edit-departName").click(function(){
-        	   $("#edit-departul").show();
-           });
-           $("#edit-jobul li").click(function(){
-        	   $("#edit-jobul").hide();
-        	   $("#edit-job").val($(this).text());
-        	   if($(this).text()=="普通社员"){
-        		   $("#edit-rank").val("1");
-        	   }else if($(this).text()=="副部长"){
-        		   $("#edit-rank").val("2");
-        	   }else{
-        		   $("#edit-rank").val("3");
-        	   }
-           });
-           MemberInfo.queryDepartment();
-       },
-       loadImage:function(){
-    	   
-    	   var myForm = new FormData($(".uploadForm")[0]);
-    	   /*myForm.append('file',$(".uploadForm")[0]);
-    	   myForm.append('stuNum',$(".ImgStuNum").val());*/
-    	   //var Image = new FormData($(".uploadForm")[0]);
-    	   
-    		//console.log(uploadFile);
-    		$.ajax({
-				url:MemberInfo.actionPath+"uploadHead.action",
-				type:'POST',
-				data:myForm,
-				async: false,  
-				cache: false, 
-				contentType: false, //不设置内容类型
-				processData: false, //不处理数据
-				success:function(data){
-					var obj = {};
-					obj["Ptext"] = data.msg;
-					if(data.resultFlag){
-	                    operationTipsTrue(obj);
-					}else{
-		                operationTipsFailed(obj);
-					}
-					
-				},
-				error:function(){
-					var obj = {};
-	                obj["Ptext"] = "图片上传失败";  
-	                operationTipsFailed(obj);
-				}
-			});
-    		
-    	  
+       },  
+       unPassRecruit:function(stuNum,clubId,departmentId){
+    	   $.ajax({
+    		   url:recruitNew.actionPath+"unPassRecruit.action",
+    		   type:'post',
+    		   data:{
+    			   stuNum:stuNum,
+    			   clubId:clubId,
+    			   departmentId:departmentId
+    		   },
+    		   dataType:'JSON',
+    		   success:function(response){
+    			   if(response.resultFlag){
+                       var obj = {};
+                       obj["Ptext"] = "淘汰成功！";
+                       operationTipsTrue(obj);
+                       parent.layui.table.reload('contenttable',{
+                           where:{
+                                 keyword3:"0",
+                                 keyword1:'',
+                                 keyword2:''
+                           }
+                     });
+                   }else{
+                       var obj = {};
+                       obj["Ptext"] = response.Msg;
+                       operationTipsFailed(obj);
+                   }
+              
+               },
+               error : function() {
+                   var obj = {};
+                   obj["Ptext"] = "系统出错";
+                   operationTipsFailed(obj);
+               }
+    	   });
        }
-       
        
    }
 
-    obj.MemberInfo=MemberInfo;
+    obj.recruitNew=recruitNew;
 })(window);

@@ -33,5 +33,22 @@ public class StudentServiceImpl implements IStudentService {
 		return studentMapper.queryStudentByStuNum(stuNum);
 	}
 
+	@Override
+	public void addStudentInfo(Student student) {
+		// TODO Auto-generated method stub
+		studentMapper.addStudentInfo(student);
+	}
+
+	@Override
+	public void updateStudentInfo(Student student) {
+		// TODO Auto-generated method stub
+		studentMapper.updateStudentInfo(student);
+	}
+
+	@Override
+	public void deleteStudentInfo(String stuNum) {
+		// TODO Auto-generated method stub
+		studentMapper.deleteStudentInfo(stuNum);
+	}
 	
 }
