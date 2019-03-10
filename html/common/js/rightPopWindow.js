@@ -18,12 +18,14 @@ function rightPopWindow(title, width, _id){
 }
 
 function closeRightWindow(_id){
+	debugger;
     var _obj ;
     if (_id != null && _id != undefined){
         _obj = $("#"+_id);
     }else {
         _obj = $("#rightPopWindow");
     }
+    _obj = $(".right-alert");
     _obj.animate({
         marginRight: "0px"
     }, 300).fadeOut();
