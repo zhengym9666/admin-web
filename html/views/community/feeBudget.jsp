@@ -122,31 +122,31 @@
 	          {
 	            field: 'budget_time',
 	            title: '收支时间',
-	            width: 130
+	            width: 200
 	          }, {
 	            field: 'budget_status',
 	            title: '收支情况',
-	            width: 60
+	            width: 120
 	          }, {
 	            field: 'reason',
 	            title: '收支原因',
-	            width: 120
+	            width: 200
 	          }, {
 	            field: 'budgeter',
 	            title: '收支者',
-	            width: 108
+	            width: 160
 	          }, {
 	            field: 'budget',
 	            title: '收支金额',
-	            width: 80
+	            width: 120
 	          }, {
 	            field: 'remainMoney',
 	            title: '剩余金额',
-	            width: 80
+	            width: 160
 	          }, {
-	            field: '审核财务',
-	            title: 'financial',
-	            width: 90
+	            field: 'financial',
+	            title: '审核财务',
+	            width:160
 	          }
 	        ]
 	      ]
