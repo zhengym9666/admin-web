@@ -20,24 +20,24 @@ import java.lang.reflect.Type;
 public  class MybatisUtil {
     SqlSession sqlSession;
     public SqlSessionFactory initSqlSessionFactory() throws Exception{
-        //  1.¼ÓÔØºËĞÄÅäÖÃÎÄ¼ş£ºsqlMapConfig.xml
-        // ²ÎÊıresource£ºÖ¸¶¨ºËĞÄÅäÖÃÎÄ¼şµÄÎ»ÖÃ
+        //  1.åŠ è½½æ ¸å¿ƒé…ç½®æ–‡ä»¶ï¼šsqlMapConfig.xml
+        // å‚æ•°resourceï¼šæŒ‡å®šæ ¸å¿ƒé…ç½®æ–‡ä»¶çš„ä½ç½®
         InputStream inputStream = Resources.getResourceAsStream("test/testSqlMapConfig.xml");
-        // 2.¶ÁÈ¡ÅäÖÃÎÄ¼şÄÚÈİ
+        // 2.è¯»å–é…ç½®æ–‡ä»¶å†…å®¹
         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
-        // sqlSessionFactory¶ÔÏó£¬ÊÇmybatis¿ò¼ÜµÄºËĞÄ¶ÔÏó£¬Ò»¸öÓ¦ÓÃ£¨ÏîÄ¿£©Ö»ĞèÒªÒ»¸ö
+        // sqlSessionFactoryå¯¹è±¡ï¼Œæ˜¯mybatisæ¡†æ¶çš„æ ¸å¿ƒå¯¹è±¡ï¼Œä¸€ä¸ªåº”ç”¨ï¼ˆé¡¹ç›®ï¼‰åªéœ€è¦ä¸€ä¸ª
         SqlSessionFactory sqlSessionFactory = builder.build(inputStream);
         return sqlSessionFactory;
     }
     public <A> A getMapperObject(Class<A> mapperClazz) throws Exception {
-        // 1.´´½¨sqlSession¶ÔÏó
+        // 1.åˆ›å»ºsqlSessionå¯¹è±¡
         sqlSession = initSqlSessionFactory().openSession();
 
-        // 2.Ê¹ÓÃsqlSession¶ÔÏó£¬»ñÈ¡mapper½Ó¿Ú´úÀí¶ÔÏó
-        //getMapper·½·¨£º»ñÈ¡mapper½Ó¿ÚµÄ´úÀí¶ÔÏó
-        // ²ÎÊı£ºmapper½Ó¿ÚµÄclass
+        // 2.ä½¿ç”¨sqlSessionå¯¹è±¡ï¼Œè·å–mapperæ¥å£ä»£ç†å¯¹è±¡
+        //getMapperæ–¹æ³•ï¼šè·å–mapperæ¥å£çš„ä»£ç†å¯¹è±¡
+        // å‚æ•°ï¼šmapperæ¥å£çš„class
         A object = sqlSession.getMapper(mapperClazz);
-        // 3.Ê¹ÓÃmapper´úÀí¶ÔÏó£¬µ÷ÓÃ·½·¨Ö´ĞĞ
+        // 3.ä½¿ç”¨mapperä»£ç†å¯¹è±¡ï¼Œè°ƒç”¨æ–¹æ³•æ‰§è¡Œ
         return  object;
     }
 
@@ -45,21 +45,21 @@ public  class MybatisUtil {
     public <T,A> T getMapperServiceImplObject(Class<A> mapperClazz,Class<T> serviceImplClazz) throws Exception {
         A mapperObject = getMapperObject(mapperClazz);
         T serviceImplObject = (T) serviceImplClazz.newInstance();
-        //####Ö´ĞĞ·ºĞÍ·½·¨ ·½·¨Ò»£º»ñÈ¡×ÓÀàµÄ¸¸Àà£¬Ö´ĞĞ¸¸ÀàµÄ·½·¨£¬Êµ¼ÊÖ´ĞĞ×ÓÀàµÄ·½·¨¡£
+        //####æ‰§è¡Œæ³›å‹æ–¹æ³• æ–¹æ³•ä¸€ï¼šè·å–å­ç±»çš„çˆ¶ç±»ï¼Œæ‰§è¡Œçˆ¶ç±»çš„æ–¹æ³•ï¼Œå®é™…æ‰§è¡Œå­ç±»çš„æ–¹æ³•ã€‚
 //        Class<? super T> superclass = serviceImplClazz.getSuperclass();
 //        Method setMapperMethod = superclass.getDeclaredMethod("setMapper", Object.class);
-        //####Ö´ĞĞ·ºĞÍ·½·¨ ·½·¨¶ş£º»ñÈ¡×ÓÀàµÄ¸¸ÀàµÄ·½·¨£¬Ö±½Óµ÷ÓÃ×ÓÀàµÄ¸¸ÀàµÄ·½·¨¡£
-            //²éÕÒ·½·¨²ÎÊı£¬1£º·½·¨Ãû  2£º²ÎÊıµÄ¶ÔÏó£¬ÓÉÓÚ³éÏóÀàÊÇ·ºĞÍ£¬ËùÒÔÖ»ÄÜÓÃObject£¬×î¸ß¶ÔÏó£¬Èç¹û»¹ÊÇÓÃ·ºĞÍ»á²éÕÒÊ§°Ü£¬ÒòÎª´«µ½ÕâÀïµÄÊ±ºòÒÑ¾­ÊÇ¾ßÌåµÄÀàĞÍÁË£¬ËùÒÔ²éÕÒ²»µ½
+        //####æ‰§è¡Œæ³›å‹æ–¹æ³• æ–¹æ³•äºŒï¼šè·å–å­ç±»çš„çˆ¶ç±»çš„æ–¹æ³•ï¼Œç›´æ¥è°ƒç”¨å­ç±»çš„çˆ¶ç±»çš„æ–¹æ³•ã€‚
+        //æŸ¥æ‰¾æ–¹æ³•å‚æ•°ï¼Œ1ï¼šæ–¹æ³•å  2ï¼šå‚æ•°çš„å¯¹è±¡ï¼Œç”±äºæŠ½è±¡ç±»æ˜¯æ³›å‹ï¼Œæ‰€ä»¥åªèƒ½ç”¨Objectï¼Œæœ€é«˜å¯¹è±¡ï¼Œå¦‚æœè¿˜æ˜¯ç”¨æ³›å‹ä¼šæŸ¥æ‰¾å¤±è´¥ï¼Œå› ä¸ºä¼ åˆ°è¿™é‡Œçš„æ—¶å€™å·²ç»æ˜¯å…·ä½“çš„ç±»å‹äº†ï¼Œæ‰€ä»¥æŸ¥æ‰¾ä¸åˆ°
         Method setMapperMethod = serviceImplObject.getClass().getMethod("setMapper", Object.class);
-        //Ö´ĞĞ·½·¨±ØĞëÈ«²¿¶¼ÊÇÊµÀı»¯µÄ¶ÔÏó£¬serviceImplObject µ÷ÓÃÕß¶ÔÏó£¬mapperObject dao²ãÊµÌåÀà
+        //æ‰§è¡Œæ–¹æ³•å¿…é¡»å…¨éƒ¨éƒ½æ˜¯å®ä¾‹åŒ–çš„å¯¹è±¡ï¼ŒserviceImplObject è°ƒç”¨è€…å¯¹è±¡ï¼ŒmapperObject daoå±‚å®ä½“ç±»
         setMapperMethod.invoke(serviceImplObject,mapperObject);
         return serviceImplObject;
     }
 
     public void commit(){
-        //Ìá½»ÊÂÎï
+        //æäº¤äº‹ç‰©
         sqlSession.commit();
-        //ÊÍ·Å×ÊÔ´
+        //é‡Šæ”¾èµ„æº
         sqlSession.close();
     }
 

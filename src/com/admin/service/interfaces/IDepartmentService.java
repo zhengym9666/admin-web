@@ -2,7 +2,9 @@ package com.admin.service.interfaces;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import com.admin.bean.ManFemalClub;
 import org.apache.ibatis.annotations.Param;
 
 import com.admin.bean.Department;
@@ -20,13 +22,19 @@ public interface IDepartmentService {
 	
 	public List<Department> queryDepartmentByClubId(String clubId);
 
+	Map<String,Map<Integer,Integer>> queryManFemaleSum(String clubId);
+
+    String queryDepartmentNameById(String depId);
+
+	ManFemalClub queryManFemaleByClubSum(String clubId);
+
 	public List<Department> queryDepartmentPage(Page page,String clubId);
-	
+
 	public int queryDepartmentPageCount(Page page,String clubId);
-	
+
 	public void addDepartInfo(String preClubId,String departName,String intro,Date birthDate,String collegeId,String clubId);
-	
+
 	public void updateDepartInfo(String departId,String departName,String intro);
-	
+
 	public void deleteDepartInfo(String departId);
 }

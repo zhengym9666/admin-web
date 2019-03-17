@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.admin.dao.NewsDAO" >
+<!--type指定的是对应的实体类  -->
+    <resultMap id="BaseResultMap" type="com.admin.bean.News" >
+    <!-- id用来配置表的主键与类的属性的映射关系，column指定的是表的字段名，property指定的是类的属性名 -->
+        <id column="id" property="id"/>
+    <!-- result用来配置普通字段与类的属性的映射关系，column指定表的字段名，property指定类的属性名 -->
+        <result column="id" property="id"/>
+        <result column="author" property="author"/>
+        <result column="submitter" property="submitter"/>
+        <result column="submit_time" property="submit_time"/>
+        <result column="revise_time" property="revise_time"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="image" property="image"/>
+        <result column="readcount" property="readcount"/>
+        <result column="collegeId" property="collegeId"/>
+        <result column="clubId" property="clubId"/>
+
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id,author,submitter,submit_time,revise_time,title,content,image,readcount,collegeId,clubId
+    </sql>
+    <select id="queryNewsById" resultMap="BaseResultMap" parameterType="Int" >
+        select
+        <include refid="Base_Column_List" />
+        from NEWS
+        where id = #{id}
+    </select>
+    
+    <select id="queryPageNews" resultMap="BaseResultMap">
+    	select
+    	<include refid="Base_Column_List" />
+    	from NEWS
+    	<where>
+    	collegeId = #{collegeId} and clubId = #{clubId}
+    	</where>
+    	limit #{start},#{size}
+    </select>
+
+    <select id="queryPageNewsByCondition"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from NEWS
+        <where>
+            <trim suffixOverrides="and">
+                <if test="news.author != null">
+                    news.author like concat(concat('%',#{news.author}),'%') and
+                </if>
+                <if test="news.title != null">
+                    news.title like concat(concat('%',#{news.title}),'%')  and
+                </if>
+                <if test="news.collegeId != null">
+                    news.collegeId = #{news.collegeId,jdbcType=VARCHAR} and
+                </if>
+                <if test="news.clubId != null">
+                    news.clubId = #{news.clubId,jdbcType=VARCHAR} and
+                </if>
+            </trim>
+        </where>
+        limit #{start},#{size}
+    </select>
+
+    <select id="queryTotalCount"   resultType="int">
+        select
+        count(*)
+        from NEWS
+        <where>
+            collegeId = #{collegeId} and clubId = #{clubId}
+        </where>
+    </select>
+
+    <select id="queryTotalCountByCondition"  resultType="int">
+        select
+        count(*)
+        from NEWS
+        <where>
+            <trim suffixOverrides="and">
+                <if test="author != null">
+                    author like concat(concat('%',#{author}),'%') and
+                </if>
+                <if test="title != null">
+                    title like concat(concat('%',#{title}),'%')  and
+                </if>
+                <if test="collegeId != null">
+                    collegeId = #{collegeId,jdbcType=VARCHAR} and
+                </if>
+                <if test="clubId != null">
+                    clubId = #{clubId,jdbcType=VARCHAR} and
+                </if>
+            </trim>
+        </where>
+    </select>
+
+    <delete id="delNewsById" >
+        DELETE  FROM NEWS
+        <where>
+            id = #{id}
+        </where>
+    </delete>
+
+    <insert id="saveNews" parameterType="com.admin.bean.News">
+        insert into news
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="author != null">
+                author,
+            </if>
+            <if test="submitter != null">
+                submitter,
+            </if>
+            <if test="submit_time != null">
+                submit_time,
+            </if>
+            <if test="revise_time != null">
+                revise_time,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="collegeId != null">
+                collegeId,
+            </if>
+            <if test="clubId != null">
+                clubId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="author != null">
+                #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="submitter != null">
+                #{submitter,jdbcType=VARCHAR},
+            </if>
+            <if test="submit_time != null">
+                #{submit_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="revise_time != null">
+                #{revise_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="collegeId != null">
+                #{collegeId,jdbcType=VARCHAR},
+            </if>
+            <if test="clubId != null">
+                #{clubId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateNews" parameterType="com.admin.bean.News">
+        UPDATE news t 
+        <set>
+            <if test="author != null">
+                author = #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="submitter != null">
+                submitter = #{submitter,jdbcType=VARCHAR},
+            </if>
+            <if test="submit_time != null">
+                submit_time = #{submit_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="revise_time != null">
+                revise_time = #{revise_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="collegeId != null">
+                collegeId = #{collegeId,jdbcType=VARCHAR},
+            </if>
+            <if test="clubId != null">
+                clubId = #{clubId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE t.id=#{id};
+    </update>
+</mapper>

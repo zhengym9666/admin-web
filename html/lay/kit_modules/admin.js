@@ -100,7 +100,7 @@ layui.define(mods, function (e) {
                         name: "Cascader"
                     }, {
                         path: "/",
-                        component: "views/app.html",
+                        component: "views/app.jsp",
                         name: "主页"
                     }, {
                         path: "/user/my",

@@ -133,7 +133,7 @@ public class GroupMemberServiceImpl  implements IGroupMemberService{
 		params.put("departmentId", departmentId);
 		groupMemberMapper.updateStateToFomal(params);
 	}
-	
+
 	@Override
 	public void updateStateToMiss(String stuNum, String clubId, String departmentId) {
 		// TODO Auto-generated method stub
@@ -256,6 +256,8 @@ public class GroupMemberServiceImpl  implements IGroupMemberService{
 		groupMemberMapper.updateSenior2FormalByNum(params);
 	}
 
+
+
 	@Override
 	public void updateisFee(String stuNum, String clubId) {
 		// TODO Auto-generated method stub
@@ -273,7 +275,7 @@ public class GroupMemberServiceImpl  implements IGroupMemberService{
 		params.put("clubId", clubId);
 		return groupMemberMapper.queryMemberByKey(params);
 	}
-	
-	
+
+
 
 }

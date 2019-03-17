@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<!-- 加载属性文件（db.properties），说明：
+	1.resource属性：指定本地配置文件的位置
+	2.url属性：指定网络上的文件位置
+	3.使用内部property标签，配置属性
+	4.加载顺序：首先加载内部property标签定义的属性，再加载属性文件中定义的属性，如果存在相同的属性，属性文件中的属性覆盖
+	内部property标签定义的属性 -->
+	<properties resource="jdbc.properties" >
+		<property name="jdbc.username" value="root"/>
+		<property name="jdbc.password" value="root"/>
+	</properties>
+	
+	<!-- 配置自定义别名 -->
+	<typeAliases>
+		<!-- 配置用户别名，说明：
+		 1.type属性：别名的类型
+		 2.alias属性：别名的名称
+		 3.默认是使用类名称作为别名的名称-->
+		<!-- <typeAlias type="cn.itheima.po.User" alias="user"/> -->
+		
+		<!-- 以包扫描的方式配置别名，说明：
+		 1.默认使用类的名称作为别名的名称
+		 2.如果有多个包，配置多个package
+		 3.企业项目中，推荐使用包扫描方式-->
+		<package name="com.community.bean"/>
+	</typeAliases>
+
+	<!-- 运行环境配置 -->
+	<!-- default属性：指定使用哪一个运行环境 -->
+	<environments default="development">
+		<!-- 运行环境配置，id属性：唯一标识一个环境 -->
+		<environment id="development">
+			<!-- 事务管理器，JDBC：默认使用jdbc事务 -->
+			<transactionManager type="JDBC" />
+			<!-- 数据源配置， POOLED：mybatis框架提供的连接池-->
+			<dataSource type="POOLED">
+				<!-- <property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis" />
+				<property name="username" value="root" />
+				<property name="password" value="admin" /> -->
+				
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+				
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 加载mapper映射文件 -->
+	<mappers>
+		<!-- 加载User.xml,说明：
+		resource属性：指定配置文件的位置 -->
+		<mapper resource="mybatis/mappers/GroupMemberMapper.xml"/>
+		<mapper resource="mybatis/mappers/StudentMapper.xml"/>
+		<mapper resource="mybatis/mappers/DepartmentMapper.xml"/>
+		<mapper resource="mybatis/mappers/NewsMapper.xml"/>
+		<mapper resource="mybatis/mappers/CollegeMapper.xml"/>
+		<!-- 加载UserMapper.xml -->
+		<!-- <mapper resource="sqlmap/UserMapper.xml"/> -->
+		
+		<!-- 包扫描方式加载mapper映射文件，说明：
+		1.前提必须是mapper代理开发方法 
+		2.要求mapper映射文件，必须与mapper接口在同一个目录
+		3.要求mapper映射文件的名称，必须与mapper接口的名称一致-->
+	</mappers>
+	
+</configuration>
