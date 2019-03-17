@@ -85,7 +85,6 @@ $(function(){
     		   data:{"limit":10},
     		   type:'POST',
     		   success:function(){
-    			  alert(111);
     			   parent.layui.table.reload('contenttable',{page:{curr:1}});
     			   $(".btn-items button").css("background","#fff");
     			   $(".btn-items button").css("color","#333");

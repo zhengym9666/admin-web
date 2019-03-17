@@ -21,6 +21,7 @@ public class GroupMember {
 	private Date joinTime;
 	private Date exitTime;
 	private Date applyTime;
+	private int isFee;
 	public int getId() {
 		return id;
 	}
@@ -87,6 +88,13 @@ public class GroupMember {
 	}
 	public void setApplyTime(Date applyTime) {
 		this.applyTime = applyTime;
+	}
+	
+	public int getIsFee() {
+		return isFee;
+	}
+	public void setIsFee(int isFee) {
+		this.isFee = isFee;
 	}
 	@Override
 	public String toString() {

@@ -16,6 +16,7 @@
         <result column="joinTime" property="joinTime"/>
         <result column="exitTime" property="exitTime"/>
         <result column="applyTime" property="applyTime"/>
+        <result column="isFee" property="isFee"/>
     </resultMap>
     
     <select id="queryMemberByClubId" resultMap="BaseResultMap" parameterType="HashMap">
@@ -180,4 +181,17 @@
     <update id="updateSenior2FormalByNum" parameterType="HashMap">
     	update GROUPMEMBER set rank = 1,job = #{job} where stuNum = #{stuNum} and clubId = #{clubId} and state = 1
     </update>
+    
+    
+    <update id="updateisFee" parameterType="HashMap">
+    	update GROUPMEMBER set isFee = 1 where stuNum = #{stuNum} and clubId = #{clubId}
+    </update>
+    
+    <select id="queryMemberByKey" parameterType="HashMap" resultMap="BaseResultMap">
+    	select * from GROUPMEMBER
+    	<where>
+    		<if test="keyword!='' and keyword!=null">and stuName like '%${keyword}%'</if>
+    		and clubId = #{clubId} and state = 1
+    	</where>
+    </select>
 </mapper>

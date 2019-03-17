@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.admin.dao.FeeBudgetLogDAO" >
+<!--type指定的是对应的实体类  -->
+    <resultMap id="BaseResultMap" type="com.admin.bean.FeeBudgetLog" >
+    <!-- id用来配置表的主键与类的属性的映射关系，column指定的是表的字段名，property指定的是类的属性名 -->
+        <id column="logId" property="logId"/>
+    <!-- result用来配置普通字段与类的属性的映射关系，column指定表的字段名，property指定类的属性名 -->
+    	<result column="clubId" property="clubId"/>
+        <result column="budget_time" property="budget_time"/>
+        <result column="budget_status" property="budget_status"/>
+        <result column="reason" property="reason"/>
+        <result column="budgeter" property="budgeter"/>
+        <result column="budget" property="budget"/>
+        <result column="remainMoney" property="remainMoney"/>
+        <result column="financial" property="financial"/>
+    </resultMap>
+    
+    <insert id="addBudgetLog" parameterType="com.admin.bean.FeeBudgetLog">
+    	insert into fee_budget_log(clubId,budget_time,budget_status,reason,budgeter,budget,remainMoney,financial)
+    	values(#{clubId},#{budget_time},#{budget_status},#{reason},#{budgeter},#{budget},#{remainMoney},#{financial})
+    </insert>
+    
+    <select id="queryBudgetLog" parameterType="HashMap" resultMap="BaseResultMap">
+    	select * from fee_budget_log
+    	<where>
+    		<if test="keyword1!='' and keyword1!=null">and budgeter IN (SELECT t.stuNum FROM student t WHERE t.stuName LIKE '%${keyword1}%')</if>
+    		and clubId = #{clubId}
+    	</where>
+    	limit #{start},#{rows}
+    </select>
+    
+    <select id="queryBudgetLogCount" parameterType="HashMap" resultType="java.lang.Integer">
+    	select count(*) from fee_budget_log
+    	<where>
+    		<if test="keyword1!='' and keyword1!=null">and budgeter IN (SELECT t.stuNum FROM student t WHERE t.stuName LIKE '%${keyword1}%')</if>
+    		and clubId = #{clubId}
+    	</where>
+    	limit #{start},#{rows}
+    </select>
+    
+</mapper>

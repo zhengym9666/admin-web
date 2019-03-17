@@ -59,4 +59,8 @@ public interface IGroupMemberService {
 	public void updateSenior2Formal(String clubId,int rank,String departmentId,String job);
 	
 	public void updateSenior2FormalByNum(String clubId,String stuNum,String job);
+	
+	public void updateisFee(String stuNum,String clubId);
+	
+	public List<GroupMember> queryMemberByKey(String keyword,String clubId);
 }

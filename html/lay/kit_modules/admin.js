@@ -270,6 +270,14 @@ layui.define(mods, function (e) {
                     	path:"/activity/actManage",
                     	component: "views/community/actManage.jsp",
                     	name: "活动管理"
+                    },{
+                    	path:"/fee/feeBudget",
+                    	component: "views/community/feeBudget.jsp",
+                    	name: "会费收支详情"
+                    },{
+                    	path:"/fee/feeInManage",
+                    	component: "views/community/feeInManage.jsp",
+                    	name: "管理会费收入"
                     }
                     ]
                 };

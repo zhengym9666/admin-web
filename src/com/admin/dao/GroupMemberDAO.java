@@ -58,4 +58,8 @@ public interface GroupMemberDAO {
 	public void updateSenior2Formal(HashMap<String,Object> map);
 	
 	public void updateSenior2FormalByNum(HashMap<String,Object> map);
+	
+	public void updateisFee(HashMap<String,Object> map);
+	
+	public List<GroupMember> queryMemberByKey(HashMap<String,Object> map);
 }

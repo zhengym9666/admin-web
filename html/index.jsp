@@ -129,11 +129,31 @@
                 <span>社团新闻管理</span>
               </a>
             </li>
-              <li class="kit-menu-item">
-              <a href="#/activity/actManage">
+            <li class="kit-menu-item">
+            <a href="#/activity/actManage">
+              <i class="layui-icon"></i>
+              <span>活动管理</span>
+            </a>
+            </li>
+			<li class="kit-menu-item layui-show">
+              <a href="javascript:;">
                 <i class="layui-icon"></i>
-                <span>活动管理</span>
+                <span>会费管理</span>
               </a>
+              <ul class="kit-menu-child layui-anim layui-anim-upbit">
+                <li class="kit-menu-item">
+                  <a href="#/fee/feeBudget">
+                    <i class="layui-icon"></i>
+                    <span>会费收支详情</span>
+                  </a>
+                </li>
+                <li class="kit-menu-item">
+                  <a href="#/fee/feeInManage">
+                    <i class="layui-icon"></i>
+                    <span>管理会费收入</span>
+                  </a>
+                </li>
+               </ul>
             </li>
         </div>
       </div>

@@ -255,6 +255,24 @@ public class GroupMemberServiceImpl  implements IGroupMemberService{
 		params.put("job", job);
 		groupMemberMapper.updateSenior2FormalByNum(params);
 	}
+
+	@Override
+	public void updateisFee(String stuNum, String clubId) {
+		// TODO Auto-generated method stub
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("stuNum", stuNum);
+		params.put("clubId", clubId);
+		groupMemberMapper.updateisFee(params);
+	}
+
+	@Override
+	public List<GroupMember> queryMemberByKey(String keyword, String clubId) {
+		// TODO Auto-generated method stub
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("keyword", keyword);
+		params.put("clubId", clubId);
+		return groupMemberMapper.queryMemberByKey(params);
+	}
 	
 	
 
