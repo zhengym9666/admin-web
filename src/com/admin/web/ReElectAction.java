@@ -50,8 +50,14 @@ public class ReElectAction {
 		String stuNum = (String) request.getSession().getAttribute("stuNum");
 		GroupMember memInfo = (GroupMember) request.getSession().getAttribute("memInfo");
 		//GroupMember memInfo = groupMemberService.queryMemberInfo(clubId, stuNum);
-		String departmentId = memInfo.getDepartmentId();
 		HashMap<String,Object> resultMap = new HashMap<String,Object>();
+		if(memInfo==null){
+			resultMap.put("code", 1);
+			resultMap.put("msg", "从session中获取memInfo对象失败");
+			resultMap.put("count",0);
+			return resultMap;
+		}
+		String departmentId = memInfo.getDepartmentId();
 		List<Map> data = new ArrayList<Map>();
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
