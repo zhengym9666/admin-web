@@ -320,6 +320,6 @@ public class RecruitNewAction {
 		return resultMap;
 	}
 	public void test(){
-		
+        System.out.println();
 	}
 }
