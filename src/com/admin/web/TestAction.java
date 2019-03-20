@@ -67,6 +67,7 @@ public class TestAction {
 	}
 	
 	public void test2(){
-		
+		System.out.println("测试冲突");
+		System.out.println("测试冲突");
 	}
 }
