@@ -265,4 +265,5 @@ public class ReElectAction {
 		request.getSession().setAttribute("memInfo", memInfo);
 		
 	}
+	
 }
