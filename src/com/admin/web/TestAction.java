@@ -65,4 +65,8 @@ public class TestAction {
 		
 		return jsonObject;
 	}
+	
+	public void test2(){
+		
+	}
 }
