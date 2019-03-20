@@ -319,4 +319,7 @@ public class RecruitNewAction {
 		}
 		return resultMap;
 	}
+	public void test(){
+		
+	}
 }
