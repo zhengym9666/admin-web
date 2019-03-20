@@ -27,7 +27,8 @@
     		<if test="keyword1!='' and keyword1!=null">and budgeter IN (SELECT t.stuNum FROM student t WHERE t.stuName LIKE '%${keyword1}%')</if>
     		and clubId = #{clubId}
     	</where>
-    	limit #{start},#{rows}
+    	order by budget_time
+    	limit #{start},#{rows} 
     </select>
     
     <select id="queryBudgetLogCount" parameterType="HashMap" resultType="java.lang.Integer">
@@ -36,7 +37,6 @@
     		<if test="keyword1!='' and keyword1!=null">and budgeter IN (SELECT t.stuNum FROM student t WHERE t.stuName LIKE '%${keyword1}%')</if>
     		and clubId = #{clubId}
     	</where>
-    	limit #{start},#{rows}
     </select>
     
 </mapper>

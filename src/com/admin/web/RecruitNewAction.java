@@ -52,7 +52,7 @@ public class RecruitNewAction {
 	@RequestMapping("/queryRecruitInfo.action")
 	public void queryAllRecruitInfo(Page page,@RequestParam("limit")int limit,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		
-		String clubId = "1010100";
+		String clubId = (String) request.getSession().getAttribute("clubId");
 //		获取所有待审核申请者
 		page.setRows(limit);
 		List<GroupMember> groMemInfoList = null;
@@ -63,7 +63,7 @@ public class RecruitNewAction {
 		}else{
 			int state = Integer.parseInt(page.getKeyword3());
 			
-			String stuNum = "1515200006";
+			String stuNum = (String) request.getSession().getAttribute("stuNum");
 			//测试数据，实际从登陆后保存到的session中获取
 			String departmentId = groupMemberService.queryMemberInfo(clubId, stuNum).getDepartmentId();
 			
@@ -261,9 +261,9 @@ public class RecruitNewAction {
 		String departmentId = request.getParameter("departmentId");
 		
 		//测试数据
-		String SessionclubId = "1010100";
-		String SessionstuNum = "1515200006";
-		String SessiondepartmentId = groupMemberService.queryMemberInfo(clubId, stuNum).getDepartmentId();
+		String SessionclubId = (String) request.getSession().getAttribute("clubId");
+		String SessionstuNum = (String) request.getSession().getAttribute("stuNum");
+		String SessiondepartmentId = groupMemberService.queryMemberInfo(SessionclubId, SessionstuNum).getDepartmentId();
 
 		if(!(departmentId.equals(SessiondepartmentId))){
 			resultMap.put("resultFlag", 0);
@@ -300,8 +300,8 @@ public class RecruitNewAction {
 		String departmentId = request.getParameter("departmentId");
 		
 		//测试数据
-		String SessionclubId = "1010100";
-		String SessionstuNum = "1515200006";
+		String SessionclubId = (String) request.getSession().getAttribute("clubId");
+		String SessionstuNum = (String) request.getSession().getAttribute("stuNum");
 		String SessiondepartmentId = groupMemberService.queryMemberInfo(clubId, stuNum).getDepartmentId();
 
 		if(!(departmentId.equals(SessiondepartmentId))){

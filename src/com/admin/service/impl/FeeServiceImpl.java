@@ -39,5 +39,15 @@ public class FeeServiceImpl implements IFeeService {
 		feeMapper.updateTotalFee(params);
 	}
 
+	@Override
+	public void updateCode(String clubId, String codeName) {
+		// TODO Auto-generated method stub
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("clubId", clubId);
+		params.put("wechatCode", codeName);
+		params.put("apayCode", codeName);
+		feeMapper.updateCode(params);
+	}
+
 
 }

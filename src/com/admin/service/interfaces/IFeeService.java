@@ -18,5 +18,5 @@ public interface IFeeService {
 	
 	public void updateTotalFee(String clubId,float totalFee);
 
-	
+	public void updateCode(String clubId,String codeName);
 }

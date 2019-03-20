@@ -153,6 +153,12 @@
                     <span>管理会费收入</span>
                   </a>
                 </li>
+                <li class="kit-menu-item">
+                  <a href="#/fee/feeCode">
+                    <i class="layui-icon"></i>
+                    <span>财务收款码管理</span>
+                  </a>
+                </li>
                </ul>
             </li>
         </div>

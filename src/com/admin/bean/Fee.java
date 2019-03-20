@@ -14,6 +14,8 @@ public class Fee {
 	private float totalFee;
 	private Date lastModify_time;
 	private float everyFee;
+	private String wechatCode;
+	private String apayCode;
 	public String getClubId() {
 		return clubId;
 	}
@@ -37,6 +39,19 @@ public class Fee {
 	}
 	public void setEveryFee(int everyFee) {
 		this.everyFee = everyFee;
+	}
+	
+	public String getWechatCode() {
+		return wechatCode;
+	}
+	public void setWechatCode(String wechatCode) {
+		this.wechatCode = wechatCode;
+	}
+	public String getApayCode() {
+		return apayCode;
+	}
+	public void setApayCode(String apayCode) {
+		this.apayCode = apayCode;
 	}
 	@Override
 	public String toString() {
