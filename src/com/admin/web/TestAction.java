@@ -65,5 +65,9 @@ public class TestAction {
 		
 		return jsonObject;
 	}
-	public void test(){"可能会冲突"};
+	
+	public void test2(){
+		System.out.println("测试冲突");
+		System.out.println("测试冲突");
+	}
 }
