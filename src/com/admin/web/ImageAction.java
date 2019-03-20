@@ -144,4 +144,34 @@ public class ImageAction {
         return ResponseEntity.ok(resultMap);
     }
 
+    /**
+     * 查询文件，返回给图片空间
+     * @throws Exception
+     */
+    @RequestMapping(value = "/deleImage.action",method=RequestMethod.POST)
+    public ResponseEntity<Map> deleImage(HttpServletRequest request) throws Exception{
+        Map<String,Object> resultMap = new HashMap<String,Object>();
+        //1.找到upload目录(绝对路径)
+        String  CurrentIsDir= (String) request.getParameter("CurrentIsDir");
+        String  CrrentDelUrl= (String) request.getParameter("CrrentDelUrl");
+        //去掉项目名
+        CrrentDelUrl = CrrentDelUrl.substring(CrrentDelUrl.substring(1).indexOf("/") + 1);
+        String uploadPath = request.getServletContext().getRealPath(CrrentDelUrl);
+
+        File uploadFile = new File(uploadPath);
+
+        if(uploadFile.exists()){
+            uploadFile.delete();
+            resultMap.put("status", 0);
+        }
+
+
+        if(uploadFile.exists()){
+            resultMap.put("status", 1);
+            resultMap.put("msg", "删除文件失败,请重试");
+        }
+
+
+        return ResponseEntity.ok(resultMap);
+    }
 }

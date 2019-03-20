@@ -374,9 +374,9 @@
       }
 
       $(window).on('resize', function() {
-        myChart.resize();
+       /* myChart.resize();
         myChart1.resize();
-        myChart2.resize();
+        myChart2.resize();*/
       });
     }, 50);
 

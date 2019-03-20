@@ -101,8 +101,8 @@ public class MemberInfoAction {
 			infoMap.put("special", studentInfo.getSpecial());
 			infoMap.put("departName", depInfo.getName());
 			infoMap.put("job", bean.getJob());
-			infoMap.put("joinTime", df.format(bean.getJoinTime()));
-			infoMap.put("exitTime", df.format(bean.getExitTime()));
+			infoMap.put("joinTime", bean.getJoinTime()!=null?df.format(bean.getJoinTime()):null);
+			infoMap.put("exitTime", bean.getExitTime()!=null?df.format(bean.getExitTime()):null);
 			String head = studentInfo.getHead();
 		
 			infoMap.put("head", head);

@@ -79,22 +79,22 @@ KindEditor.plugin('filemanager', function(K) {
 		}
 		var elList = [];
 		function bindEvent(el, result, data, createFunc) {
-			var fileUrl = K.formatUrl(result.current_url + data.filename, 'absolute'),
-				dirPath = encodeURIComponent(result.current_dir_path + data.filename + '/');
-			if (data.is_dir) {
-				el.click(function(e) {
-					reloadPage(dirPath, orderTypeBox.val(), createFunc);
-				});
-			} else if (data.is_photo) {
-				el.click(function(e) {
-					clickFn.call(this, fileUrl, data.filename);
-				});
-			} else {
-				el.click(function(e) {
-					clickFn.call(this, fileUrl, data.filename);
-				});
-			}
-			elList.push(el);
+            var fileUrl = K.formatUrl(result.current_url + data.filename, 'absolute'),
+                dirPath = encodeURIComponent(result.current_dir_path + data.filename + '/');
+            if (data.is_dir) {
+                el.children().eq(0).click(function(e) {
+                    reloadPage(dirPath, orderTypeBox.val(), createFunc); //单击文件夹
+                });
+            } else if (data.is_photo) {
+                el.children().eq(0).click(function(e) {
+                    clickFn.call(this, fileUrl, data.filename); //单击图片
+                });
+            } else {
+                el.children().eq(0).click(function(e) {
+                    clickFn.call(this, fileUrl, data.filename); //单击其他文件
+                });
+            }
+            elList.push(el);
 		}
 		function createCommon(result, createFunc) {
 			// remove events
@@ -153,33 +153,94 @@ KindEditor.plugin('filemanager', function(K) {
 			}
 		}
 		function createView(result) {
-			createCommon(result, createView);
-			var fileList = result.file_list;
-			for (var i = 0, len = fileList.length; i < len; i++) {
-				var data = fileList[i],
-					div = K('<div class="ke-inline-block ke-item"></div>');
-				bodyDiv.append(div);
-				var photoDiv = K('<div class="ke-inline-block ke-photo"></div>')
-					.mouseover(function(e) {
-						K(this).addClass('ke-on');
-					})
-					.mouseout(function(e) {
-						K(this).removeClass('ke-on');
-					});
-				div.append(photoDiv);
-				var fileUrl = result.current_url + data.filename,
-					iconUrl = data.is_dir ? imgPath + 'folder-64.gif' : (data.is_photo ? fileUrl : imgPath + 'file-64.gif');
-				var img = K('<img src="' + iconUrl + '" width="80" height="80" alt="' + data.filename + '" />');
-				if (!data.is_dir || data.has_file) {
-					photoDiv.css('cursor', 'pointer');
-					bindTitle(photoDiv, data);
-					bindEvent(photoDiv, result, data, createView);
-				} else {
-					photoDiv.attr('title', lang.emptyFolder);
-				}
-				photoDiv.append(img);
-				div.append('<div class="ke-name" title="' + data.filename + '">' + data.filename + '</div>');
-			}
+            createCommon(result, createView);
+            var fileList = result.file_list;
+            for (var i = 0, len = fileList.length; i < len; i++) {
+                var data = fileList[i],
+                    div = K('<div class="ke-inline-block ke-item"></div>');
+                bodyDiv.append(div);
+                var AltTxt=data.is_dir?"打开文件夹：":"引用文件：",
+                    AltIco=data.is_dir?"open.png":"quote.png", //区分文件与文件夹引用与打开图标
+                    IsDirYN=data.is_dir?"D":"F", //区分文件与文件夹参数传递
+                    CurFileUrl=K.formatUrl(result.current_url+data.filename, 'absolute'),
+                    QuoteIcon="<img class='QuoteBtn' src='"+imgPath+AltIco+"' Style='width:30px;height:30px;position:absolute;top:30px;right:30px;display:none;' alt='"+AltTxt+CurFileUrl+"' title='"+AltTxt+CurFileUrl+"' />", //定义引用按钮样式
+                    DeleteIcon="<img class='DeleteBtn' src='"+imgPath+"delete.png' Style='width:30px;height:30px;position:absolute;top:-15px;right:-15px;display:none;' alt='删除："+CurFileUrl+"' title='删除："+CurFileUrl+"' DeUrl='"+CurFileUrl+"' IsFrd='"+IsDirYN+"' />"; //定义删除按钮样式
+                var photoDiv = K('<div class="ke-inline-block ke-photo">'+QuoteIcon+DeleteIcon+'</div>') //图片DIV
+                    .mouseover(function(e) {
+                        K(this).addClass('ke-on');
+                        K(this).children().eq(0).css('display','block'); //显示引用按钮
+                        K(this).children().eq(1).css('display','block'); //显示删除按钮
+                    })
+                    .mouseout(function(e) {
+                        K(this).removeClass('ke-on');
+                        K(this).children().eq(0).css('display','none'); //隐藏引用按钮
+                        K(this).children().eq(1).css('display','none'); //隐藏删除按钮
+                    });
+                div.append(photoDiv);
+                var fileUrl = result.current_url + data.filename,
+                    iconUrl = data.is_dir ? imgPath + 'folder-64.gif' : (data.is_photo ? fileUrl : imgPath + 'file-64.gif'),
+                    filesiz = data.is_dir ? '' : '  ('+ Math.ceil(data.filesize/1024) + 'KB)'; //文件尺寸
+                var img = K('<img src="' + iconUrl + '" width="80" height="80" alt="' + data.filename + filesiz + '" />');
+                if (!data.is_dir || data.has_file) {
+                    photoDiv.css('cursor', 'pointer');
+                    bindTitle(photoDiv, data);
+                    bindEvent(photoDiv, result, data, createView);
+                } else {
+                    photoDiv.attr('title', lang.emptyFolder);
+                }
+                photoDiv.append(img);
+                div.append('<div class="ke-name" title="' + data.filename + '">' + data.filename + '</div>');
+            }
+            //增加删除代码
+            K(".DeleteBtn").click(function(){
+                var $this=K(this),
+                    CrrentDelUrl=this.attributes["DeUrl"].value;
+                CurrentIsDir=this.attributes["IsFrd"].value;
+                layer.confirm("确定删除："+CrrentDelUrl+"？", function(index){
+                    //向服务端发送删除指令
+                    $.ajax({
+                        url: rootPath+"/image/deleImage.action",
+                        type: 'post',
+                        async: true,
+                        cache: false,
+                        data:{
+                            CrrentDelUrl:CrrentDelUrl,
+                            CurrentIsDir:CurrentIsDir
+                        },
+                        dataType: 'JSON',
+                        success: function (response) {
+                            if (response.status==0) {
+                                //alert("删除成功（"+data+"）！");
+                                $this.parent().next().remove();
+                                $this.parent().remove();
+                                layer.close(index);
+                            } else {
+                                /*layer.alert(JSON.stringify(response.msg), {
+                                    title: '删除失败'
+                                });*/
+                                layer.msg('删除失败，请重试：'+response.msg);
+                            }
+                        },
+                        error: function () {
+                            layer.alert("获取新闻失败，请重试");
+                        }
+                    });
+
+
+                });
+                //Del_Run.asp为使用Ajax方法执行图片删除功能ASP文件，参数项1、参数项2为必备参数，其他参数可根据需要自行定义
+                /*$.post("Ajax删除图片.asp",{"参数项1":CrrentDelUrl,"参数项2":CurrentIsDir,"参数项3":"参数值3"},function(data){
+                    //假设Del_Run.asp的data返加值为：成功succeed、其他失败
+                    if(data=="succeed"){
+                        //alert("删除成功（"+data+"）！");
+                        $this.parent().next().remove();
+                        $this.parent().remove();
+                    }else{
+                        alert("删除失败（"+data+"）！");
+                    }
+                });*/
+
+            });
 		}
 		viewTypeBox.val(viewType);
 		reloadPage('', orderTypeBox.val(), viewType == 'VIEW' ? createView : createList);

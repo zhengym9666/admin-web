@@ -59,6 +59,7 @@
 <script src="<%=request.getContextPath()%>/mockjs-config.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/editor/kindeditor.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/editor/lang/zh_CN.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/jQuery/jquery-1.8.3.min.js"></script>
 <script>
     KindEditor.ready(function (K) {
         window.editro=K.create("#content",{
