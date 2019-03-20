@@ -65,5 +65,5 @@ public class TestAction {
 		
 		return jsonObject;
 	}
-	public void test(){}
+	public void test(){"可能会冲突"};
 }
