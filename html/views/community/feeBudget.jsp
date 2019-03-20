@@ -32,8 +32,7 @@
 <div class="viewFramework-index-body">
     <!---<<<<  标题    >>>>-->
     <span class="viewFramework-index-title">会费收支详情</span>
-    <button type="button" class="iconTextBtn-import rightTopBtn"  id="add-alarm-btn" onclick="actInfo.addActInfo()"><i class="iconfont icon-add"></i>添加活动</button>
-
+   
 
     <!---<<<<  tabs    >>>>-->
     <div class="viewFramework-index-tabs ">
@@ -51,13 +50,13 @@
                             </div>
                             <div class="form-right">
                                 <!-- <input type="text" id="spCode"/> -->
-                                <input type="text" id="stuNum"/>
+                                <input type="text" class="stuName"/>
                             </div>
                         </li>
                         <li class="form-items" clear-fixed>
                             <div class="form-btns top-part-btn" >
-                                <button class="iconTextBtn-import" onclick="SmsSysParamInfo.querySysParamInfos()"><i class="iconfont icon-search"></i>查询</button>
-                                <button class="TextBtn reset" type="button" onclick="SmsSysParamInfo.resert()">重置</button>
+                                <button class="iconTextBtn-import""><i class="iconfont icon-search"></i>查询</button>
+                                <button class="TextBtn reset" type="button" onclick="feeBudget.resert()">重置</button>
                             </div>
                         </li>
                     </div>
@@ -95,7 +94,7 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/rightPopWindow.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/popIframe.js"></script>
-    <script type="text/javascript" src="js/actManage.js"></script>
+    <script type="text/javascript" src="js/feeBudget.js"></script>
     <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
 	<script>
   layui.config({
@@ -106,7 +105,7 @@
 	      table = layui.table;
 	  
 	    //第一个实例
-	    table.render({
+	    var tableIns = table.render({
 	      method: 'post',
 	      done: function() {
 	        $('#demo_hash').next().css('height', 'auto');
@@ -151,6 +150,14 @@
 	        ]
 	      ]
 	    });
+	    
+	    //查询社员信息
+		$(".iconTextBtn-import").on('click',function(){
+			var keyword1=$(".stuName").val();
+            tableIns.reload({
+            	where:{keyword1:keyword1}
+            })
+		})
   });
 	</script>
    

@@ -278,6 +278,10 @@ layui.define(mods, function (e) {
                     	path:"/fee/feeInManage",
                     	component: "views/community/feeInManage.jsp",
                     	name: "管理会费收入"
+                    },{
+                    	path:"/fee/feeCode",
+                    	component: "feeBudgetManage/feeAuthority.action",
+                    	name: "财务收款码管理"
                     }
                     ]
                 };

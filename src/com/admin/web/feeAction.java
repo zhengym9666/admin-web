@@ -1,5 +1,6 @@
 package com.admin.web;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,9 +15,12 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.admin.bean.Fee;
 import com.admin.bean.FeeBudgetLog;
 import com.admin.bean.GroupMember;
 import com.admin.service.interfaces.IDepartmentService;
@@ -25,6 +29,7 @@ import com.admin.service.interfaces.IFeeService;
 import com.admin.service.interfaces.IGroupMemberService;
 import com.admin.service.interfaces.IStudentService;
 import com.admin.util.Page;
+import com.admin.util.UploadImageUtil;
 
 import net.sf.json.JSONArray;
 
@@ -37,6 +42,10 @@ import net.sf.json.JSONArray;
 @Controller
 @RequestMapping("/feeBudgetManage")
 public class feeAction {
+	
+	private MultipartFile code1;
+	
+	private MultipartFile code2;
 	
 	@Autowired
 	IGroupMemberService groupMemberService;
@@ -218,5 +227,57 @@ public class feeAction {
 		
 		return resultMap;
 	}
+	
+	@RequestMapping("/feeAuthority.action")
+	@ResponseBody
+	public void feeAuthority(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		Integer rank = (Integer) request.getSession().getAttribute("rank");
+		if(rank!=6){
+			request.getRequestDispatcher("/views/exception/403.html").forward(request, response);
+		}else{
+			String clubId = (String) request.getSession().getAttribute("clubId");
+			Fee feeInfo = feeService.getFeeInfoById(clubId);
+			request.setAttribute("wechatCode", feeInfo.getWechatCode());
+			request.setAttribute("apayCode", feeInfo.getApayCode());
+			request.getRequestDispatcher("/views/community/feeCode.jsp").forward(request, response);
+		}
+		
+	}
+	
+	@RequestMapping(value="/uploadCode.action",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> uploadHead(HttpServletRequest request,@RequestParam("file1") MultipartFile file1,@RequestParam("file2") MultipartFile file2) throws Exception{
+		
+		String clubId = (String) request.getSession().getAttribute("clubId");
+		
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+//		初始化文件上传格式要求
+		UploadImageUtil uploadImageUtil = new UploadImageUtil("image/jpeg,image/png",1024*1024);
+//		校验文件格式
+		String checkResult1 = uploadImageUtil.checkUploadImage(file1,file1.getContentType());
+		String checkResult2 = uploadImageUtil.checkUploadImage(file2,file2.getContentType());
+		String fileName;
+		if(checkResult1!=null || checkResult2!=null){
+			resultMap.put("resultFlag",0);
+			resultMap.put("msg", checkResult1);
+			return resultMap;
+		}else{
+			try {
+				fileName = uploadImageUtil.uploadwechatCode(file1, clubId);
+				fileName = uploadImageUtil.uploadapayCode(file2, clubId);
+				feeService.updateCode(clubId, fileName);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				resultMap.put("resultFlag", 0);
+				resultMap.put("msg", "上传失败，上传了相同的二维码！");
+				e.printStackTrace();
+				return resultMap;
+			}
+			resultMap.put("resultFlag", 1);
+			resultMap.put("msg", "上传成功!");
+		}
+		return resultMap;
+	}
+	
 	 
 }

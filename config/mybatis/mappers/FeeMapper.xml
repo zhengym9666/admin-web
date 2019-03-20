@@ -9,6 +9,8 @@
     	<result column="totalFee" property="totalFee"/>
         <result column="everyFee" property="everyFee"/>
         <result column="lastModify_time" property="lastModify_time"/>
+        <result column="wechatCode" property="wechatCode"/>
+        <result column="apayCode" property="apayCode"/>
     </resultMap>
     
     <select id="getFeeInfoById" parameterType="String" resultType="com.admin.bean.Fee">
@@ -17,5 +19,9 @@
     
     <update id="updateTotalFee" parameterType="HashMap">
     	update fee set totalFee = #{totalFee} where clubId = #{clubId}
+    </update>
+    
+    <update id="updateCode" parameterType="HashMap">
+    	update fee set wechatCode = #{wechatCode},apayCode = #{apayCode} where clubId = #{clubId}
     </update>
 </mapper>

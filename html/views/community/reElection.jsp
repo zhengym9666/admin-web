@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -104,15 +105,22 @@
                             <div class="form-btns top-part-btn" >
                                 <button class="iconTextBtn-import"><i class="iconfont icon-search"></i>查询</button>
                                 <button class="TextBtn reset" type="button" onclick="recruitNew.resert()">重置</button>
-                           		<button onclick="reElection.login()">登录</button>
+                           		<!-- <button onclick="reElection.login()">登录</button> -->
                             </div>
                         </li>
                         <li class="form-items btn-items" clear-fixed>
                         	<div>
-                        		
-                        		<button style="background:#24ac7e;color:#fff;" value="99">部(会)长层</button>
-                        		<button value="4">副部(会)长</button>
-                        		<button value="2">部(会)长</button>
+                        		<c:if test="${sessionScope.memInfo.rank ==2}">
+                        		<button style="background:#24ac7e;color:#fff;" value="99">部长层</button>
+                        		<button value="4">待选副部长</button>
+                        		<button value="2">待选部长</button>
+                        		</c:if>
+                        		<c:if test="${sessionScope.memInfo.rank ==3 }">
+                        		<button style="background:#24ac7e;color:#fff;" value="99">会长层</button>
+                        		<button value="4">待选副会长</button>
+                        		<button value="2">待选会长</button>
+                        		<button value="6">待选财务</button>
+                        		</c:if>
                         	</div>
                         </li>
                         <button class="layui-btn pickBtn" data-type="getCheckData">pick them</button>

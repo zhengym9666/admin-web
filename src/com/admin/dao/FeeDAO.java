@@ -17,4 +17,6 @@ public interface FeeDAO {
 	public Fee getFeeInfoById(@Param("clubId")String clubId);
 	
 	public void updateTotalFee(HashMap<String,Object> map);
+	
+	public void updateCode(HashMap<String,Object> map);
 }

@@ -115,7 +115,7 @@ public class ReElectAction {
 				infoMap.put("operation1", "<a onclick='recruitNew.viewRecruitNewInfo("+bean.getStuNum()+","+clubId+","+bean.getDepartmentId()+")' style='cursor:pointer;color:#1FA075'>详情</a>");
 				infoMap.put("operation2","");
 			}
-			if(page.getKeyword3().equals("2")){
+			if(page.getKeyword3().equals("2") || page.getKeyword3().equals("6")){
 				infoMap.put("operation1", "<a onclick='recruitNew.viewRecruitNewInfo("+bean.getStuNum()+","+clubId+","+bean.getDepartmentId()+")' style='cursor:pointer;color:#1FA075'>详情</a>");
 				infoMap.put("operation2", "<a onclick='reElection.pickOneToSenior("+bean.getStuNum()+","+clubId+","+bean.getDepartmentId()+","+page.getKeyword3()+")' style='cursor:pointer;color:#1FA075'>pick him</a>");
 			}
@@ -146,9 +146,12 @@ public class ReElectAction {
 			if(memInfo.getRank()==2){
 				groupMemberService.updateSenior2Formal(clubId, ToRank,memInfo.getDepartmentId(),"普通社员");
 				groupMemberService.updateOne2Senior(clubId, stuNum, ToRank,"部长");
-			}else{
+			}else if(memInfo.getRank()==3&&ToRank==2){
 				groupMemberService.updateSenior2Formal(clubId, ToRank+1,"","普通社员");
 				groupMemberService.updateOne2Senior(clubId, stuNum, ToRank+1,"会长");
+			}else if(ToRank==6){
+				groupMemberService.updateSenior2Formal(clubId, 6,"","普通社员");
+				groupMemberService.updateOne2Senior(clubId, stuNum, 6,"财务");
 			}
 			
 		} catch (Exception e) {
@@ -164,8 +167,8 @@ public class ReElectAction {
 	public HashMap<String,Object> pickSome2Senior(HttpServletRequest request,HttpServletResponse response){
 		
 		//模拟登陆后的数据
-		String sessionStuNum = "1515200029";
-		String sessionClubId = "1010100";
+		String sessionClubId = (String) request.getSession().getAttribute("clubId");
+		String sessionStuNum = (String) request.getSession().getAttribute("stuNum");
 
 		String stuNum1 = request.getParameter("stuNum1");
 		String stuNum2 = request.getParameter("stuNum2");
