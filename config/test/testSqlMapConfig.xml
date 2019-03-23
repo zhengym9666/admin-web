@@ -62,6 +62,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/mappers/DepartmentMapper.xml"/>
 		<mapper resource="mybatis/mappers/NewsMapper.xml"/>
 		<mapper resource="mybatis/mappers/CollegeMapper.xml"/>
+		<mapper resource="mybatis/mappers/FeeBudgetLogMapper.xml"/>
 		<!-- 加载UserMapper.xml -->
 		<!-- <mapper resource="sqlmap/UserMapper.xml"/> -->
 		

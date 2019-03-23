@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.admin.bean.FeeBudgetLog;
+import com.admin.bean.FeeChatBean;
 
 /** 
 * @author  作者 :zhengym
@@ -18,4 +19,6 @@ public interface FeeBudgetLogDAO {
 	public List<FeeBudgetLog> queryBudgetLog(HashMap<String,Object> map);
 	
 	public int queryBudgetLogCount(HashMap<String,Object> map);
+
+    List<FeeChatBean> queryBugetByMonth(String clubId);
 }

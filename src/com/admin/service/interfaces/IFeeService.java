@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.admin.bean.Fee;
 import com.admin.bean.FeeBudgetLog;
+import com.admin.bean.FeeChatBean;
 import com.admin.util.Page;
 
 /** 
@@ -19,4 +20,5 @@ public interface IFeeService {
 	public void updateTotalFee(String clubId,float totalFee);
 
 	public void updateCode(String clubId,String codeName);
+
 }

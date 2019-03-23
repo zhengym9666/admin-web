@@ -181,7 +181,9 @@
   <script src="kitadmin.js"></script>
   <script src="mockjs-config.js"></script>
 
-  <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
+ <%-- <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>--%>
+  <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.2.1/echarts.min.js"></script>--%>
+ <%-- <script src="<%=request.getContextPath()%>/theme/lib/js/echarts.min.js"></script>--%>
   <script>layui.use("admin");</script>
 
 </body>
