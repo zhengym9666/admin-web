@@ -51,4 +51,8 @@ public class FeeChatBean {
                 ", remainMoney=" + remainMoney +
                 '}';
     }
+
+    public static void main(String[] args) {
+
+    }
 }
