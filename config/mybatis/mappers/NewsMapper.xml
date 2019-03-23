@@ -13,14 +13,13 @@
         <result column="revise_time" property="revise_time"/>
         <result column="title" property="title"/>
         <result column="content" property="content"/>
-        <result column="image" property="image"/>
         <result column="readcount" property="readcount"/>
         <result column="collegeId" property="collegeId"/>
         <result column="clubId" property="clubId"/>
 
     </resultMap>
     <sql id="Base_Column_List" >
-        id,author,submitter,submit_time,revise_time,title,content,image,readcount,collegeId,clubId
+        id,author,submitter,submit_time,revise_time,title,content,readcount,collegeId,clubId
     </sql>
     <select id="queryNewsById" resultMap="BaseResultMap" parameterType="Int" >
         select
