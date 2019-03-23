@@ -3,7 +3,6 @@ package com.admin.service.impl;
 import java.util.HashMap;
 import java.util.List;
 
-import com.admin.bean.FeeChatBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +48,6 @@ public class FeeServiceImpl implements IFeeService {
 		params.put("apayCode", codeName);
 		feeMapper.updateCode(params);
 	}
-
 
 
 }

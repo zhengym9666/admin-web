@@ -1,7 +1,6 @@
 (function (obj) {
     var app = {
         queryAction: rootPath + '/department',
-        queryBugetAction: rootPath + '/feeBudgetManage',
 
         initManFemaleByDepSum: function (mainView) {
             var url = app.queryAction;
@@ -192,108 +191,9 @@
                     operationTipsFailed(obj);
                 }
             });
-        },initBugetByClubSum:function(container1){
-            url=app.queryBugetAction;
-            var myChart = echarts.init(container1);
-            $.ajax({
-                url: url+"/queryBugetAction.action",
-                type: 'post',
-                async: true,
-                cache: false,
-                data: {
-                },
-                dataType: 'JSON',
-                success: function (response) {
-                    if (response.success) {
-                        $.each(response.root, function (i, item) {
-                            var option = null;
-
-                            var axisLabel = null;
-                            var label = null;
-                            axisLabel = {
-                                formatter: '{value}'
-                            };
-                            option = {
-                                title: {
-                                    text: '堆叠区域图'
-                                },
-                                tooltip: {
-                                    trigger: 'axis',
-                                    axisPointer: {
-                                        type: 'cross',
-                                        label: {
-                                            backgroundColor: '#6a7985'
-                                        }
-                                    }
-                                },
-                                legend: {
-                                    data: item.xArray
-                                },
-                                toolbox: {
-                                    feature: {
-                                        saveAsImage: {}
-                                    }
-                                },
-                                grid: {
-                                    left: '3%',
-                                    right: '4%',
-                                    bottom: '3%',
-                                    containLabel: true
-                                },
-                                xAxis: [{
-                                    type: 'category',
-                                    boundaryGap: false,
-                                    data: item.month_near
-                                }],
-                                yAxis: [{
-                                    type: 'value'
-                                }],
-                                series: [{
-                                    name: item.xArray[0],
-                                    type: 'line',
-                                    stack: '支出',
-                                    areaStyle: {
-                                        normal: {}
-                                    },
-                                    data: item.expend
-                                }, {
-                                    name: item.xArray[1],
-                                    type: 'line',
-                                    stack: '收入',
-                                    areaStyle: {
-                                        normal: {}
-                                    },
-                                    data: item.income
-                                }, {
-                                    name: item.xArray[2],
-                                    type: 'line',
-                                    stack: '剩余总额',
-                                    areaStyle: {
-                                        normal: {}
-                                    },
-                                    data: item.remainMoney
-                                }
-                                ]
-                            };
-                            //myChart.clear();
-                            myChart.setOption(option,true);
-                        });
-
-
-                    } else {
-                        var obj = {};
-                        obj["Ptext"] = response.Msg;
-                        operationTipsFailed(obj);
-                    }
-                },
-                error: function () {
-                    var obj = {};
-                    obj["Ptext"] = "系统出错";
-                    operationTipsFailed(obj);
-                }
-            });
         }
 
     }
+
     obj.app = app;
 })(window);

@@ -211,15 +211,12 @@
 <script type="text/javascript">
     var rootPath = "<%=request.getContextPath()%>";
 </script>
-<%--
 <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
---%>
-<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.2.1/echarts.min.js"></script>--%>
-<script src="<%=request.getContextPath()%>/theme/lib/js/echarts.min.js"></script>
 <script src="<%=request.getContextPath()%>/views/js/app.js"></script>
 <!---<<<<   jQuery  >>>>-->
 <script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/jQuery/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/theme/js/current.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/js/echarts-all.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/js/jquery.twbsPagination.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/js/ajaxmultifileupload.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/operationTips.js"></script>
@@ -227,8 +224,6 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/rightPopWindow.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/popIframe.js"></script>
-
-
 <script>
   layui.config({
     base: '/src/js/'
@@ -246,6 +241,7 @@
       //echarts
       // 基于准备好的dom，初始化echarts实例
 
+       //var myChart = echarts.init(document.getElementById('main'));
         var mainView=document.getElementById('main')
         app.initManFemaleByDepSum(mainView);
       // 指定图表的配置项和数据
@@ -276,6 +272,7 @@
 
       // echarts 1
       var container1 = document.getElementById("container1");
+      var myChart1 = echarts.init(document.getElementById("container1"));
       app.initManFemaleByClubSum(container1);
       var app1 = {};
       option1 = null;
@@ -286,80 +283,96 @@
       }*/
 
       // echart2
-     /*var myChart2 = echarts.init(document.getElementById("main1"));
-
+      var myChart2 = echarts.init(document.getElementById("main1"));
       var app2 = {};
       option2 = null;
       option2 = {
-          title: {
-              text: '堆叠区域图'
-          },
-          tooltip: {
-              trigger: 'axis',
-              axisPointer: {
-                  type: 'cross',
-                  label: {
-                      backgroundColor: '#6a7985'
-                  }
-              }
-          },
-          legend: {
-              data: ['收入', '支出', '剩余总额']
-          },
-          toolbox: {
-              feature: {
-                  saveAsImage: {}
-              }
-          },
-          grid: {
-              left: '3%',
-              right: '4%',
-              bottom: '3%',
-              containLabel: true
-          },
-          xAxis: [{
-              type: 'category',
-              boundaryGap: false,
-              data: ['一月', '一月', '一月', '一月', '一月', '一月', '一月'
-                  , '一月', '一月']
-          }],
-          yAxis: [{
-              type: 'value'
-          }],
-          series: [{
-              name: '收入',
-              type: 'line',
-              stack: '总量',
-              areaStyle: {
-                  normal: {}
-              },
-              data: [120, 132, 101, 134, 90, 230, 210, 230, 210]
-          }, {
-              name: '支出',
-              type: 'line',
-              stack: '总量',
-              areaStyle: {
-                  //normal: {}
-              },
-              data: [220, 182, 191, 234, 290, 330, 310, 230, 210]
-          }, {
-              name: '剩余总额',
-              type: 'line',
-              stack: '总量',
-              areaStyle: {
-                  //normal: {}
-              },
-              data: [150, 232, 201, 154, 190, 330, 410, 230, 210]
+        title: {
+          text: '堆叠区域图'
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            label: {
+              backgroundColor: '#6a7985'
+            }
           }
-          ]
-      };
+        },
+        legend: {
+          data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        xAxis: [{
+          type: 'category',
+          boundaryGap: false,
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        }],
+        yAxis: [{
+          type: 'value'
+        }],
+        series: [{
+          name: '邮件营销',
+          type: 'line',
+          stack: '总量',
+          areaStyle: {
+            normal: {}
+          },
+          data: [120, 132, 101, 134, 90, 230, 210]
+        }, {
+          name: '联盟广告',
+          type: 'line',
+          stack: '总量',
+          areaStyle: {
+            normal: {}
+          },
+          data: [220, 182, 191, 234, 290, 330, 310]
+        }, {
+          name: '视频广告',
+          type: 'line',
+          stack: '总量',
+          areaStyle: {
+            normal: {}
+          },
+          data: [150, 232, 201, 154, 190, 330, 410]
+        }, {
+          name: '直接访问',
+          type: 'line',
+          stack: '总量',
+          areaStyle: {
+            normal: {}
+          },
+          data: [320, 332, 301, 334, 390, 330, 320]
+        }, {
+          name: '搜索引擎',
+          type: 'line',
+          stack: '总量',
+          label: {
+            normal: {
+              show: true,
+              position: 'top'
+            }
+          },
+          areaStyle: {
+            normal: {}
+          },
+          data: [820, 932, 901, 934, 1290, 1330, 1320]
+        }]
+      };;
       if (option2 && typeof option2 === "object") {
         myChart2.setOption(option2, true);
-      }*/
-      //====
-        var main1Div = document.getElementById("main1");
-        app.initBugetByClubSum(main1Div);
-      //=====
+      }
+
       $(window).on('resize', function() {
        /* myChart.resize();
         myChart1.resize();

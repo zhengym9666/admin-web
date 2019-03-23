@@ -1,9 +1,7 @@
 package com.admin.dao;
 
 import java.util.HashMap;
-import java.util.List;
 
-import com.admin.bean.FeeChatBean;
 import org.apache.ibatis.annotations.Param;
 
 import com.admin.bean.Fee;
@@ -21,6 +19,4 @@ public interface FeeDAO {
 	public void updateTotalFee(HashMap<String,Object> map);
 	
 	public void updateCode(HashMap<String,Object> map);
-
-    List<FeeChatBean> queryBugetAction(String clubId);
 }
