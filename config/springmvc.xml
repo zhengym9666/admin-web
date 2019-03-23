@@ -43,6 +43,7 @@
 	<context:component-scan base-package="activiti.common.*"/> -->
 	<context:component-scan base-package="com.admin.web"/>
 	
+	
     <!--注解驱动配置处理器映射器、处理器适配器，说明：
         1.等于同时配置了 RequestMappingHandlerMapping、RequestMappingHandlerAdapter
         2.企业项目中，推荐使用这种方式 -->

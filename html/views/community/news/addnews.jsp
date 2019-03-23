@@ -16,7 +16,7 @@
 </head>
 <body>
 <div id="addNews">
-    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 28px;">
         <legend id="addnews_title"></legend>
     </fieldset>
     <input type="hidden" id="newid">

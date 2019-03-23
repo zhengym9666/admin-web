@@ -9,14 +9,10 @@
         <result column="clubName" property="clubName"/>
         <result column="intro" property="intro"/>
         <result column="collegeId" property="collegeId"/>
-        <result column="generalId" property="generalId"/>
-        <result column="presidentId" property="presidentId"/>
-        <result column="vice1" property="vice1"/>
-        <result column="vice2" property="vice2"/>
 	</resultMap>
 	
 	<sql id="Base_Column_List" >
-        clubId,clubName,intro,collegeId,generalId,presidentId,vice1,vice2
+        clubId,clubName,intro,collegeId
     </sql>
     <select id="queryClubBycollegeId" resultMap="BaseResultMap" parameterType="String" >
         select
