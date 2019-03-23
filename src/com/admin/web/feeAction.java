@@ -2,17 +2,19 @@ package com.admin.web;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.admin.bean.FeeChatBean;
+import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.annotations.ResultMap;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +34,7 @@ import com.admin.util.Page;
 import com.admin.util.UploadImageUtil;
 
 import net.sf.json.JSONArray;
+import sun.util.locale.provider.FallbackLocaleProviderAdapter;
 
 /** 
 * @author  作者 :zhengym
@@ -46,6 +49,8 @@ public class feeAction {
 	private MultipartFile code1;
 	
 	private MultipartFile code2;
+
+	private static transient Log log = LogFactory.getLog(feeAction.class);
 	
 	@Autowired
 	IGroupMemberService groupMemberService;
@@ -278,6 +283,142 @@ public class feeAction {
 		}
 		return resultMap;
 	}
-	
-	 
+
+
+	@RequestMapping("/queryBugetAction.action")
+	@ResponseBody
+	public ResponseEntity<Map> queryBugetAction(HttpServletRequest request) throws Exception{
+		JSONObject returnJson = new JSONObject();
+		JSONArray root = new JSONArray();
+		//月份,最近的12个月份
+		JSONArray month_near =null;
+		//支出
+		JSONArray expend = new JSONArray();
+		//收入
+		JSONArray income = new JSONArray();
+		//剩余总额
+		JSONArray remainMoney = new JSONArray();
+		//横坐标类型：费用类型
+		JSONArray xArray = new JSONArray();
+		JSONObject json=new JSONObject();
+		//获取当前的社团ID
+		String clubId = (String) request.getSession().getAttribute("clubId ");
+		if(clubId==null || clubId.length()==0){
+			//测试使用
+			clubId="1010100";
+		}
+		try {
+			List<FeeChatBean> list=feeBudgetLogService.queryBugetByMonth(clubId);
+
+			//近12个月的月份
+			month_near=getMonthNear();
+			for (int i = 0; i <month_near.size() ; i++) {
+				//检查是否这次查到数据，查到则不用赋值为0，false没有查到到
+				boolean flag=false;
+				//查到该月的月份
+				String yearMonth = month_near.getString(i);
+				for (FeeChatBean feeChat:list) {
+					String feeYearMonth= formatMonth(feeChat.getMonth());
+					if(yearMonth.equals(feeYearMonth)){
+						expend.add(feeChat.getExpend());//支出
+						income.add(feeChat.getIncome());//收入
+						remainMoney.add(feeChat.getRemainMoney());//剩余总额
+						flag=true;
+					}
+				}
+				if(!flag){
+					//没有查到该月的记录,默认为0
+					expend.add(0);//支出
+					income.add(0);//收入
+					remainMoney.add(0);//剩余总额
+				}
+			}
+
+           /* //测试数据
+			month_near.add("一月");
+			month_near.add("二月");
+			month_near.add("三月");
+			expend.add("12");
+			expend.add("2");
+			expend.add("32");
+			income.add("44");
+			income.add("54");
+			income.add("64");
+			xArray.add("支出");
+			xArray.add("收入");
+			xArray.add("剩余总额");
+            JSONObject j1=new JSONObject();
+            j1.put("name", "A部门");
+            j1.put("value", "A");
+            JSONObject j2=new JSONObject();
+            j2.put("name", "b部门");
+            j2.put("value", "b");
+            xArray.add("A部门");
+            xArray.add("B部门");*/
+
+            xArray.add("支出");
+            xArray.add("收入");
+            xArray.add("剩余总额");
+			json.put("month_near", month_near);//月份
+			json.put("expend", expend);//支出
+			json.put("income", income);//收入
+			json.put("remainMoney", remainMoney);//剩余总额
+			json.put("xArray", xArray);//横坐标类型：支出，收入，剩余总额
+			root.add(json);
+			returnJson.put("root", root);
+			returnJson.put("success", true);
+		}catch (Exception e){
+			log.error("获取社团的支出，收入，剩余总额失败：",e);
+			returnJson.put("success", false);
+			returnJson.put("Msg","获取社团的支出，收入，剩余总额失败");
+			return ResponseEntity.ok(returnJson);
+		}
+		finally {
+		}
+		return ResponseEntity.ok(returnJson);
+	}
+
+	//升序输出日期
+    public JSONArray getMonthNear() {
+        //横坐标类型：费用类型
+        JSONArray monthArr = new JSONArray();
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.MONTH, cal.get(Calendar.MONTH)-12);
+        for (int i=0;i<12;i++){
+            cal.set(Calendar.MONTH,cal.get(Calendar.MONTH)+1);
+            int month = cal.get(Calendar.MONTH) + 1;
+            String monthstr=month+"";
+            if(month<10){
+               monthstr= "0"+month;
+            }
+
+            monthArr.add(cal.get(Calendar.YEAR)+"-"+monthstr);
+        }
+        return monthArr;
+    }
+
+    @Test
+	public void main() {
+		JSONArray monthNear = new feeAction().getMonthNear();
+		System.out.println(monthNear);
+		Calendar cal = Calendar.getInstance();
+		int i = cal.get(cal.get(Calendar.MONTH));
+		System.out.println(i);
+
+	}
+
+
+
+    public String formatMonth(String yearMonth){
+		if(yearMonth!=null && yearMonth.length()>0){
+			String year=yearMonth.substring(0,4);
+			String month = yearMonth.substring(4);
+			if(Integer.parseInt(month)<10){
+				month="0"+month;
+			}
+			yearMonth=year+"-"+month;
+		}
+		return yearMonth;
+	}
+
 }
