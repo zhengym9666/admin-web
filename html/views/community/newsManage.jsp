@@ -177,12 +177,13 @@
 
     <script>
   layui.config({
-    base: '/src/js/modules'
-  }).use(['jquery', 'mockjs', 'table'], function() {
+      base: '/src/js/',
+      debug:true
+  }).use([ 'jquery', 'mockjs', 'table'], function() {
 	    var $ = layui.jquery,
 	      layer = layui.layer,
 	      table = layui.table;
-	  
+
 	    //第一个实例
 	    var newsIns=table.render({
             id: 'news_table',
@@ -250,7 +251,7 @@
 	        ]
 	      ]
 	    });
-  });
+
 
   //触发事件
   var active = {
@@ -260,7 +261,7 @@
           layer.open({
               type: 2
               ,title:"添加新闻"
-              ,area:['780px','780px']
+              ,area:['780px','680px']
               ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
               ,id: 'layerDemo'+type //防止重复弹出
               ,content: rootPath+'/views/community/news/addnews.jsp' //http://"+rootPath+"/views/community/news/addNews.jsp
@@ -278,7 +279,6 @@
       var othis = $(this), method = othis.data('method');
       active[method] ? active[method].call(this, othis) : '';
   });
-
   //监听每一行的操作按钮
   layui.table.on('tool(table_filter)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
       var data = obj.data; //获得当前行数据
@@ -291,7 +291,7 @@
           layer.open({
               type: 2
               ,title:"新闻详情"
-              ,area:['780px','780px']
+              ,area:['780px','680px']
               ,offset: "auto" //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
               ,id: 'layerDemo_detail' //防止重复弹出
               ,content: rootPath+"/views/community/news/addnews.jsp?type=detail&id="+data.id //http://"+rootPath+"/views/community/news/addNews.jsp
@@ -348,7 +348,7 @@
           layer.open({
               type: 2
               ,title:"编辑新闻"
-              ,area:['780px','780px']
+              ,area:['780px','680px']
               ,offset: "auto" //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
               ,id: 'layerDemo_edit' //防止重复弹出
               ,content: rootPath+"/views/community/news/addnews.jsp?type=edit&id="+data.id //http://"+rootPath+"/views/community/news/addNews.jsp
@@ -367,6 +367,8 @@
           });*/
       }
   });
+
+});
   </script>
 
     <script type="text/javascript">
