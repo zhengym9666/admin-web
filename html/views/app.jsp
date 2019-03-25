@@ -68,7 +68,7 @@
               <div class="layui-card">
                 <div class="layui-card-header">ECharts</div>
                 <div class="layui-card-body">
-                  <div id="container1" style="height:350px;"></div>
+                  <div id="container1" style="height:350px;width: 100%;"></div>
                 </div>
               </div>
             </div>
@@ -76,7 +76,7 @@
               <div class="layui-card">
                 <div class="layui-card-header">ECharts</div>
                 <div class="layui-card-body">
-                  <div id="main" style="height:350px;"></div>
+                  <div id="main" style="height:350px;width: 100%;"></div>
                 </div>
               </div>
             </div>
