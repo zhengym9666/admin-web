@@ -16,6 +16,8 @@ import com.admin.util.Page;
 */
 public interface IGroupMemberService {
 	
+	public int getMemberCountByClubId(String clubId);
+	
 	public List<GroupMember> queryMemberByClubId(Page page,String clubId);
 	
 	public int queryMemberCount(Page page,String clubId);

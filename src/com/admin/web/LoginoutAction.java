@@ -4,10 +4,16 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.admin.bean.GroupMember;
+import com.admin.bean.Student;
+import com.admin.service.interfaces.IClubService;
+import com.admin.service.interfaces.ICollegeService;
+import com.admin.service.interfaces.IStudentService;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -20,7 +26,16 @@ import net.sf.json.JSONObject;
 */
 @Controller
 @RequestMapping("/admin")
-public class LoginAction {
+public class LoginoutAction {
+	
+	@Autowired
+	ICollegeService collegeService;
+	
+	@Autowired
+	IClubService clubService;
+	
+	@Autowired
+	IStudentService studentService;
 	
 	@RequestMapping("/loginAction.action")
 	public String loginAction(HttpServletRequest request) throws Exception{
@@ -41,13 +56,27 @@ public class LoginAction {
 			}
 		
 		request.getSession().setAttribute("stuNum", stuNum);
+		Student stuInfo = studentService.queryStudentByStuNum(stuNum);
+		request.getSession().setAttribute("stuName", stuInfo.getStuName());
+		request.getSession().setAttribute("head", stuInfo.getHead());
 		request.getSession().setAttribute("collegeId", collegeId);
+		request.getSession().setAttribute("collegeAbbr", collegeService.queryCollegeById(collegeId).getAbbr());
 		request.getSession().setAttribute("clubId", clubId);
+		request.getSession().setAttribute("clubName", clubService.getClubById(clubId).getClubName());
 		request.getSession().setAttribute("memInfo", memInfo);
 		request.getSession().setAttribute("rank", memInfo.getRank());
 		
 			
-		return "redirect:/#/member/reElection";
+		return "redirect:/#/";
+	}
+	
+	@RequestMapping("/logoutAction.action")
+	@ResponseBody
+	public void logoutAction(HttpServletRequest request){
+		
+		/*request.getSession().invalidate();//清除 session 中的所有信息*/		
+		/*return "redirect:http://localhost:8080/gd_stu_dev/login.jsp";*/
+		System.out.println("yyyyyyyy");
 	}
 
 }

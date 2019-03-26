@@ -292,6 +292,31 @@
                     operationTipsFailed(obj);
                 }
             });
+        },
+        initClubScale:function(){
+        	 url=app.queryBugetAction;
+        	 $.ajax({
+        		 url:url+'/getClubScale.action',
+        		 type:'post',
+        		 data:{},
+        		 dataType:'JSON',
+        		 success:function(response){
+        			 if(response.resultFlag){
+        				 $(".personSum").text(response.personSum);
+        				 $(".totalFee").text(response.totalFee);
+        			 }
+        			 else{
+        				 var obj = {};
+                         obj["Ptext"] = response.Msg;
+                         operationTipsFailed(obj);
+        			 }
+        		 },
+        		 error:function(){
+        			  var obj = {};
+                      obj["Ptext"] = "系统出错";
+                      operationTipsFailed(obj);
+        		 }
+        	 })
         }
 
     }

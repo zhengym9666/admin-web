@@ -1155,7 +1155,7 @@ a cite {
 		width: 16.66666667%
 	}
 	.layui-col-md3 {
-		width: 25%
+		width: 28%;
 	}
 	.layui-col-md4 {
 		width: 33.33333333%
@@ -1170,7 +1170,7 @@ a cite {
 		width: 58.33333333%
 	}
 	.layui-col-md8 {
-		width: 66.66666667%
+		width: 86.66666667%
 	}
 	.layui-col-md9 {
 		width: 75%
@@ -1579,7 +1579,7 @@ a cite {
 
 .layui-card-body {
 	padding: 10px 15px;
-	line-height: 24px
+	line-height: 40px;
 }
 
 .layui-card-body[pad15] {

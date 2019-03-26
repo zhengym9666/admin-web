@@ -19,6 +19,11 @@
         <result column="isFee" property="isFee"/>
     </resultMap>
     
+    <select id="getMemberCountByClubId" parameterType="String" resultType="java.lang.Integer">
+    	select count(*) from GROUPMEMBER
+    	where clubId = #{clubId} and state = 1 and joinTime IS NOT NULL
+    </select>
+    
     <select id="queryMemberByClubId" resultMap="BaseResultMap" parameterType="HashMap">
     	SELECT * FROM GROUPMEMBER
     	<where>

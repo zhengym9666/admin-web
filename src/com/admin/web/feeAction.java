@@ -420,5 +420,30 @@ public class feeAction {
 		}
 		return yearMonth;
 	}
-
+    
+    @RequestMapping("/getClubScale.action")
+    @ResponseBody
+    public Map<String,Object> getClubScale(HttpServletRequest request){
+    	
+    	String clubId = (String) request.getSession().getAttribute("clubId");
+    	
+    	HashMap<String,Object> resultMap = new HashMap<String,Object>();
+    	
+    	int personSum;
+		float totalFee;
+		try {
+			personSum = groupMemberService.getMemberCountByClubId(clubId);
+			//获取社团总会费
+			totalFee = feeService.getFeeInfoById(clubId).getTotalFee();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			resultMap.put("resultFlag",0);
+			resultMap.put("Msg", "获取社团总人数和剩余会费失败");
+			return resultMap;
+		}
+		resultMap.put("resultFlag", 1);
+    	resultMap.put("personSum", personSum);
+    	resultMap.put("totalFee", totalFee);
+    	return resultMap;
+    }
 }

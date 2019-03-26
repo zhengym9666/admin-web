@@ -276,6 +276,12 @@ public class GroupMemberServiceImpl  implements IGroupMemberService{
 		return groupMemberMapper.queryMemberByKey(params);
 	}
 
+	@Override
+	public int getMemberCountByClubId(String clubId) {
+		// TODO Auto-generated method stub
+		return groupMemberMapper.getMemberCountByClubId(clubId);
+		}
+
 
 
 }

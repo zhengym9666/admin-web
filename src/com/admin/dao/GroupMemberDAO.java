@@ -15,6 +15,8 @@ import com.admin.bean.GroupMember;
 */
 public interface GroupMemberDAO {
 	
+	public int getMemberCountByClubId(@Param("clubId")String clubId);
+	
 	public List<GroupMember> queryMemberByClubId(HashMap<String,Object> map);
 	
 	public int queryMemberCount(HashMap<String,Object> map);

@@ -138,7 +138,8 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/popIframe.js"></script>
     <script type="text/javascript" src="js/recruitNew.js"></script>
-    <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
+    <!-- <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script> -->
+    <script src="<%=request.getContextPath()%>/theme/lib/js/echarts.min.js"></script>
     <script type="text/html" id="imgTpl">
 	 <div class="layer-photos-demo" style="cursor:pointer;">
 		<img src="/Cache/Img_Cache/{{ d.head }}">

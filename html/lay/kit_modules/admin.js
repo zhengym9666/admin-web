@@ -282,6 +282,10 @@ layui.define(mods, function (e) {
                     	path:"/fee/feeCode",
                     	component: "feeBudgetManage/feeAuthority.action",
                     	name: "财务收款码管理"
+                    },{
+                    	path:"/logout",
+                    	component: "admin/logoutAction.action",
+                    	name: "注销"
                     }
                     ]
                 };

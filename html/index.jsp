@@ -6,6 +6,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script type="text/javascript">
+        var rootPath = "<%=request.getContextPath()%>";
+    </script>
   <title>社团管理系统后台</title>
   <link rel="stylesheet" href="css/layui.css" id="layui">
   <link rel="stylesheet" href="css/theme/default.css" id="theme">
@@ -13,7 +16,7 @@
 
 </head>
 
-<body class="layui-layout-body kit-theme-default">
+<body class="layui-layout-body kit-theme-default" id="content">
   <div class="layui-layout layui-layout-admin">
     <!-- header -->
     <div class="layui-header">
@@ -22,7 +25,7 @@
           <i class="layui-icon">&#xe65a;</i>
         </div>
         <div class="layui-logo-brand">
-          <a href="#/">logo标题</a>
+          <a href="#/" style="width:335px;">广州大学<span id="college">${sessionScope.collegeAbbr }</span><span id="club">${sessionScope.clubName }</span>管理系统</a>
         </div>
       </div>
       <div class="layui-layout-left">
@@ -43,25 +46,19 @@
               <span>帮助</span>
             </a>
           </li>
-          <li class="kit-item" id="ccleft">
-            <a href="javascript:;">
+          <li class="kit-item">
+            <a>
               <i class="layui-icon">&#xe60e;</i>
-              	<span>时间</span>
+              	<span id="timearea"></span>
             </a>
           </li>
           <li class="kit-item">
             <a href="javascript:;">
               <span>
-                <img src="http://m.zhengjinfan.cn/images/0.jpg" class="layui-nav-img">用户名
+                <img src="/Cache/Img_Cache/${sessionScope.head }" class="layui-nav-img">${sessionScope.stuName }
               </span>
             </a>
             <ul class="kit-nav-child kit-nav-right">
-              <li class="kit-item">
-                <a href="#/user/my">
-                  <i class="layui-icon">&#xe612;</i>
-                  <span>个人中心</span>
-                </a>
-              </li>
               <li class="kit-item" kit-target="setting">
                 <a href="javascript:;">
                   <i class="layui-icon">&#xe614;</i>
@@ -70,7 +67,7 @@
               </li>
               <li class="kit-nav-line"></li>
               <li class="kit-item">
-                <a href="temp/login.html">
+                <a id="logout">
                   <i class="layui-icon">&#x1006;</i>
                   <span>注销</span>
                 </a>
@@ -170,7 +167,7 @@
     </div>
     <!-- footer -->
     <div class="layui-footer" kit-footer="true">
-      2017 © kit.zhengjinfan.cn MIT license
+      2019 © zhengym license
       <div style="width:400px; height:400px;" class="load-container load1">
         <div class="loader">Loading...</div>
       </div>
@@ -184,8 +181,80 @@
  <%-- <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>--%>
   <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.2.1/echarts.min.js"></script>--%>
  <%-- <script src="<%=request.getContextPath()%>/theme/lib/js/echarts.min.js"></script>--%>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/jQuery/jquery.min.js"></script>
   <script>layui.use("admin");</script>
+  <script>
+		$(function(){
+			time();
+			
+			function time() {
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = date.getMonth() + 1;
+				if (month < 10) {
+					month = "0" + month
+				}
+				var day = date.getDate();
+				if (day < 10) {
+					day = "0" + day
+				}
+				var hour = date.getHours();
+				if (hour < 10) {
+					hour = "0" + hour
+				}
+				var minute = date.getMinutes();
+				if (minute < 10) {
+					minute = "0" + minute
+				}
+				var second = date.getSeconds();
+				if (second < 10) {
+					second = "0" + second
+				}
+				document.getElementById("timearea").innerHTML = year + "-"
+						+ month + "-" + day + "&nbsp;&nbsp;&nbsp;" + hour + ":"
+						+ minute + ":" + second;
+				t = window.setTimeout(function() {
+					time()
+				}, 1000);
+			}
+		
+		
+		
+	});
+
+
+		</script>
+		
+		<script>
+			$("#logout").click(function(){
+				layer.confirm('确定要退出吗?', {icon: 3, title:'提示'}, function(index){
+					              // 这里可以写点击确定以后的回调方法比如:
+					              // alert("这是点击确定以后的回调方法" );
+				             // 或者直接跟layui的弹窗
+				             console.log(rootPath);
+				             $.ajax({
+					        		  url:rootPath+'/admin/logoutAction.action',
+					        		  type:'post',
+					        		  data:{},
+					        		  dataType:"JSON",
+					        		  success:function(){
+					        			  layer.alert("注销成功");
+					        			  window.opener=null;
+					        			  window.open('','_self');
+					        			  window.close();
+					        			  window.parent.location.href = "http://localhost:8080/gd_stu_dev/login.jsp";
+ 				        		  },
+					        		  error:function(){
+					        			  layer.alert("注销失败"); 
+					        		  }
+					        	  })
+					          layer.msg("注销成功",{icon:1});
+				              layer.close(index);//关闭弹窗
+				           });
+			})
+			  
+		</script>
 
 </body>
 
-</html>l>
+</html>

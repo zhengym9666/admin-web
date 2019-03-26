@@ -7,28 +7,14 @@
         <div class="layui-col-md3">
           <div class="layui-card">
             <div class="layui-card-body">
-              访客
+              社团人数<span class="personSum" style="display:inline-block;margin-left:80px;font-size:25px;color:#47b135;"></span>
             </div>
           </div>
         </div>
         <div class="layui-col-md3">
           <div class="layui-card">
             <div class="layui-card-body">
-              新用户
-            </div>
-          </div>
-        </div>
-        <div class="layui-col-md3">
-          <div class="layui-card">
-            <div class="layui-card-body">
-              销售额
-            </div>
-          </div>
-        </div>
-        <div class="layui-col-md3">
-          <div class="layui-card">
-            <div class="layui-card-body">
-              成交量
+              剩余会费<span class="totalFee" style="display:inline-block;margin-left:80px;font-size:25px;color:#47b135;"></span>
             </div>
           </div>
         </div>
@@ -38,35 +24,9 @@
       <div class="layui-row layui-col-space15">
         <div class="layui-col-md8">
           <div class="layui-row layui-col-space15">
-            <div class="layui-col-md12">
-              <div class="layui-card">
-                <div class="layui-card-header">源码地址</div>
-                <div class="layui-card-body">
-                  <p style="margin-bottom: 5px;">QQ交流群：248049395，616153456</p>
-                  <p style="margin-bottom: 5px;">源码下载:
-                    <a href='https://gitee.com/kitteam/kit_admin/' target="_blank">
-                      <img src='https://gitee.com/kitteam/kit_admin/badge/star.svg?theme=white' alt='star'></img>
-                    </a>
-                    (模板源码)
-                  </p>
-                  <p style="margin-bottom: 5px;">　脚手架:
-                    <a href='https://gitee.com/kitteam/kit_admin_scaffold/' target="_blank">
-                     <!--  <img src='https://gitee.com/kitteam/kit_admin_scaffold/badge/star.svg?theme=wh -->ite' alt='star'></img>
-                    </a>
-                    (基于打包后的源码构建的脚手架)正式开发可以直接使用此模板
-                  </p>
-                  <p style="margin-bottom: 5px;">演示代码:
-                    <a href='https://gitee.com/kitteam/kit_admin_demo/' target="_blank">
-                      <img src='https://gitee.com/kitteam/kit_admin_demo/badge/star.svg?theme=white' alt='star'></img>
-                    </a>
-                    (基于脚手架构建的演示代码)
-                  </p>
-                </div>
-              </div>
-            </div>
             <div class="layui-col-md6">
               <div class="layui-card">
-                <div class="layui-card-header">ECharts</div>
+                <div class="layui-card-header">饼状图</div>
                 <div class="layui-card-body">
                   <div id="container1" style="height:350px;width: 100%;"></div>
                 </div>
@@ -74,7 +34,7 @@
             </div>
             <div class="layui-col-md6">
               <div class="layui-card">
-                <div class="layui-card-header">ECharts</div>
+                <div class="layui-card-header">柱状图</div>
                 <div class="layui-card-body">
                   <div id="main" style="height:350px;width: 100%;"></div>
                 </div>
@@ -82,123 +42,9 @@
             </div>
             <div class="layui-col-md12">
               <div class="layui-card">
-                <div class="layui-card-header">ECharts</div>
+                <div class="layui-card-header">折线图</div>
                 <div class="layui-card-body">
                   <div id="main1" style="height:350px;width: 100%;"></div>
-                </div>
-              </div>
-            </div>
-            <div class="layui-col-md12">
-              <div class="layui-card">
-                <div class="layui-card-header">数据统计</div>
-                <div class="layui-card-body">
-                  <table id="demo_hash" lay-filter="test_hash"></table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="layui-col-md4">
-          <div class="layui-row layui-col-space15">
-            <div class="layui-col-md12">
-              <div class="layui-card">
-                <div class="layui-card-header">快捷入口</div>
-                <div class="layui-card-body">
-                  <div class="layui-row layui-col-space5">
-                    <!-- <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div> -->
-                    <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
-                      <div style="height:75px;  background-color:#ccc;"></div>
-                    </div>
-                    <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
-                      <div style="height:75px;  background-color:#ccc;"></div>
-                    </div>
-                    <div class="layui-col-xs4 layui-col-sm12 layui-col-md4">
-                      <div style="height:75px;  background-color:#ccc;"></div>
-                    </div>
-                    <div class="layui-col-xs4 layui-col-sm7 layui-col-md8">
-                      <div style="height:75px;  background-color:#ccc;"></div>
-                    </div>
-                    <div class="layui-col-xs4 layui-col-sm5 layui-col-md4">
-                      <div style="height:75px;  background-color:#ccc;"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="layui-col-md12">
-              <div class="layui-card">
-                <div class="layui-card-header">版本信息</div>
-                <div class="layui-card-body">
-                  <table class="layui-table">
-                    <colgroup>
-                      <col width="150">
-                      <col>
-                    </colgroup>
-                    <tbody>
-                      <tr>
-                        <td>版本号</td>
-                        <td>v2.0.0-beta1</td>
-                      </tr>
-                      <tr>
-                        <td>依赖</td>
-                        <td>layui v2.2.5</td>
-                      </tr>
-                      <tr>
-                        <td>作者</td>
-                        <td>Van Zheng</td>
-                      </tr>
-                      <tr>
-                        <td>邮箱</td>
-                        <td>zheng_jinfan@126.com</td>
-                      </tr>
-                      <tr>
-                        <td>交流群</td>
-                        <td>248049395</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="layui-col-md12">
-              <div class="layui-card">
-                <div class="layui-card-header">关于KITADMIN 2.0</div>
-                <div class="layui-card-body">
-                  <p>当前版本是基于layui 2.x重构的版本，与之后1.x版本有本质有区别。</p>
-                  <p>该版本的核心是[路由]，不再支持[iframe]方式的加载</p>
-                  <p>版本特性：</p>
-                  <ul>
-                    <li>1、用法一如既往的简单，快捷。(只需要简单的配置就实现一些功能).</li>
-                    <li>2、提供本地开发环境。(依赖nodejs运行环境和gulp)</li>
-                    <li>3、提供代码功能。(依赖nodejs运行环境和gulp)</li>
-                    <li>4、模块化加载。(依赖layui模块化，用法与layui保持一致)</li>
-                    <li>5、提供路由功能。(路由是本版本的核心功能了，需与模板绑定，详情请参考相关文档)</li>
-                    <li>6、完全的前后端分离开发。(集成mockjs用于拦截请求并返回模拟数据，详情请参考相关文档)</li>
-                    <li>7、左侧菜单重写，支持到4级菜单。(集成mockjs用于拦截请求并返回模拟数据，详情请参考相关文档)</li>
-                  </ul>
                 </div>
               </div>
             </div>
@@ -360,6 +206,8 @@
         var main1Div = document.getElementById("main1");
         app.initBugetByClubSum(main1Div);
       //=====
+    	  
+    	  app.initClubScale();
       $(window).on('resize', function() {
        /* myChart.resize();
         myChart1.resize();
@@ -387,64 +235,7 @@
         }]
       }
     });
-    //第一个实例
-    table.render({
-      method: 'post',
-      done: function() {
-        $('#demo_hash').next().css('height', 'auto');
-      },
-      limit: 20,
-      elem: '#demo_hash',
-      height: 420,
-      url: '/demo/table/user', //数据接口
-      page: true, //开启分页
-      cols: [
-        [ //表头
-          {
-            field: 'id',
-            title: 'ID',
-            width: 50,
-            fixed: 'left'
-          }, {
-            field: 'username',
-            title: '用户名',
-            width: 80
-          }, {
-            field: 'sex',
-            title: '性别',
-            width: 80,
-            sort: true
-          }, {
-            field: 'city',
-            title: '城市',
-            width: 80
-          }, {
-            field: 'sign',
-            title: '签名',
-            width: 177
-          }, {
-            field: 'experience',
-            title: '积分',
-            width: 80,
-            sort: true
-          }, {
-            field: 'score',
-            title: '评分',
-            width: 80,
-            sort: true
-          }, {
-            field: 'classify',
-            title: '职业',
-            width: 80
-          }, {
-            field: 'wealth',
-            title: '财富',
-            width: 135,
-            sort: true
-          }
-        ]
-      ]
-    });
+   
   });
 </script>
 <style scoped>
