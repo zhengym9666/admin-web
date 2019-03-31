@@ -286,7 +286,16 @@ layui.define(mods, function (e) {
                     	path:"/logout",
                     	component: "admin/logoutAction.action",
                     	name: "注销"
+                    },{
+                    	path:"/college/collegeManage",
+                    	component: "views/community/collegeManage.jsp",
+                    	name: "学院管理"
+                    },{
+                    	path:"/club/clubManage",
+                    	component: "views/community/clubManage.jsp",
+                    	name: "社团管理"
                     }
+                    
                     ]
                 };
             return "TABS" === e.loadType && (a.onChanged = function () {

@@ -282,6 +282,7 @@ $(function(){
            MemberInfo.queryById(paramType,paramName);
        },
        queryDepartment:function(){
+    	   $("#edit-departul").html("");
     	   $.ajax({
     		   url:MemberInfo.actionPath+"queryDepartment.action",
     		   type:'post',

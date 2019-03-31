@@ -33,14 +33,10 @@
 							</div>
 						</li>
 						<li class="form-items">
-							<div class="form-left">
-								
-							</div>
-							<div class="form-right">
-								
-							</div>
+
+							
 						</li>
-						<li class="form-items">
+						<li class="form-items" style="margin-left:1px;">
 							<div class="form-left">
 								<span><i class="iconfont icon-bitian"></i>简介：</span>
 							</div>

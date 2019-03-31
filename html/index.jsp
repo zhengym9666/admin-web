@@ -40,6 +40,7 @@
       </div>
       <div class="layui-layout-right">
         <ul class="kit-nav" lay-filter="header_right">
+          <li class="kit-item" style="color:#fdfdfdcf;">你好，管理员</li>
           <li class="kit-item" kit-target="help">
             <a href="javascript:;">
               <i class="layui-icon">&#xe607;</i>

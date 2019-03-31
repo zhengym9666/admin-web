@@ -10,10 +10,12 @@
 	<result column="abbr" property="abbr"/>
 	<result column="fullname" property="fullname"/>
 	<result column="intro" property="intro"/>
+	<result column="url" property="url"/>
+	<result column="image" property="image"/>
 	</resultMap>
 	
 	<sql id="Base_Column_List" >
-        id,abbr,fullname,intro
+        id,abbr,fullname,intro,url,image
     </sql>
     <select id="queryCollegeById" resultMap="BaseResultMap" parameterType="String" >
         select
@@ -22,5 +24,43 @@
         where id = #{id}
     </select>
 	
+		<select id="queryCollegePage" resultMap="BaseResultMap" parameterType="HashMap">
+		select * from COLLEGE
+		<where>
+			<if test="keyword1!='' and keyword1!=null">and fullname like '%${keyword1}%'</if>
+		</where>
+		limit #{start},#{rows}
+	</select>
+
+	<select id="queryCollegePageCount" parameterType="HashMap" resultType="java.lang.Integer">
+		select count(*) from COLLEGE
+		<where>
+			<if test="keyword1!='' and keyword1!=null">and fullname like '%${keyword1}%'</if>
+		</where>
+	</select>
+	
+	<select id="createCollegeId" parameterType="String" resultType="String">
+		SELECT CONCAT((SELECT SUBSTR((SELECT MAX(t2.id) FROM college t2),1,3)+1),'0000')
+	</select>
+
+	<insert id="addCollege" parameterType="HashMap">
+		INSERT INTO COLLEGE(id,abbr,fullname,intro,url,image) VALUES
+		(#{id},#{abbr},#{fullname},#{intro},
+		(SELECT CONCAT('community/mathBuild.action?collegeId=',#{id})),
+		#{image}
+		)
+	</insert>
+
+	<update id="updateCollege" parameterType="HashMap">
+		update COLLEGE set abbr = #{abbr},fullname = #{fullname},intro = #{intro},image = #{image} where id = #{collegeId}
+	</update>
+
+	<delete id="deleteCollege" parameterType="String">
+		delete from COLLEGE where id = #{collegeId}
+	</delete>
+	
+	<select id="queryCollegeList" resultMap="BaseResultMap">
+		select * from COLLEGE
+	</select>
 		
 </mapper>
