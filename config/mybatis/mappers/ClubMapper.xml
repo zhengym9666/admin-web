@@ -9,10 +9,22 @@
         <result column="clubName" property="clubName"/>
         <result column="intro" property="intro"/>
         <result column="collegeId" property="collegeId"/>
+        <result column="birthdate" property="birthdate"/>
+	</resultMap>
+	
+	<resultMap id="clubPageResult" type="com.admin.bean.ClubPage" >
+        <!-- id用来配置表的主键与类的属性的映射关系，column指定的是表的字段名，property指定的是类的属性名 -->
+  <!-- result用来配置普通字段与类的属性的映射关系，column指定表的字段名，property指定类的属性名 -->
+        <result column="clubId" property="clubId"/>
+        <result column="clubName" property="clubName"/>
+        <result column="intro" property="intro"/>
+        <result column="collegeId" property="collegeId"/>
+        <result column="birthdate" property="birthdate"/>
+        <result column="fullname" property="collegeName"/>
 	</resultMap>
 	
 	<sql id="Base_Column_List" >
-        clubId,clubName,intro,collegeId
+        clubId,clubName,intro,collegeId,birthdate
     </sql>
     <select id="queryClubBycollegeId" resultMap="BaseResultMap" parameterType="String" >
         select
@@ -26,6 +38,47 @@
     <select id="queryUserGroup" resultType="club">
         select * from CLUB where clubId = #{clubId}
     </select>
+    <select id="queryClubPageById" resultMap="clubPageResult" parameterType="String">
+    	SELECT c1.*,c2.fullname FROM club c1  JOIN college c2 ON c2.id = c1.collegeId and c1.clubId = #{clubId}
+    </select>
+	<select id="queryClubPage" resultMap="clubPageResult" parameterType="HashMap">
+		SELECT c1.*,c2.fullname FROM club c1  JOIN college c2 ON c2.id = c1.collegeId
+		<where>
+			<if test="keyword1!='' and keyword1!=null">and c1.clubName LIKE '%${keyword1}%'</if>
+			<if test="keyword2!='' and keyword2!=null">and c2.fullname like '%${keyword2}%'</if>
+		</where>
+		limit #{start},#{rows}
+	</select>
 
+	<select id="queryClubPageCount" parameterType="HashMap" resultType="java.lang.Integer">
+		SELECT count(*) from club
+		<where>
+			<if test="keyword1!='' and keyword1!=null">and clubName LIKE '%${keyword1}%'</if>
+			<if test="keyword2!='' and keyword2!=null">and collegeId in (select c.id from college c where c.fullname like '%${keyword2}%')</if>
+		</where>
+	</select>
+
+	<insert id="addClub" parameterType="com.admin.bean.Club">
+		INSERT INTO CLUB(clubId,clubName,intro,collegeId,birthdate) VALUES
+		((SELECT CONCAT((
+		SELECT SUBSTR((
+				SELECT MAX(c1.clubId)
+				FROM club c1
+				WHERE c1.clubId LIKE (
+					SELECT CONCAT('%', (
+							SELECT SUBSTR(#{collegeId}, 1, 3)
+						), '%')
+				)
+			), 1, 5) + 1
+	), '00')),#{clubName},#{intro},#{collegeId},#{birthdate})
+	</insert>
+
+	<update id="updateClub" parameterType="com.admin.bean.Club">
+		update CLUB set clubName = #{clubName},intro = #{intro},collegeId = #{collegeId} where clubId = #{clubId}
+	</update>
+
+	<delete id="deleteClub" parameterType="String">
+		delete from CLUB where clubId = #{clubId}
+	</delete>
 
 </mapper>

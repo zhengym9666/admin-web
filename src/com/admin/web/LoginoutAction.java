@@ -74,9 +74,9 @@ public class LoginoutAction {
 	@ResponseBody
 	public void logoutAction(HttpServletRequest request){
 		
-		/*request.getSession().invalidate();//清除 session 中的所有信息*/		
+		request.getSession().invalidate();//清除 session 中的所有信息		
 		/*return "redirect:http://localhost:8080/gd_stu_dev/login.jsp";*/
 		System.out.println("yyyyyyyy");
 	}
-
+	
 }

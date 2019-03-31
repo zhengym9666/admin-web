@@ -16,6 +16,8 @@ public class UploadImageUtil {
 	
 	private static String apayPath = "G:\\community\\apayCode\\";
 	
+	private static String collegePath = "G:\\community\\collegeImages\\";
+	
 	
 	  private String fileType;//图片类型
 	  private int maxSize;//图片大小
@@ -133,6 +135,19 @@ public class UploadImageUtil {
 			newName = createNewName(file,fileName);
 			clear(apayPath + newName);//拷贝文件前先删除已存在文件
 			FileUtils.copyInputStreamToFile(file.getInputStream(), new File(apayPath + newName));
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+		return newName;
+	}
+	
+	public String uploadCollegeImg(MultipartFile file,String fileName) throws Exception{
+		String newName = null;
+		try {
+			newName = createNewName(file,fileName);
+			clear(apayPath + newName);//拷贝文件前先删除已存在文件
+			FileUtils.copyInputStreamToFile(file.getInputStream(), new File(collegePath + newName));
 		} catch (Exception e) {
 			// TODO: handle exception
 			throw e;

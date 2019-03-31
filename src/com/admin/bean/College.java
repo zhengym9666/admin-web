@@ -5,6 +5,8 @@ public class College {
 	private String abbr;
 	private String fullname;
 	private String intro;
+	private String url;
+	private String image;
 	public String getId() {
 		return id;
 	}
@@ -28,6 +30,19 @@ public class College {
 	}
 	public void setIntro(String intro) {
 		this.intro = intro;
+	}
+	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	@Override
 	public String toString() {

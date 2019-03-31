@@ -21,7 +21,7 @@ layui.define(mods, function (e) {
             o = (0, t.localStorage.getItem)("KITADMIN_SETTING_LOADTYPE");
         null !== o && void 0 !== o.loadType && (i.loadType = o.loadType), s.set({
             type: i.loadType
-        }).init(), u.routeInit(i), u.menuInit(i), "TABS" === i.loadType && u.tabsInit(), "" === location.hash && t.setUrlState("主页", "#/"), layui.sidebar.render({
+        }).init(), u.routeInit(i), u.menuInit(i), "TABS" === i.loadType && u.tabsInit(), "" === location.hash && t.setUrlState("主页", "index2.jsp#/"), layui.sidebar.render({
             elem: "#ccleft",
             title: "这是左侧打开的栗子",
             shade: !0,
@@ -100,7 +100,7 @@ layui.define(mods, function (e) {
                         name: "Cascader"
                     }, {
                         path: "/",
-                        component: "views/app.jsp",
+                        component: "views/community/collegeManage.jsp",
                         name: "主页"
                     }, {
                         path: "/user/my",
@@ -334,11 +334,11 @@ layui.define(mods, function (e) {
             i.set({
                 onChanged: function (e) {}
             }).render(function (e) {
-                e.isIndex && n.render("#/")
+                e.isIndex && n.render("index2.jsp#/")
             })
         }
     };
     (new p).ready(function () {
         console.log("Init successed.")
-    }), e("admin", {})
+    }), e("admin2", {})
 });

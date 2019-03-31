@@ -27,8 +27,8 @@
 <body>
 <div class="viewFramework-index-body">
     <!---<<<<  标题    >>>>-->
-    <span class="viewFramework-index-title">部门管理</span>
-    <button type="button" class="iconTextBtn-import rightTopBtn"  id="add-alarm-btn" onclick="departInfo.addDepartInfo()"><i class="iconfont icon-add"></i>添加部门</button>
+    <span class="viewFramework-index-title">学院管理</span>
+    <button type="button" class="iconTextBtn-import rightTopBtn"  id="add-alarm-btn" onclick="collegeManage.addCollege()"><i class="iconfont icon-add"></i>添加学院</button>
 
 
     <!---<<<<  tabs    >>>>-->
@@ -42,11 +42,10 @@
 
                         <li  class="form-items ">
                             <div class="form-left" >
-                                <span>部门：</span>
+                                <span>学院名</span>
                             </div>
                             <div class="form-right">
-                                <!-- <input type="text" id="spCode"/> -->
-                                <input type="text" id="paramName"/>
+                                <input type="text" id="collegeName"/>
                             </div>
                         </li>
 
@@ -91,47 +90,62 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/rightPopWindow.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/theme/lib/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/common/js/popIframe.js"></script>
-    <script type="text/javascript" src="js/departManage.js"></script>
-    <script src="<%=request.getContextPath()%>/theme/lib/js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/collegeManage.js"></script>
+  	<script src="<%=request.getContextPath()%>/theme/lib/js/echarts.min.js"></script>
+	<script type="text/html" id="imgTpl">
+	 <div class="layer-photos-demo" style="cursor:pointer;">
+		<img src="/Cache/collegeImages/{{ d.image }}">
+	</div
+	</script>
 	<script>
   layui.config({
-    base: '/src/js/'
+    base: '/static/js/modules'
   }).use(['jquery', 'mockjs', 'table'], function() {
 	    var $ = layui.jquery,
 	      layer = layui.layer,
 	      table = layui.table;
 	  
 	    //第一个实例
-	    table.render({
+	    var tableIns = table.render({
 	      method: 'post',
-	      done: function() {
-	        $('#demo_hash').next().css('height', 'auto');
-	      },
+	      done: function(res,curr,count){
+	    	  $('#demo_hash').next().css('height', 'auto');
+                hoverOpenImg();//显示大图
+            },
 	      limit: 10,
 	      elem: '#demo_hash',
 	      id:"contenttable",
 	      height: 420,
-	      url: rootPath+'/departmentInfo/queryAllDepartmentInfo.action', //数据接口
+	      url: rootPath+'/college/queryAllCollege.action', //数据接口
 	      page: true, //开启分页
 	      cols: [
 	        [ //表头
 	          {
-	            field: 'departName',
-	            title: '部门',
-	            width: 80
+	            field: 'fullname',
+	            title: '学院全称',
+	            width: 160
 	          }, {
-	            field: 'intro',
-	            title: '简介',
-	            width: 838
+	            field: 'abbr',
+	            title: '学院简称',
+	            width: 95
+	          },{
+	        	field:'intro',
+	        	title:'简介',
+	        	width: 580
+	          },{
+	        	field:'image',
+	        	title:'学院图片',
+	        	templet:'#imgTpl',
+	        	width: 120
 	          },{
 	        	field:'operation1',
 	        	title:'',
 	        	width:60
-	          },{
+		      },{
 	        	field:'operation2',
 	        	title:'',
 	        	width:60
-	          },{
+		      },{
 	        	field:'operation3',
 	        	title:'',
 	        	width:60
@@ -139,9 +153,33 @@
 	        ]
 	      ]
 	    });
+	    
+	    //查询学院信息
+		$(".iconTextBtn-import").on('click',function(){
+			var keyword1=$("#collegeName").val();
+            tableIns.reload({
+            	where:{keyword1:keyword1
+            		  }
+            })
+		})
   });
+  
+	function hoverOpenImg(){
+        var img_show = null; // tips提示 
+        $('td img').hover(function(){
+            //alert($(this).attr('src'));
+            var img = "<img class='img_msg' src='"+$(this).attr('src')+"' style='width:130px;' />";
+            img_show = layer.tips(img, this,{
+                tips:[2, 'rgba(41,41,41,.5)']
+                ,area: ['160px']
+            });
+        },function(){
+            layer.close(img_show);
+        });
+        $('td img').attr('style','max-width:70px');
+	}
 	</script>
-	<jsp:include page="departManageRightWindow.jsp"></jsp:include>
+	<jsp:include page="collegeManageRightWindow.jsp"></jsp:include>
    
 
 

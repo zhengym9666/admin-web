@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<div id="departManageRightWindow" class="right-alert">
+<div id="clubManageRightWindow" class="right-alert">
 	<!---<<<<  弹窗左侧阴影   >>>>-->
 	<div class="right-alert-closeBg">
 		<div class="right-alert-boxShadow"></div>
@@ -12,7 +12,7 @@
 			<button class="right-alert-closeBtn">
 				<i class="iconfont icon-close"></i>
 			</button>
-			<span class="right-alert_head_title">部门管理</span>
+			<span class="right-alert_head_title">社团管理</span>
 		</div>
 
 		<!---<<<<  弹窗正文部分   >>>>-->
@@ -24,17 +24,25 @@
 						
 						<li class="form-items">
 							<div class="form-left">
-								<span><i class="iconfont icon-bitian"></i>部门：</span>
+								<span><i class="iconfont icon-bitian"></i>社团名：</span>
 							</div>
 							<div class="form-right">
-								<input class="required" id="edit-departName" type="text"/>
-								<input type="hidden" id="edit-departId">
+								<input class="required" id="edit-clubName" type="text"/>
+								<input type="hidden" id="edit-clubId">
 								
 							</div>
 						</li>
 						<li class="form-items">
-
-							
+							<div class="form-left">
+								<span><i class="iconfont icon-bitian"></i>所属学院：</span>
+							</div>
+							<div class="form-right">
+								<input class="required" id="edit-collegeName" type="text" style="cursor:pointer;caret-color: transparent;"/>
+								<input type="hidden" id="edit-collegeId">
+								<ul id="edit-collegeul" class="form-select-menu">
+		
+								</ul>
+							</div>
 						</li>
 						<li class="form-items" style="margin-left:1px;">
 							<div class="form-left">
@@ -42,13 +50,22 @@
 							</div>
 							<div class="form-right">
 								<!-- <input class="required" id="edit-departName" type="text" style="cursor:pointer;caret-color: transparent;"/> -->
-								<textarea id="edit-intro" class="required" style="max-width:180%;width:180%;height:180px;max-height:180px;" rows="8" cols="40" placeholder="介绍一下部门..."></textarea>
+								<textarea id="edit-intro" class="required" style="max-width:180%;width:180%;height:180px;max-height:180px;" rows="8" cols="40" placeholder="介绍一下社团..."></textarea>
+							</div>
+						</li>
+						<li class="form-items birthdateLi" style="margin-left:178px;">
+							<div class="form-left">
+								<span><i class="iconfont"></i>创建时间：</span>
+							</div>
+							<div class="form-right">
+								<input id="edit-birthdate" type="text"/>
+								
 							</div>
 						</li>
 						<div class="col-full center over">
 							<a class="form-btn-div" style="position:absolute;top:85%;right:20px;">
 								<button type="button" class="TextBtn cancel-btn">关闭</button>
-								<button type="button" class="TextBtn-import" onclick="departInfo.saveDepartInfo();">保存</button>
+								<button type="button" class="TextBtn-import" onclick="clubManage.saveClub();">保存</button>
 							</a>
 						</div>
 					</ul>
