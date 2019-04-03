@@ -122,7 +122,8 @@
 
       // echarts 1
       var container1 = document.getElementById("container1");
-      app.initManFemaleByClubSum(container1);
+      //app.initManFemaleByClubSum(container1);
+        app.initPersonByDepSum(container1);
       var app1 = {};
       option1 = null;
       /*app1.title = '极坐标系下的堆叠柱状图';

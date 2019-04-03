@@ -39,6 +39,73 @@ public class DepartmentAction {
     IClubService clubService;
     private static transient Log log = LogFactory.getLog(DepartmentAction.class);
 
+    //获取部门的人数比例
+    @RequestMapping(value="/queryPersonByDepSum.action",method=RequestMethod.POST)
+    public ResponseEntity<Map> queryPersonByDepSum(HttpServletRequest request, HttpSession session) throws IOException {
+        JSONObject returnJson = new JSONObject();
+        JSONArray root = new JSONArray();
+
+        //所有部门名称
+        JSONArray xArray = new JSONArray();
+        JSONArray list=new JSONArray();
+        JSONObject json=new JSONObject();
+        //获取当前的社团ID
+        String clubId = (String) request.getSession().getAttribute("clubId ");
+        if(clubId==null || clubId.length()==0){
+            //测试使用
+            clubId="1010100";
+        }
+        try {
+            List<Map<String,Object>> depList=departmentService.queryPersonByDepSum(clubId);
+            for (Map<String,Object> map:depList){
+                String departmentId = (String) map.get("departmentId");
+                //获取部门名称
+                String depName=departmentService.queryDepartmentNameById(departmentId);
+                //部门人数
+                long sum = (long) map.get("sum");
+                //单个部门信息：部门名称和人数
+                JSONObject data = new JSONObject();
+                data.put("name",depName);
+                data.put("value",sum);
+                list.add(data);
+                xArray.add(depName);
+            }
+
+
+            //测试数据
+            /*JSONObject data1 = new JSONObject();
+            JSONObject data2 = new JSONObject();
+            JSONObject data3 = new JSONObject();
+            data1.put("name","A部门");
+            data1.put("value",12);
+            data2.put("name","B部门");
+            data2.put("value",16);
+            data3.put("name","C部门");
+            data3.put("value",17);
+
+            list.add(data1);
+            list.add(data2);
+            list.add(data3);
+
+            xArray.add("A部门");
+            xArray.add("B部门");
+            xArray.add("C部门");*/
+
+            json.put("datas", list);
+            json.put("xArray", xArray);
+            root.add(json);
+            returnJson.put("root", root);
+            returnJson.put("success", true);
+        }catch (Exception e){
+            log.error("获取部门的男女人数失败：",e);
+            returnJson.put("success", false);
+            returnJson.put("Msg", e.getMessage());
+        }
+        finally {
+        }
+        return ResponseEntity.ok(returnJson);
+    }
+
     //获取部门的男女人数
     @RequestMapping(value="/queryManFemanSum.action",method=RequestMethod.POST)
     public ResponseEntity<Map> queryManFemanSum(HttpServletRequest request, HttpSession session) throws IOException {

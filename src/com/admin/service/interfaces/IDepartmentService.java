@@ -37,4 +37,6 @@ public interface IDepartmentService {
 	public void updateDepartInfo(String departId,String departName,String intro);
 
 	public void deleteDepartInfo(String departId);
+
+	List<Map<String,Object>> queryPersonByDepSum(String clubId);
 }

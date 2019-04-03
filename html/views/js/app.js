@@ -2,7 +2,75 @@
     var app = {
         queryAction: rootPath + '/department',
         queryBugetAction: rootPath + '/feeBudgetManage',
+        initPersonByDepSum: function (mainView) {
+            var url = app.queryAction;
+            var myChart = echarts.init(mainView);
+            $.ajax({
+                url: url+"/queryPersonByDepSum.action",
+                type: 'post',
+                async: true,
+                cache: false,
+                data: {
+                },
+                dataType: 'JSON',
+                success: function (response) {
+                    if (response.success) {
+                        $.each(response.root, function (i, item) {
+                            var option = null;
 
+                            var axisLabel = null;
+                            var label = null;
+                            axisLabel = {
+                                formatter: '{value}人'
+                            };
+                            option = {
+
+                                title: {
+                                    text: '部门人数比例',
+                                    x: 'center'
+                                },
+                                tooltip: {
+                                    trigger: 'item',
+                                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                                },
+                                legend: {
+                                    orient: 'vertical',
+                                    left: 'left',
+                                    data: item.xArray
+                                },
+                                series: [{
+                                    name: '部门人数比例',
+                                    type: 'pie',
+                                    radius: '55%',
+                                    center: ['50%', '60%'],
+                                    data: item.datas,
+                                    itemStyle: {
+                                        emphasis: {
+                                            shadowBlur: 10,
+                                            shadowOffsetX: 0,
+                                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                        }
+                                    }
+                                }]
+                            };
+                            myChart.clear();
+                            myChart.setOption(option);
+                        });
+
+
+                    } else {
+                        var obj = {};
+                        obj["Ptext"] = response.Msg;
+                        operationTipsFailed(obj);
+                    }
+                },
+                error: function () {
+                    var obj = {};
+                    obj["Ptext"] = "系统出错";
+                    operationTipsFailed(obj);
+                }
+            });
+        },
         initManFemaleByDepSum: function (mainView) {
             var url = app.queryAction;
             var myChart = echarts.init(mainView);

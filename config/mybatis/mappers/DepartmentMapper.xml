@@ -55,6 +55,11 @@
 		WHERE gr.clubId=#{clubId}
 		GROUP BY  gr.departmentId;
 	</select>
+	<select id="queryPersonByDepSum" resultType="java.util.HashMap" parameterType="String">
+		SELECT  gr.departmentId,COUNT(*) sum FROM groupmember gr
+		WHERE  gr.clubId=#{clubId}
+		GROUP BY  gr.departmentId;
+	</select>
 	<select id="queryDepartmentNameById" resultType="String" parameterType="String">
 		SELECT dep.name FROM department dep WHERE dep.id=#{id};
 	</select>

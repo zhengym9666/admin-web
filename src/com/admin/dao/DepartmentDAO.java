@@ -44,4 +44,7 @@ public interface DepartmentDAO {
     String queryDepartmentNameById(String depId);
 
 	ManFemalClub queryManFemaleByClubSum(String clubId);
+
+	List<Map<String,Object>> queryPersonByDepSum(String clubId);
+
 }

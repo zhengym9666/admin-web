@@ -8,6 +8,7 @@ import java.util.Map;
 import com.admin.bean.*;
 import com.admin.dao.GroupMemberDAO;
 import com.admin.util.MybatisUtil;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -111,7 +112,10 @@ public class DepartmentServiceImpl extends AbsServiceImpl<DepartmentDAO> impleme
 		mapper.deleteDepartInfo(departId);
 	}
 
-
+	@Override
+	public List<Map<String, Object>> queryPersonByDepSum(String clubId) {
+		return mapper.queryPersonByDepSum(clubId);
+	}
 
 
 	@Override
@@ -127,11 +131,17 @@ public class DepartmentServiceImpl extends AbsServiceImpl<DepartmentDAO> impleme
 	public static void main(String[] args) throws Exception {
 		MybatisUtil util=new MybatisUtil();
 		DepartmentServiceImpl service = util.getMapperServiceImplObject(DepartmentDAO.class, DepartmentServiceImpl.class);
-		Map<String,Map<Integer,Integer>> map = service.queryManFemaleSum("1010100");
+		/*Map<String,Map<Integer,Integer>> map = service.queryManFemaleSum("1010100");
 		System.out.println(map);
 		String s = service.queryDepartmentNameById("1010102");
 		System.out.println(s);
 		ManFemalClub manFemalClub = service.queryManFemaleByClubSum("1010100");
-		System.out.println(manFemalClub);
+		System.out.println(manFemalClub);*/
+		List<Map<String, Object>> maps = service.queryPersonByDepSum("1010100");
+		for (Map<String,Object> map:maps){
+			String departmentId = (String) map.get("departmentId");
+			long  sum= (long) map.get("sum");
+			System.out.println(sum);
+		}
 	}
 }
