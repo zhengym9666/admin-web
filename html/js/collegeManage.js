@@ -15,6 +15,8 @@ $(function(){
        addCollege:function(){
     	   isUpdate = 0;
     	   $(".right-alert_content ul .TextBtn-import").show();
+    	   $(".right-alert_content ul input").removeAttr("disabled");
+           $(".right-alert_content ul textarea").removeAttr("disabled","disabled");
     	   $("#edit-fullName").val('');
     	   $("#edit-collegeId").val('');
     	   $("#edit-abbr").val('');
