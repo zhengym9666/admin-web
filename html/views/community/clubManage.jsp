@@ -36,7 +36,7 @@
 <div class="viewFramework-index-body">
     <!---<<<<  标题    >>>>-->
     <span class="viewFramework-index-title">社团管理</span>
-    <button type="button" class="iconTextBtn-import rightTopBtn"  id="add-alarm-btn" onclick="clubManage.addClub()"><i class="iconfont icon-add"></i>添加部门</button>
+    <button type="button" class="iconTextBtn-import rightTopBtn"  id="add-alarm-btn" onclick="clubManage.addClub()"><i class="iconfont icon-add"></i>添加社团</button>
 
 
     <!---<<<<  tabs    >>>>-->
