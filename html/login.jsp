@@ -179,8 +179,8 @@ ul li:hover{
         <tr class="geneAdmin">
           <td class="table-left"><span>社团：</span></td>
           <td class="table-right">
-          <input type="hidden" id="clubId">
-          <input name="club" type="text" id="clubName" class="ui-down">
+          <input type="hidden" id="clubId"/>
+          <input name="club" type="text" id="clubName" class="ui-down"/>
           </td>
           <td>
           	<ul id="clubul">
@@ -244,8 +244,9 @@ ul li:hover{
 				$(".submitbtn").css("margin-left","90px");
 			}
 		});
-		
-		initVerify();
+
+		//修改为每次点击才加载
+		//initVerify();
 		
 		$.ajax({
     		url:rootPath+"/admin/GetAllCollegeInfo.action",
@@ -271,7 +272,9 @@ ul li:hover{
 		$("#collegeName").val(collegeName);
 		$("#collegeId").val(collegeId);
 		$("#collegeul").toggle();
-		$("#clubul").html('');
+		$("#clubul").html(' ');
+		//把选中学院的时候把选中的社团
+		$("#clubName").val("");
 		$.ajax({
 			url:rootPath+"/admin/queryAllClub.action",
 			type:'post',
@@ -295,6 +298,9 @@ ul li:hover{
 	};
 	
 	function showVertify(){
+	    //清空原有界面
+        $('#mpanel4').html("");
+        initVerify();
 		$('#mpanel4').show();
 	};
 	

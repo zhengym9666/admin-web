@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -90,7 +91,7 @@ public class LoginoutAction {
 	
 	@RequestMapping("/login2Action.action")
 	@ResponseBody
-	public Map<String,Object> Login2Action(HttpServletRequest request) throws Exception{
+	public Map<String,Object> Login2Action(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		
 		request.setCharacterEncoding("utf-8");
 		String stuNum = request.getParameter("stuNum");
@@ -105,7 +106,16 @@ public class LoginoutAction {
 			resultMap.put("Msg", "该用户不存在");
 			return resultMap;
 		}
-		
+
+		/*//生成登录状态
+		// 创建Cookie
+		Cookie cookie = new Cookie("studentId", stuNum);
+		// 有效期,秒为单位
+		cookie.setMaxAge(60*5*12); //会话时间一个小时
+		// 设置cookie
+		response.addCookie(cookie);*/
+
+
 		request.getSession().setAttribute("stuNum", stuNum);
 		Student stuInfo = studentService.queryStudentByStuNum(stuNum);
 		request.getSession().setAttribute("stuName", stuInfo.getStuName());
@@ -118,8 +128,8 @@ public class LoginoutAction {
 		request.getSession().setAttribute("rank", memInfo.getRank());
 		
 		resultMap.put("resultFlag", 1);
-		resultMap.put("adminUrl", "http://localhost:8080/admin-web/#/");
-			
+		resultMap.put("adminUrl", request.getContextPath()+"#/");
+
 		return resultMap;
 	}
 	
@@ -137,18 +147,32 @@ public class LoginoutAction {
 			resultMap.put("Msg", "用户名或密码错误");
 		}else{
 			resultMap.put("resultFlag", 1);
-			resultMap.put("adminUrl", "http://localhost:8080/admin-web/index2.jsp");
+			resultMap.put("adminUrl", request.getContextPath()+"/index2.jsp");
 		}
 		return resultMap;
 	}
 	
 	@RequestMapping("/logoutAction.action")
 	@ResponseBody
-	public void logoutAction(HttpServletRequest request){
-		
-		request.getSession().invalidate();//清除 session 中的所有信息		
+	public Map<String,Object> logoutAction(HttpServletRequest request,HttpServletResponse response){
+		/*//清楚登录状态的cookies
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				//System.out.println(URLDecoder.decode(cookie.getName(), "utf-8"));
+				if (cookie.getName().equals("studentId")) { // 表明已经登陆过了，就直接跳转了
+					cookie.setMaxAge(0); //会话无效，删除cookies
+					response.addCookie(cookie);
+				}
+			}
+		}*/
+		request.getSession().invalidate();//清除 session 中的所有信息
 		/*return "redirect:http://localhost:8080/gd_stu_dev/login.jsp";*/
+
 		System.out.println("yyyyyyyy");
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("status",1);
+		return resultMap;
 	}
 	
 	@RequestMapping("/GetAllCollegeInfo.action")
@@ -161,7 +185,6 @@ public class LoginoutAction {
 		try {
 			collegeList = collegeService.queryCollegeList();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		resultMap.put("data", collegeList);

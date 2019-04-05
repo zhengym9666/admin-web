@@ -31,7 +31,6 @@ public class CollegeServiceImpl extends AbsServiceImpl<CollegeDAO> implements IC
 	
 	@Override
 	public List<College> queryCollegePage(Page page) {
-		// TODO Auto-generated method stub
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("keyword1", page.getKeyword1());
 		params.put("start", page.getStart());
@@ -41,7 +40,6 @@ public class CollegeServiceImpl extends AbsServiceImpl<CollegeDAO> implements IC
 
 	@Override
 	public int queryCollegePageCount(Page page) {
-		// TODO Auto-generated method stub
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("keyword1", page.getKeyword1());
 		return mapper.queryCollegePageCount(params);
@@ -49,13 +47,11 @@ public class CollegeServiceImpl extends AbsServiceImpl<CollegeDAO> implements IC
 
 	@Override
 	public String createCollegeId() {
-		// TODO Auto-generated method stub
 		return mapper.createCollegeId();
 	}
 
 	@Override
 	public void saveNewCollege(String fullname, String abbr, String intro, String image) {
-		// TODO Auto-generated method stub
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("id", createCollegeId());
 		params.put("abbr", abbr);
@@ -67,7 +63,6 @@ public class CollegeServiceImpl extends AbsServiceImpl<CollegeDAO> implements IC
 
 	@Override
 	public void updateCollege(String fullname, String abbr, String intro, String image, String collegeId) {
-		// TODO Auto-generated method stub
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("fullname", fullname);
 		params.put("abbr", abbr);
@@ -79,13 +74,11 @@ public class CollegeServiceImpl extends AbsServiceImpl<CollegeDAO> implements IC
 
 	@Override
 	public void deleteCollege(String collegeId) {
-		// TODO Auto-generated method stub
 		mapper.deleteCollege(collegeId);
 	}
 
 	@Override
 	public List<College> queryCollegeList() {
-		// TODO Auto-generated method stub
 		return mapper.queryCollegeList();
 	}
 

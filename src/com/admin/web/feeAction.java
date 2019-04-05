@@ -439,6 +439,7 @@ public class feeAction {
 			// TODO Auto-generated catch block
 			resultMap.put("resultFlag",0);
 			resultMap.put("Msg", "获取社团总人数和剩余会费失败");
+			log.error("获取社团总人数和剩余会费失败:"+e.getMessage());
 			return resultMap;
 		}
 		resultMap.put("resultFlag", 1);

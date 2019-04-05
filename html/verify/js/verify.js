@@ -830,7 +830,7 @@
         var slide = new Slide(this, options);
         slide.init();
     };
-    
+
     //在插件中使用clickVerify对象
     $.fn.pointsVerify = function(options, callbacks) {
         var points = new Points(this, options);

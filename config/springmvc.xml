@@ -56,6 +56,16 @@
         <property name="suffix" value=".jsp"/>
     </bean>-->
 
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 配置进入拦截器的web路径规则 -->
+            <mvc:mapping path="/**/*.action" />
+            <!-- 拦截器 -->
+            <bean class="com.admin.filter.LoginFilter"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!-- 解决静态资源404问题 -->
     <mvc:default-servlet-handler/>
 </beans>  

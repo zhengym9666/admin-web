@@ -243,7 +243,7 @@
 					        			  window.opener=null;
 					        			  window.open('','_self');
 					        			  window.close();
-					        			  window.parent.location.href = "http://localhost:8080/gd_stu_dev/login.jsp";
+					        			  window.parent.location.href = rootPath+"/login.jsp";
  				        		  },
 					        		  error:function(){
 					        			  layer.alert("注销失败"); 

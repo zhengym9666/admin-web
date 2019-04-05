@@ -87,6 +87,8 @@
       if (echarts === undefined) {
         return;
       }
+        //初始化ajax全局配置
+        app.init();
       // 如果eacharts加载完成，则清除循环
       clearInterval(intervalIndex);
       //echarts
