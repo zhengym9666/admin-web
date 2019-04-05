@@ -118,6 +118,7 @@
         //long->date
         //结果为：2017-02-09
         function dateFormat(longTypeDate) {
+            if(longTypeDate==null){return ""};
             var dateTypeDate = "";
             var date = new Date();
             date.setTime(longTypeDate);
@@ -201,17 +202,17 @@
 	          {
 	            field: 'id',
 	            title: 'ID',
-	            width: 90,
+	            width: 112,//90
 	            fixed: 'left'
 	          }, {
 	            field: 'author',
 	            title: '作者',
-	            width: 80
-	          }, {
+	            width: 83 //80
+	          }/*,{
 	            field: 'submitter',
 	            title: '发布者',
 	            width: 80
-	          }, {
+	          }*/, {
 	            field: 'submit_time',
 	            title: '提交时间',
 	            width: 173,
@@ -230,7 +231,7 @@
 	          }, {
 	            field: 'title',
 	            title: '文章标题',
-	            width: 330
+	            width: 316 //330
 	          }, /*{
 	            field: 'image',
 	            title: '图片',
