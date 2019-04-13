@@ -61,15 +61,15 @@
 	<insert id="addClub" parameterType="com.admin.bean.Club">
 		INSERT INTO CLUB(clubId,clubName,intro,collegeId,birthdate) VALUES
 		((SELECT CONCAT((
-		SELECT SUBSTR((
+		SELECT IFNULL((SELECT SUBSTR((
 				SELECT MAX(c1.clubId)
 				FROM club c1
 				WHERE c1.clubId LIKE (
-					SELECT CONCAT('%', (
+					SELECT CONCAT((
 							SELECT SUBSTR(#{collegeId}, 1, 3)
 						), '%')
 				)
-			), 1, 5) + 1
+			), 1, 5) + 1),(SELECT CONCAT((SELECT SUBSTR(#{collegeId}, 1, 3)),'01')))
 	), '00')),#{clubName},#{intro},#{collegeId},#{birthdate})
 	</insert>
 
