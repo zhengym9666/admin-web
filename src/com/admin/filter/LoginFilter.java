@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.net.URLDecoder;
 
@@ -49,22 +51,30 @@ public class LoginFilter implements HandlerInterceptor {
 
 
         String stuNum = (String) request.getSession().getAttribute("stuNum");
+        String adminName = (String) request.getSession().getAttribute("adminName");
         String getServletPath =request.getServletPath();;
         if(getServletPath.contains("admin/GetAllCollegeInfo.action") || getServletPath.contains("admin/queryAllClub.action")
-                || getServletPath.contains("admin/login2Action.action")){
+                || getServletPath.contains("admin/loginAction.action") || getServletPath.contains("admin/SuperLoginAction.action") || getServletPath.contains("admin/login2Action.action") || getServletPath.contains("admin/SuperLogin2Action.action")){
             return true;
         }
-        //已经登录不做处理
-        if(stuNum!=null && stuNum.length()>0){
+        //超级管理员和管理员是并行关系，若是超级管理员登录请求的是queryAllCollege.action判断admin，若是管理员登录判断stuNum
+        if(getServletPath.contains("queryAllCollege.action")){
+        	if(adminName!=null && adminName.length()>0){
+        		 //已经登录不做处理
+            	return true;
+            }
+        }else if(stuNum!=null && stuNum.length()>0){
+        	 //已经登录不做处理
             return true;
-        //已经登录
-        }else{
+        }
+/*        else if(adminName!=null && adminName.length()>0){
+        	return true;
+        }*/
             //跳转到登录页面
             //response.sendRedirect("http://www.baidu.com");
 //            response.sendRedirect(request.getContextPath()+"/login.jsp");
             requestDirect(request,response);
             return false;
-        }
     }
 
     @Override
@@ -85,6 +95,7 @@ public class LoginFilter implements HandlerInterceptor {
             //前端需要判断是否是重定向
             response.setHeader("REDIRECT", "REDIRECT");
             //需要重定向的路径
+            System.out.println(request.getContextPath());
             response.setHeader("CONTENTPATH", request.getContextPath()+"/login.jsp");
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         }else{

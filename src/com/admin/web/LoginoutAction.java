@@ -49,6 +49,7 @@ public class LoginoutAction {
 	@Autowired
 	IGroupMemberService groupMemberService;
 	
+	//前台的登录管理员登录
 	@RequestMapping("/loginAction.action")
 	public String loginAction(HttpServletRequest request) throws Exception{
 		
@@ -89,6 +90,7 @@ public class LoginoutAction {
 		return "redirect:/#/";
 	}
 	
+	//后台的登录页面管理员登录
 	@RequestMapping("/login2Action.action")
 	@ResponseBody
 	public Map<String,Object> Login2Action(HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -97,10 +99,15 @@ public class LoginoutAction {
 		String stuNum = request.getParameter("stuNum");
 		String collegeId = request.getParameter("collegeId");
 		String clubId = request.getParameter("clubId");
+		String password = request.getParameter("password");
 		GroupMember memInfo = groupMemberService.queryMemberInfo(clubId, stuNum);
 		
 		Map<String,Object> resultMap = new HashMap<String,Object>();
-
+		if(!("000000").equals(password)){
+			resultMap.put("resultFlag", 0);
+			resultMap.put("Msg", "密码错误");
+			return resultMap;
+		}
 		if(memInfo==null){
 			resultMap.put("resultFlag", 0);
 			resultMap.put("Msg", "该用户不存在");
@@ -133,9 +140,28 @@ public class LoginoutAction {
 		return resultMap;
 	}
 	
+	//前台的登录页面超级管理员登录
 	@RequestMapping("/SuperLoginAction.action")
+	public String SuperLoginAction(HttpServletRequest request){
+		
+		String adminName = request.getParameter("adminName");
+		String path = request.getContextPath();
+		
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		
+		if(!("admin".equals(adminName))){
+			resultMap.put("resultFlag", 0);
+			resultMap.put("Msg", "用户名错误");
+		}else{
+			request.getSession().setAttribute("adminName", adminName);
+		}
+		return "redirect:/index2.jsp#/";
+	}
+	
+	//后台的登录页面超级管理员登录
+	@RequestMapping("/SuperLogin2Action.action")
 	@ResponseBody
-	public Map<String,Object> SuperLoginAction(HttpServletRequest request){
+	public Map<String,Object> SuperLogin2Action(HttpServletRequest request){
 		
 		String adminName = request.getParameter("adminName");
 		String password = request.getParameter("password");
@@ -148,6 +174,7 @@ public class LoginoutAction {
 		}else{
 			resultMap.put("resultFlag", 1);
 			resultMap.put("adminUrl", request.getContextPath()+"/index2.jsp");
+			request.getSession().setAttribute("adminName", adminName);
 		}
 		return resultMap;
 	}

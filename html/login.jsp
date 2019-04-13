@@ -348,6 +348,7 @@ ul li:hover{
 	        	            OpenWindowWithPost(response.adminUrl,
 	        	            "", "NewFile", args); */
 	        				window.open(response.adminUrl);
+	        				$('#mpanel4').hide();
 	        			}else{
 							alert(response.Msg);
 	        				$('#mpanel4').hide();
@@ -362,7 +363,7 @@ ul li:hover{
 	        		var adminName = $("#admin").val();
 	        		var password = $("#password").val();
 	        		$.ajax({
-		        		url:rootPath+"/admin/SuperLoginAction.action",
+		        		url:rootPath+"/admin/SuperLogin2Action.action",
 		        		type:'post',
 		        		data:{
 		        			adminName:adminName,

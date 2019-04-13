@@ -98,12 +98,32 @@
 	</div
 	</script>
 	<script>
+	
   layui.config({
     base: '/static/js/modules'
   }).use(['jquery', 'mockjs', 'table'], function() {
 	    var $ = layui.jquery,
 	      layer = layui.layer,
 	      table = layui.table;
+	    
+	  //设置ajax请求完成后运行的函数,
+	    $.ajaxSetup({
+	        complete:function(XMLHttpRequest, textStatus){
+	            // 通过XMLHttpRequest取得响应头，REDIRECT
+	            var redirect = XMLHttpRequest.getResponseHeader("REDIRECT");//若HEADER中含有REDIRECT说明后端想重定向
+	            console.log("测试"+XMLHttpRequest.getResponseHeader("CONTENTPATH"));
+	            if (redirect == "REDIRECT") {
+	                var win = window;
+	                while (win != win.top){
+	                    win = win.top;
+	                }
+
+	                win.location.href= XMLHttpRequest.getResponseHeader("CONTENTPATH");
+
+	            }
+	        }
+	    });
+	    
 	  
 	    //第一个实例
 	    var tableIns = table.render({
