@@ -121,12 +121,12 @@ public class NewsAction {
         int count=0;
         try {
             //获取当前的社团ID
-            String clubId = (String) request.getSession().getAttribute("clubId ");
+            String clubId = (String) request.getSession().getAttribute("clubId");
             //学院ID
             String collegeId = (String) request.getSession().getAttribute("collegeId");
             //测试代码
-            clubId="1010100";
-            collegeId="1010000";
+           /* clubId="1010100";
+            collegeId="1010000";*/
             //=====测试代码
 
             String currentPage0 = request.getParameter("page");
@@ -193,12 +193,12 @@ public class NewsAction {
         int count=0;
         try {
             //获取当前的社团ID
-            String clubId = (String) request.getSession().getAttribute("clubId ");
+            String clubId = (String) request.getSession().getAttribute("clubId");
             //学院ID
             String collegeId = (String) request.getSession().getAttribute("collegeId");
             //测试代码
-            clubId="1010100";
-            collegeId="1010000";
+            /*clubId="1010100";
+            collegeId="1010000";*/
             //=====测试代码
 
             String author = request.getParameter("author");

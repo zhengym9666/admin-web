@@ -109,7 +109,7 @@ public class feeAction {
 	public Map<String,Object> confirmSubmitFee(HttpServletRequest request){
 		
 		//模拟登录数据
-		String sessionstuNum = "1515200005";
+		String sessionstuNum = (String) request.getSession().getAttribute("stuNum");
 		
 		String stuNum = request.getParameter("stuNum");
 		String clubId = request.getParameter("clubId");
@@ -204,7 +204,7 @@ public class feeAction {
 		page.setRows(limit);
 		
 		//模拟登录数据
-		String clubId = "1010100";
+		String clubId = (String) request.getSession().getAttribute("clubId");
 		
 		List<FeeBudgetLog> budgetList = feeBudgetLogService.queryBudgetLog(page, clubId);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
@@ -221,10 +221,18 @@ public class feeAction {
 			String budget_status = bean.getBudget_status()==0?"支出":"收入";
 			infoMap.put("budget_status", budget_status);
 			infoMap.put("reason", bean.getReason());
-			infoMap.put("budgeter", studentService.queryStudentByStuNum(bean.getBudgeter()).getStuName());
+			String budgeter = "";
+			if(studentService.queryStudentByStuNum(bean.getBudgeter())!=null){
+				budgeter = studentService.queryStudentByStuNum(bean.getBudgeter()).getStuName();
+			}
+			infoMap.put("budgeter", budgeter);
 			infoMap.put("budget", bean.getBudget());
 			infoMap.put("remainMoney", bean.getRemainMoney());
-			infoMap.put("financial", studentService.queryStudentByStuNum(bean.getFinancial()).getStuName());
+			String financial = "";
+			if(studentService.queryStudentByStuNum(bean.getFinancial())!=null){
+				financial = studentService.queryStudentByStuNum(bean.getFinancial()).getStuName();
+			}
+			infoMap.put("financial",financial);
 			data.add(infoMap);
 		}
 		JSONArray array = JSONArray.fromObject(data);

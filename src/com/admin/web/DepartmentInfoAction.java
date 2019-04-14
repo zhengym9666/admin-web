@@ -42,7 +42,7 @@ public class DepartmentInfoAction {
 		page.setRows(limit);
 
 		//模拟session
-		String clubId = "1010100";
+		String clubId = (String) request.getSession().getAttribute("clubId");
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("code", 0);
 		resultMap.put("msg", "");
